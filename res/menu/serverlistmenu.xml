@@ -1,0 +1,6 @@
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/serverlistmenuNew" android:title="@string/serverlistmenuNew"></item>
+        <item android:id="@+id/serverlistmenuDisconnect" android:title="@string/serverlistmenuDisconnect"></item>
+        <item android:id="@+id/serverlistmenuPrefs" android:title="@string/serverlistmenuPrefs"></item><item android:id="@+id/serverlistmenuExit" android:title="@string/menuExit"></item>
+        
+    </menu>

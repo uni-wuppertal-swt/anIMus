@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    
+    android:layout_width="wrap_content" 
+	android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    
+    <ImageView
+        android:id="@+id/ContactlistelementStatusIconImageView"
+        android:contentDescription="@string/contactlistStatusIconDesc"
+        android:layout_width="40dp"
+        android:layout_height="56dp"
+        android:src="@drawable/status_grey_offline" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/ContactlistelementContactTextView"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/ContactlistelementStatusTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+	
+</LinearLayout>

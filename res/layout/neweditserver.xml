@@ -1,0 +1,124 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/TableLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+
+
+    <TextView
+        android:id="@+id/NewServerTextViewDomain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NewServerDomain" />
+
+    <EditText
+        android:id="@+id/NewServerEditTextDomain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textUri"
+        android:text="xmpp.animus-im.org" >
+
+        <requestFocus />
+    </EditText>
+
+
+
+    <TextView
+        android:id="@+id/NewServerTextViewPort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NewServerPort" />
+
+
+
+    <EditText
+        android:id="@+id/NewServerEditTextPort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:text="5222" />
+
+
+
+    <TextView
+        android:id="@+id/NewServerTextViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NewServerUsername" />
+
+
+
+    <EditText
+        android:id="@+id/NewServerEditTextUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textNoSuggestions" />
+
+
+
+    <TextView
+        android:id="@+id/NewServerTextViewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/NewServerPassword" />
+
+
+    <EditText
+        android:id="@+id/NewServerEditTextPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" />
+    
+    <TextView
+        android:id="@+id/NewServerTextViewAnimaServiceAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AnimaServiceAddress" />    
+        
+    <EditText
+        android:id="@+id/NewServerEditTextAnimaServiceAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textNoSuggestions"
+        android:text="http://anima.animus-im.org/" />
+
+    <CheckBox
+        android:id="@+id/NewServerCheckBoxTLS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="@string/NewServerTLS" />
+
+    <CheckBox
+        android:id="@+id/NewServerCheckBoxSavePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="@string/NewServerSavePassword" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/NewServerButtonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/NewServerSave" />
+
+        <Button
+            android:id="@+id/NewServerButtonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/NewServerCancel" />
+
+    </LinearLayout>
+
+</TableLayout>

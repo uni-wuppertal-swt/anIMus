@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"    
+    android:layout_width="fill_parent" 
+	android:layout_height="wrap_content"
+	android:background="#000000"
+    android:orientation="horizontal" >
+    
+        <LinearLayout
+        android:id="@+id/ChatListItemDarkWrapperLinearLayout"
+        android:layout_width="fill_parent"    
+          
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/ChatListItemDarkBubbleLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"            
+            android:background="@drawable/bubble_yellow" >
+
+            <TextView
+                android:id="@+id/ChatListItemDarkMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.80"
+                android:paddingLeft="10dip"
+                android:text="Message"               
+                android:textColor="@android:color/primary_text_light" />
+
+            <TextView
+                android:id="@+id/ChatListItemDarkTimestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                android:ellipsize="none"
+                android:scrollHorizontally="false"
+                android:text="13:37:00"
+                android:textColor="@android:color/primary_text_light"
+                android:textSize="11dip" />
+        </LinearLayout>
+
+    </LinearLayout>
+	
+</LinearLayout>

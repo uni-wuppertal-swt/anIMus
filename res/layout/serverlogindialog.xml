@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/serverLoginPassword"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:text="" >
+
+            <requestFocus />
+        </EditText>
+
+        <CheckBox
+            android:id="@+id/serverLoginSaveForSession"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/serverLoginSaveForSession" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/serverLoginConnect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:text="@string/serverLoginConnect" />
+
+        <Button
+            android:id="@+id/serverLoginCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.50"
+            android:text="@string/serverLoginCancel" />
+
+    </LinearLayout>
+
+</LinearLayout>

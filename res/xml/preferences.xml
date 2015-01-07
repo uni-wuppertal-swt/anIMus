@@ -1,0 +1,46 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" android:title="@string/Pref">
+        <PreferenceCategory android:title="@string/PrefGeneral"></PreferenceCategory><PreferenceScreen android:title="@string/PrefDisplay"><PreferenceCategory android:title="@string/PrefDisplay">
+            <ListPreference android:title="@string/PrefDisplayTheme" android:dialogTitle="@string/PrefDisplayTheme" android:entries="@array/PrefDisplayThemeList" android:entryValues="@array/PrefDisplayThemeListValues" android:summary="@string/PrefDisplayThemeSummary" android:key="listTheme" />
+            <CheckBoxPreference android:summary="@string/prefDisplayAvatarDesc" android:title="@string/prefDisplayAvatar" android:key="avatarDisplay" android:defaultValue="false" />
+            <CheckBoxPreference android:key="bubbleChat" android:defaultValue="true" android:title="@string/PrefBubbleChat" android:summary="@string/PrefBubbleChatDesc"/>
+            PrefOTRKeyPairLongPrefOTRKeyPairLong
+        </PreferenceCategory>
+        
+</PreferenceScreen><PreferenceScreen android:title="@string/PrefComfort">
+    <PreferenceCategory android:title="@string/PrefComfort">
+        <CheckBoxPreference android:key="autoReconnect" android:title="@string/PrefAutoReconnect" android:summary="@string/PrefAutoReconnectDesc" android:defaultValue="true"/>
+    </PreferenceCategory>
+</PreferenceScreen>
+        <PreferenceScreen android:title="@string/notifications"><PreferenceCategory android:title="@string/notifications">
+            <CheckBoxPreference android:title="@string/notifications" android:summary="@string/notificationDesc" android:key="notifications" android:enabled="true" android:defaultValue="true" />
+            <ListPreference android:key="listAlarm" android:title="@string/PrefNoticationAlarm" android:summary="@string/PrefNoticationAlarmSummary" android:dialogTitle="@string/PrefNoticationAlarm" android:entryValues="@array/PrefNotificationAlarmListValues" android:entries="@array/PrefNotificationAlarmList" />
+            <ListPreference android:dialogTitle="@string/PrefNoticationLED" android:key="listLED" android:title="@string/PrefNoticationLED" android:summary="@string/PrefNoticationLEDSummary" android:entries="@array/PrefNotificationLEDList" android:entryValues="@array/PrefNotificationLEDListValues"/>
+        
+        
+        
+</PreferenceCategory></PreferenceScreen><PreferenceScreen android:title="@string/messageHistory"><PreferenceCategory android:title="@string/messageHistory"><CheckBoxPreference android:enabled="true" android:title="@string/history" android:key="historyClear" android:summary="@string/historyDesc" android:defaultValue="false" /><Preference android:key="historyClearAllNow" android:title="@string/historyClearAllNow" android:summary="@string/historyClearAllNowDesc" />
+
+</PreferenceCategory></PreferenceScreen><PreferenceScreen android:title="@string/PrefOTR"><PreferenceCategory android:title="@string/PrefOTR"><Preference android:key="PrefOTR" android:summary="@string/PrefOTRKeyPairSummary" android:title="@string/PrefOTRKeyPairLong" />
+        <Preference android:key="PrefFingerprint" android:title="@string/PrefFingerprintLong" android:summary="@string/PrefFingerprintSummary" />
+        <ListPreference android:entries="@array/PrefOTRBehaviorList" android:entryValues="@array/PrefOTRBehaviorListValues" android:dialogTitle="@string/PrefOTRBehavior" android:key="listOTRBehavior" android:summary="@string/PrefOTRBehaviorSummary" android:title="@string/PrefOTRBehavior"/>
+        
+            
+        </PreferenceCategory>
+
+
+</PreferenceScreen><PreferenceScreen android:title="@string/PrefDataBackup"><PreferenceCategory android:title="@string/PrefDataBackup"><Preference android:key="PrefDataBackupExport" android:title="@string/PrefDataBackupExportLong" android:summary="@string/PrefDataBackupExportSummary"/>
+<Preference android:key="PrefDataBackupImport" android:title="@string/PrefDataBackupImportLong" android:summary="@string/PrefDataBackupImportSummary"/>
+<Preference android:key="PrefDataBackupReset" android:title="@string/PrefDataBackupResetLong" android:summary="@string/PrefDataBackupResetSummary"/>
+<ListPreference android:entries="@array/PrefDataBackupDBCryptList" android:entryValues="@array/PrefDataBackupDBCryptListValues" android:dialogTitle="@string/PrefDataBackupDBCrypt" android:key="listDBCryptMode" android:title="@string/PrefDataBackupDBCrypt" android:summary="@string/PrefDataBackupDBCryptSummary"/>
+</PreferenceCategory>
+
+</PreferenceScreen><PreferenceCategory android:title="@string/PrefAbout">
+            <Preference android:key="PrefAbout" android:title="@string/PrefAboutLong" android:summary="@string/PrefAboutSummary"/>
+        </PreferenceCategory>
+
+        
+        
+        
+        
+        
+    </PreferenceScreen>

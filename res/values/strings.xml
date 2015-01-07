@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">anIMus</string>
+    <string name="indServerlist">Server</string>
+    <string name="indContactlist">Contacts</string>
+    <string name="serverlistmenuNew">Add Server</string>
+    <string name="serverlistmenuDisconnect">Disconnect</string>
+    <string name="menuExit">Exit</string>
+    <string name="NewServerDomain">Domain:</string>
+    <string name="NewServerPort">Port:</string>
+    <string name="NewServerUsername">Username:</string>
+    <string name="NewServerPassword">Password:</string>
+    <string name="NewServerSave">Save</string>
+    <string name="NewServerCancel">Cancel</string>
+    <string name="NewServerDialogTitle">Alert</string>
+    <string name="NewServerDialogText">Please complete the form!</string>
+    <string name="NewServerDialogButton">OK</string>
+    <string name="contactlistmenuStatus">Set status</string>
+    <string name="contactlistmenuFriends">Find friends</string>
+    <string name="statusAvailable">Available</string>
+    <string name="statusAway">Away</string>
+    <string name="statusExtendedAway">Extended Away</string>
+    <string name="statusDnd">Do not disturb</string>
+    <string name="statusFreeToChat">Free to chat</string>
+    <string name="serverlistContextmenuConnect">Connect</string>
+    <string name="serverlistContextmenuDelete">Delete</string>
+    <string name="serverlistContextmenuHeader">Choices</string>
+    <string name="IMServerConnected">Connected</string>
+    <string name="serverlistAlreadyConnected">You are already connected to a server!</string>
+    <string name="statusErrorNotConnected">Status not set. You are not connected to a server!</string>
+    <string name="NewServerTLS">TLS-Encryption?</string>
+    <string name="statusUnavailable">Offline</string>
+    <string name="serverlistContextMenuChange">Edit</string>
+    <string name="IMChatMe">Me</string>
+    <string name="IMChatMessagePendingTicker">New message!</string>
+    <string name="IMChatMessagePendingTitle">New message</string>
+    <string name="IMChatMessagePendingText">has sent you a new message.</string>
+    <string name="serverlistNoServer">No server in list</string>
+    <string name="contactlistNoConnection">No Contacts</string>
+    <string name="contactlistStatusIconDesc">Status icon</string>
+    <string name="ServerListServerIconDesc">Server icon</string>
+    <string name="IMServerDisconnected">Not connected</string>
+    <string name="PrefDisplay">Display</string>
+    <string name="PrefDisplayTheme">Theme</string>
+    <string name="serverlistmenuPrefs">Preferences</string>
+    <string name="Pref">Preferences</string>
+    <string-array name="PrefDisplayThemeList">
+        <item >Light</item>
+        <item >Dark</item>
+    </string-array>
+    <string name="PrefDisplayThemeSummary">Changes the theme.</string>
+    <string name="PrefAbout">About</string>
+    <string name="PrefAboutSummary">App- and Developerinformation.</string>
+    <string name="AboutDevelopedBy">Developed by:\n- Moritz Lipfert\n- Klaus-Peter Watzlawek</string>
+    <string name="AboutLicense">\n\nLicenses:</string>
+    <string name="AboutLicenseJabberIcon"><a href="http://http://creativecommons.org/licenses/by/3.0/">- Jabber Icon by Jabber Software Foundation is licensed under Creative Commons Attribution 2.5 Generic.</a></string>
+    <string name="AboutLicenseAnimus">\n\nanIMus is licensed under ISC license:\n\nCopyright &#169; 2012-2013,\n\nMoritz Lipfert and Klaus-Peter Watzlawek\n\nPermission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.\n\nTHE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.</string>
+    <string name="AboutLogoDesc">anIMus icon</string>
+    <string name="PrefAboutLong">About anIMus</string>
+    <string-array name="PrefDisplayThemeListValues">
+        	<item >_light</item>
+        	<item >_dark</item>
+ 	</string-array>
+    <string name="AboutLicenseSmack"><a href="http://www.apache.org/licenses/LICENSE-2.0.html">- aSmack is based on Smack API. Smack API by Ignite Realtime is licensed under Apache License 2.0.</a></string>
+    <string name="chatlistmenuOtrEnabled">(De-)Activate OTR</string>
+    <string name="chatlistmenuOtrDisabled">Deactivate OTR</string>
+    <string name="chatOtrRequest">OTR-Request was sent!</string>
+    <string name="chatOtrAccept">OTR-Request has been accepted!</string>
+    <string name="chatOtrEnded">OTR-Session has been closed!</string>
+    <string name="chatOtrKeyGen">Keypair was generated!</string>
+    <string name="PrefOTR">Encryption</string>
+    <string name="PrefOTRKeyPairLong">Keypair</string>
+    <string name="PrefOTRKeyPairSummary">Generates a new keypair.</string>
+    <string name="AboutLicenseOTR"><a href="http://www.gnu.org/licenses/lgpl.html">- OTR4J is licensed under GNU Lesser GPL.</a></string>
+    <string name="serverErrorNotConnectedTo">You are not connected to a server!</string>
+    <string name="serverlistConnectedDelete">Server cannot be deleted. Please disconnect first!</string>
+    <string name="AboutLicenseBouncyCastle"><a href="http://www.bouncycastle.org/licence.html">- Bouncy Castle Crypto APIs are licensed under MIT X11 license.</a></string>
+	<string name="AboutLicenseJzlib"><a href="http://www.jcraft.com/jzlib/LICENSE.txt">- JZlib by JCraft is licensed under a BSD-style license.</a></string>
+	<string name="AboutLicenseSQLCipher"><a href="http://sqlcipher.net/license/">- SQLCipher by Zetetic LLC is licensed under  a BSD-style license.</a></string>
+	<string name="chatlistmenuOtrFingerprint">Show Fingerprints</string>
+	<string name="chatOtrSecured">OTR-Connection is now secured!</string>
+	<string name="chatlistmenuOtrFingerprintAlertTitle">Fingerprints</string>
+	<string name="chatlistmenuOtrFingerprintToast">OTR have to be enabled for that!</string>
+	<string name="IMServerLoginError">Username or Password incorrect!</string>
+	<string name="IMServerCannotConnect">Cannot connect to Server!</string>
+	<string name="PrefFingerprintLong">Fingerprint</string>
+	<string name="PrefFingerprintSummary">Displays the fingerprint for the public key.</string>
+	<string name="PrefFingerprintAlertTitle">Fingerprint</string>
+	<string name="serverlistContextmenuDisconnect">Disconnect</string>
+	<string name="IMChatBuddy">Friend</string>
+	<string name="chatlistmenuClearHistory">Clear history</string>
+	<string name="chatlistmenuClearHistoryAlertDialogTitle">Clear history</string>
+	<string name="chatlistmenuClearHistoryAlertDialogMessage">Erase complete history now?</string>
+	<string name="chatNewStatus">has changed the status to</string>
+	<string name="notifications">Notifications</string>
+	<string name="notificationDesc">Enables notifications on new message arrival</string>
+	<string name="history">Clear history</string>
+	<string name="historyDesc">Clear history on close of the chat window</string>
+	<string name="chatsettings">Chat settings</string>
+	<string name="prefDisplayAvatar">Display avatars</string>
+	<string name="prefDisplayAvatarDesc">Displays user icons in contact list.</string>
+	<string name="prefDisplayTitle">Display options</string>
+	<string name="iconSrvNotificationID">4145841845</string>
+	<string name="IMAppNoInternet">No connection to internet or network available.</string>
+	<string name="historyClearAllNow">Clear history now</string>
+	<string name="historyClearAllNowDesc">Clears the histories of all contacts.</string>
+	<string name="historyCleared">Message histories has been cleared!</string>
+	<string name="messageHistory">Message history</string>	
+	<string name="chatContextMenuChatCopy">Copy content</string>
+	<string name="chatContextMenuChatLog">Chat log</string>
+	<string name="NewServerSavePassword">Save password?</string>
+	<string name="serverloginDialogPassword">Please enter your password.</string>
+	<string name="serverLoginSaveForSession">Save for this session only?</string>
+	<string name="serverLoginConnect">Connect</string>
+	<string name="serverLoginCancel">Cancel</string>
+	<string name="IMServerNotReachable">Server is not reachable.</string>
+	<string name="statusOffline">Offline</string>
+	<string name="chatOfflineMode">anIMus runs in offline mode. Please reconnect!</string>
+	<string name="PrefNoticationAlarm">Alarm</string>
+	<string name="PrefNoticationAlarmSummary">Select sound or/and vibration as notification.</string>
+	<string name="chatOtrNoKeyPair">No key pair has been generated yet!</string>
+	<string-array name="PrefNotificationAlarmList">
+		<item >Only sound</item>
+		<item >Only vibration</item>
+		<item >Sound and vibration</item>		
+	</string-array>
+	<string-array name="PrefNotificationAlarmListValues">
+		<item >_sound</item>
+		<item >_vibration</item>
+		<item >_soundandvibration</item>
+	</string-array>
+	<string name="PrefGeneral">General</string>
+	<string name="PrefNoticationLED">LED light</string>
+	<string name="PrefNoticationLEDSummary">Enables/Disables the LED light with color selection .</string>
+	<string-array name="PrefNotificationLEDList">
+		<item >Disabled</item>
+		<item >White</item>
+		<item >Red</item>
+		<item >Yellow</item>	
+		<item >Green</item>
+		<item >Cyan</item>
+		<item >Blue</item>
+		<item >Purple</item>								
+	</string-array>
+	<string-array name="PrefNotificationLEDListValues">
+		<item >_disabled</item>
+		<item >_white</item>
+		<item >_red</item>
+		<item >_yellow</item>	
+		<item >_green</item>
+		<item >_cyan</item>
+		<item >_blue</item>
+		<item >_purple</item>	
+	</string-array>	
+	<string name="contactlistFriends">Find friends</string>
+	<string name="PrefBubbleChat">Display bubbles</string>
+	<string name="PrefBubbleChatDesc">The chat history is displayed as bubbles. </string>	
+	<string name="PrefComfort">Comfort</string>
+	<string name="PrefAutoReconnect">Auto Reconnect</string>
+	<string name="PrefAutoReconnectDesc">The connection will be re-established to the last server after connection lost.</string>
+	<string name="chatContextMenuBubbleChatMessageDetails">Show details</string>
+	<string name="chatContextMenuChatMessageDetailstAlertTitle">Message details</string>
+	<string name="chatContextMenuChatMessageDetailsTimestamp">Time:</string>
+	<string name="chatContextMenuChatMessageDetailsUsername">From:</string>
+	<string name="PrefOTRBehavior">OTR Behavior</string>
+	<string name="PrefOTRBehaviorSummary">Selection of activation behavior for OTR.</string>
+	<string-array name="PrefOTRBehaviorList">
+		<item >Manual</item>
+		<item >Automatic</item>
+		<item >Forced</item>										
+	</string-array>
+	<string-array name="PrefOTRBehaviorListValues">
+		<item >_manual</item>
+		<item >_automatic</item>
+		<item >_forced</item>		
+	</string-array>	
+	<string name="PrefDataBackup">Data Backup</string>
+	<string name="PrefDataBackupExportLong">Export</string>	
+	<string name="PrefDataBackupExportSummary">Preferences and encrypted database are exported to external device storage.</string>
+	<string name="PrefDataBackupImportLong">Import</string>	
+	<string name="PrefDataBackupImportSummary">Preferences and encrypted database are imported from external device storage.</string>
+	<string name="PrefDataBackupResetLong">Reset</string>	
+	<string name="PrefDataBackupResetSummary">Deletes all internal preferences and data of the application.</string>	
+	<string name="PrefDataBackupAlertDialogTitleReset">Reset</string>
+	<string name="PrefDataBackupAlertDialogMessageReset">Erase all data?</string>
+	<string name="AlertDialogYes">Yes</string>
+	<string name="AlertDialogNo">No</string>
+	<string name="databackuplistNoEntries">No backups found.</string>
+	<string name="databackuplistBackups">Backup</string>
+	<string name="databackuplistPath">Path</string>
+	<string name="databackuplistContextmenuHeader">Select</string>
+	<string name="databackuplistContextmenuImport">Import</string>
+	<string name="databackuplistContextmenuDelete">Delete</string>
+	<string name="PrefDataBackupDBCrypt">Data Encryption</string>
+	<string name="PrefDataBackupDBCryptSummary">Selection between password question on start, internal password or disabled. </string>
+	<string-array name="PrefDataBackupDBCryptList">
+		<item >Question</item>
+		<item >Internal</item>
+		<item >Disabled</item>		
+	</string-array>	
+	<string-array name="PrefDataBackupDBCryptListValues">
+		<item >_passwordmode</item>
+		<item >_internal</item>
+		<item >_disabled</item>		
+	</string-array>	
+	<string name="AnimaServiceAddress">anIMa Service Address</string>
+	<string name="contactlistisEmpty">No contacts available</string>
+	<string name="conactlistContextmenuDelete">Delete</string>
+	<string name="conactlistContextmenuValidate">Validate</string>
+	<string name="conactlistContextmenuHeader">Contact menu</string>	
+</resources>

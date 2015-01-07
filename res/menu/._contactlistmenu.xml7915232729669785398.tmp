@@ -1,0 +1,4 @@
+   <menu xmlns:android="http://schemas.android.com/apk/res/android">
+        <item android:id="@+id/contactlistmenuStatus" android:title="@string/contactlistmenuStatus"></item><item android:id="@+id/contactlistmenuExit" android:title="@string/menuExit"></item>
+        
+    </menu>

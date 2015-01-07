@@ -1,0 +1,47 @@
+LICENSE
+
+Developed by:
+- Moritz Lipfert anIMus 1.0
+- Klaus-Peter Watzlawek | watzlawek.org anIMus 1.0/2.0
+
+- 	aSmack is based on Smack API. Smack API by Ignite Realtime 
+	is licensed under Apache License 2.0.
+	http://www.apache.org/licenses/LICENSE-2.0.html
+	
+- 	Bouncy Castle Crypto APIs are licensed under MIT X11 license.
+	http://www.bouncycastle.org/licence.html
+
+- 	JZlib by JCraft is licensed under a BSD-style license.
+	http://www.jcraft.com/jzlib/LICENSE.txt
+	
+-	OTR4J is licensed under GNU Lesser GPL.
+	http://www.gnu.org/licenses/lgpl.html	
+
+- 	Jabber Icon by Jabber Software Foundation is licensed 
+	under Creative Commons Attribution 2.5 Generic.
+	http://http://creativecommons.org/licenses/by/3.0/
+
+-	SQLCipher is based on SQLite. http://sqlite.org, Public Domain Software
+	SQLCipher is licesend by Zetetic LLC under a BSD style license.
+	http://sqlcipher.net/license/
+
+-	SQLCipher for Android is licesend
+	by Zetetic LLC under Apache License 2.0.
+	http://www.apache.org/licenses/LICENSE-2.0.html
+	SQLCipher for Android includes International Components for Unicode (ICU), 
+	Copyright (c) 1995-2012 International Business Machines Corporation and others. 
+	All rights reserved.
+
+anIMus 2.0 is licensed under ISC license: 
+(C) 2012-2014, Moritz Lipfert and Klaus-Peter Watzlawek
+
+Permission to use, copy, modify, and/or distribute this software for any purpose with 
+or without fee is hereby granted, provided that the above copyright notice 
+and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS 
+ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES 
+OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, 
+DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING 
+FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
