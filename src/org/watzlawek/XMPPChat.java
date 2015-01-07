@@ -38,7 +38,7 @@ import android.widget.Toast;
  * It holds all specific information of a XMPP contact like the Jabber ID.
  * Furthermore it implements the abstract methods from IMChat.
  * 
- * @author Klaus-Peter Watzlawek
+ * @author Klaus-Peter Watzlawek und Blub
  * @author Moritz Lipfert
  * 
  * @version 2013-09-10
