@@ -3,6 +3,7 @@
     <string name="app_name">anIMus</string>
     <string name="indServerlist">Server</string>
     <string name="indContactlist">Kontakte</string>
+    <string name="indChatlist">Chats</string>
     <string name="serverlistmenuNew">Neuer Server</string>
     <string name="serverlistmenuDisconnect">Verbindung trennen</string>
     <string name="menuExit">Beenden</string>
@@ -37,6 +38,7 @@
     <string name="IMChatMessagePendingText">hat Ihnen eine neue Nachricht gesendet.</string>
     <string name="serverlistNoServer">Kein Server eingetragen</string>
     <string name="contactlistNoConnection">Keine Kontakte</string>
+    <string name="chatlistNoChat">Keine Chats verfügbar</string>
     <string name="contactlistStatusIconDesc">Status-Icon</string>
     <string name="ServerListServerIconDesc">Server-Icon</string>
     <string name="IMServerDisconnected">Getrennt</string>

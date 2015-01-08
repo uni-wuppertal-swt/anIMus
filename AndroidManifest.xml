@@ -36,6 +36,7 @@
         <service android:enabled="true" android:name="NetworkConnectThread" />
         <activity android:name="ContactlistActivity"></activity>
         <activity android:name="ServerlistActivity"></activity>
+        <activity android:name="ChatlistActivity"></activity>
         <activity android:name=".NewEditXMPPServerActivity"></activity>
         <activity android:name="StatusActivity"></activity>
         <activity android:name=".ChatActivity"></activity>

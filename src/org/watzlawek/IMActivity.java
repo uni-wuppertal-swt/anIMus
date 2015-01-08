@@ -109,7 +109,11 @@ public class IMActivity extends TabActivity {
         
         intent = new Intent().setClass(this, ContactlistActivity.class);
         spec = tabHost.newTabSpec("contactlist").setIndicator(res.getText(R.string.indContactlist),res.getDrawable(R.drawable.ic_tab_contact)).setContent(intent);
-        tabHost.addTab(spec);              
+        tabHost.addTab(spec);
+        
+        intent = new Intent().setClass(this, ChatlistActivity.class);
+        spec = tabHost.newTabSpec("chatlist").setIndicator(res.getText(R.string.indChatlist),res.getDrawable(R.drawable.ic_tab_chat)).setContent(intent);
+		tabHost.addTab(spec);
 		
 		this.handler = new Handler();
     	this.handler.postDelayed(runnable,1000);    
