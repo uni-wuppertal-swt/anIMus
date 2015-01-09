@@ -66,6 +66,7 @@
     <string name="AboutLicenseSmack"><a href="http://www.apache.org/licenses/LICENSE-2.0.html">- aSmack is based on Smack API. Smack API by Ignite Realtime is licensed under Apache License 2.0.</a></string>
     <string name="chatlistmenuOtrEnabled">(De-)Activate OTR</string>
     <string name="chatlistmenuOtrDisabled">Deactivate OTR</string>
+    <string name="chatlistmenuNewGroup">Create new group</string>
     <string name="chatOtrRequest">OTR-Request was sent!</string>
     <string name="chatOtrAccept">OTR-Request has been accepted!</string>
     <string name="chatOtrEnded">OTR-Session has been closed!</string>

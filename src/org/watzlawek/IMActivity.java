@@ -1,6 +1,7 @@
 package org.watzlawek;
 
 import org.watzlawek.R;
+import org.watzlawek.ui.ChatlistActivity;
 
 import android.app.TabActivity;
 import android.content.Intent;
