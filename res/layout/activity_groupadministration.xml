@@ -5,10 +5,10 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/GroupadministrationGroupnameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="@string/GroupadministrationGroupnameTextedit" />
 
     <EditText
         android:id="@+id/editText1"
@@ -18,13 +18,29 @@
 
         <requestFocus />
     </EditText>
-    
-    <LinearLayout
+
+    <ListView
+        android:id="@+id/GroupadministrationContactlist"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </ListView>
+
+    <TextView
+        android:id="@+id/GroupadministrationContactsTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:text="@string/GroupadministrationContactsTextview" />
 
+    <Button
+        android:id="@+id/GroupadministrationCancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GroupadministrationCancelButton" />
 
+    <Button
+        android:id="@+id/GroupadministrationSafeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GroupadministrationOkButton" />
 
 </LinearLayout>

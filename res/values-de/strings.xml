@@ -211,4 +211,8 @@
 	<string name="conactlistContextmenuDelete">Löschen</string>
 	<string name="conactlistContextmenuValidate">Validieren</string>
 	<string name="conactlistContextmenuHeader">Kontaktmenü</string>
+	<string name="GroupadministrationGroupnameTextedit">Gruppenname:</string>
+	<string name="GroupadministrationCancelButton">Abbrechen</string>
+	<string name="GroupadministrationOkButton">Speichern</string>
+	<string name="GroupadministrationContactsTextview">Kontakte:</string>
 </resources>
