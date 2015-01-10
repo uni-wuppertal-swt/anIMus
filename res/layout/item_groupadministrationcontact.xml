@@ -9,10 +9,18 @@
         
     />
     
-    <ImageView
+<ToggleButton
         android:id="@+id/GroupadministrationSelectionImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"/>"
+        android:src="@drawable/ic_launcher"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/groupadministration_toggle"
+        android:textOn=""
+        android:textOff=""
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:layout_centerVertical="true"
+        />"
 
 </RelativeLayout>

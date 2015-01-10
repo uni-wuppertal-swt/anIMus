@@ -25,6 +25,6 @@ public class GroupAdministrationActivity extends Activity {
         
         ListView listView = (ListView) findViewById(R.id.GroupadministrationContactlist);
         listView.setAdapter(gAdapter); 
-	}
+	} 
 	
 }
