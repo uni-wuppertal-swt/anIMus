@@ -9,24 +9,21 @@ import android.widget.TextView;
 
 public class GroupAdministrationContactAdapter extends BaseAdapter{
 	private final Context context;
-	private final String[] user = new String[]{"Benutzer 3, benutzer 4"};
+	private final String[] user = new String[]{"Benutzer 3", "Benutzer 4"};
 	
 	public GroupAdministrationContactAdapter(Context context){
 		this.context = context;
 	}
 	
 	public int getCount() {
-		// TODO Auto-generated method stub
 		return user.length;
 	}
 
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return null;
+		return user[position];
 	}
 
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
@@ -35,7 +32,7 @@ public class GroupAdministrationContactAdapter extends BaseAdapter{
 	     View rowView = inflater.inflate(R.layout.item_groupadministrationcontact, parent,false);
 
 	     TextView textView = (TextView) rowView.findViewById(R.id.GroupadministrationContaktName);
-	     textView.setText("test");
+	     textView.setText(user[position]);
 	     
 		return rowView;
 	}
