@@ -25,7 +25,7 @@ public class GroupAdministrationActivity extends Activity {
         
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, user);
         ListView listView = (ListView) findViewById(R.id.GroupadministrationContactlist);
-        listView.setAdapter(arrayAdapter);
+        listView.setAdapter(arrayAdapter); 
 	}
 	
 }
