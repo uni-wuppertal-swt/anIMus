@@ -1,10 +1,10 @@
 package org.watzlawek.ui;
 
+import org.watzlawek.GroupAdministrationContactAdapter;
 import org.watzlawek.R;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 /**
@@ -20,12 +20,11 @@ public class GroupAdministrationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupadministration);
+
+        GroupAdministrationContactAdapter gAdapter = new GroupAdministrationContactAdapter(getBaseContext());
         
-        String[] user = new String[]{"Benutzer 1", "Benutzer 2"};
-        
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, user);
         ListView listView = (ListView) findViewById(R.id.GroupadministrationContactlist);
-        listView.setAdapter(arrayAdapter); 
+        listView.setAdapter(gAdapter); 
 	}
 	
 }
