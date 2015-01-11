@@ -1,14 +1,16 @@
 package org.watzlawek.views.activities;
 
 import org.watzlawek.R;
+import org.watzlawek.views.adapters.ChatlistAdapter;
 
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.TextView; 
 
 /**
  * Activity to display the chatlist.
@@ -25,11 +27,16 @@ public class ChatlistActivity extends ListActivity{
 	 * @return true if creation succeeded
 	 */
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_chatlist, menu);
 		return true;
 	}
+	
+	
+	
+	
 	
 	/**
 	 * Handles click events from the options menu
@@ -57,6 +64,20 @@ public class ChatlistActivity extends ListActivity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatlist);
+        
+ChatlistAdapter gAdapter = new ChatlistAdapter(getBaseContext());
+        
+        ListView listView = (ListView) findViewById(android.R.id.list);
+        listView.setAdapter(gAdapter);
+        TextView testding= (TextView) findViewById(R.id.testview);
+     //   listView.setOnItemClickListener(new OnItemClickListener() {
+    //        public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
+     //       {
+            	
+     //       }
+     //   } );
+        
+ 
 	}
 	
 }
