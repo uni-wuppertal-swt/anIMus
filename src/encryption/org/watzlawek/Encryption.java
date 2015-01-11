@@ -2,25 +2,36 @@ package encryption.org.watzlawek;
 
 import java.util.Vector;
 import java.lang.String;
+import android.content.*;
+import org.jivesoftware.smack.packet.*;
+
 
 public class Encryption {
-	private Vector<String> jid;
+	private Vector<String> mMemberList;
 	private String context;
+	 
 	
-	public Encryption (String context){
-		
-	}
 	
-	public Encryption (String bohoo, String context){
-		
-	}
-
-	public void decrypt(String cipher) throws EncryptionFaultException {
+	/**
+	 * Constructor 
+	 * @param context
+	 */
+	public Encryption (Context context){
 		
 	}
 	
-	public void encrypt(String text) throws EncryptionFaultException {
-		
+	public Message decryptMessage(Message cipher) throws EncryptionFaultException {
+		return cipher;
 	}
+	
+	public Message encryptMessage(Message text) throws EncryptionFaultException {
+		return text;
+	}
+	
+	public void setMemberList(Vector<String> mMemberList){
+		this.mMemberList = mMemberList; 
+	}
+	
+	
 	
 }
