@@ -1,5 +1,7 @@
 package org.watzlawek.models;
 
+import java.util.Vector;
+
 import org.jivesoftware.smackx.muc.MultiUserChat;
 import org.watzlawek.IMChatMessageListener;
 import org.watzlawek.IMServer;
@@ -54,5 +56,11 @@ public class Group {
 //		
 //	}
 	
-//	public match_expression(String input, )
+//	public match_expression(String input, String pattern){
+//	
+//	}
+	
+	public void setContactsInGroup(Vector<String> jids){
+
+	}
 }
