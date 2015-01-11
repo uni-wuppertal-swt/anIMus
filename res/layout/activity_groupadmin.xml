@@ -5,13 +5,13 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/GroupadministrationGroupnameTextView"
+        android:id="@+id/groupadmin_groupname_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/GroupadministrationGroupnameTextedit" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/groupadmin_groupname_edittext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
@@ -20,7 +20,7 @@
     </EditText>
 
     <ListView
-        android:id="@+id/GroupadministrationContactlist"
+        android:id="@+id/groupadmin_contactlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
@@ -28,13 +28,13 @@
 
 
     <Button
-        android:id="@+id/GroupadministrationCancelButton"
+        android:id="@+id/groupadmin_cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/GroupadministrationCancelButton" />
 
     <Button
-        android:id="@+id/GroupadministrationSafeButton"
+        android:id="@+id/groupadmin_safe_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/GroupadministrationOkButton" />

@@ -1,4 +1,4 @@
-package org.watzlawek.ui;
+package org.watzlawek.views.activities;
 
 import org.watzlawek.R;
 
@@ -40,7 +40,7 @@ public class ChatlistActivity extends ListActivity{
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    switch (item.getItemId()) {
 	        case R.id.chatlistmenuNewGroup:
-	        	Intent intent = new Intent(this, GroupAdministrationActivity.class);
+	        	Intent intent = new Intent(this, GroupadminActivity.class);
 	        	startActivity(intent);
 
 	        	return true;
@@ -56,7 +56,7 @@ public class ChatlistActivity extends ListActivity{
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chatlistlight);
+        setContentView(R.layout.activity_chatlist);
 	}
 	
 }

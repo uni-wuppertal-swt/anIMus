@@ -36,8 +36,8 @@
         <service android:enabled="true" android:name="NetworkConnectThread" />
         <activity android:name="ContactlistActivity"></activity>
         <activity android:name="ServerlistActivity"></activity>
-        <activity android:name="org.watzlawek.ui.ChatlistActivity"></activity>
-        <activity android:name="org.watzlawek.ui.GroupAdministrationActivity"></activity>
+        <activity android:name="org.watzlawek.views.activities.ChatlistActivity"></activity>
+        <activity android:name="org.watzlawek.views.activities.GroupadminActivity"></activity>
         <activity android:name=".NewEditXMPPServerActivity"></activity>
         <activity android:name="StatusActivity"></activity>
         <activity android:name=".ChatActivity"></activity>

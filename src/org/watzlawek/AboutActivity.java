@@ -15,7 +15,7 @@ import android.widget.TextView;
  * 
  * @version 2012-11-14
  */
-public class AboutActivity extends Activity {
+public class AboutActivity extends Activity { 
 	
 	/**
 	 * This method is called on creation of the activity.

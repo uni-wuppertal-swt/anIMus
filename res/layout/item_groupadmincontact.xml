@@ -2,15 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    
     <TextView 
-        android:id="@+id/GroupadministrationContaktName"
+        android:id="@+id/groupadmin_contactname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         
     />
     
-<ToggleButton
-        android:id="@+id/GroupadministrationSelectionImage"
+	<ToggleButton
+        android:id="@+id/groupadmin_selection_togglebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher"
