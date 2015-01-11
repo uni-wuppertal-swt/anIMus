@@ -1,29 +1,44 @@
 package org.watzlawek.views.adapters;
 
+import org.watzlawek.R;
+
+import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 public class ChatlistAdapter extends BaseAdapter{
 
+private final Context context;
+	
+	private final String[] groups = new String[]{"gruppe 3", "blubb und so"};
+	
+	public ChatlistAdapter(Context context){
+		this.context = context;
+	}
+	
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return groups.length;
 	}
 
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return null;
+		return groups[position];
 	}
 
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		return null;
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	     View rowView = inflater.inflate(R.layout.item_grouplistgroup, parent,false);
+
+	     TextView textView = (TextView) rowView.findViewById(R.id.grouplist_groupname);
+	     textView.setText(groups[position]);
+	     
+		return rowView;
 	}
 
 }
