@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.TextView; 
 
 /**
  * Activity to display the chatlist.
@@ -69,13 +69,13 @@ ChatlistAdapter gAdapter = new ChatlistAdapter(getBaseContext());
         
         ListView listView = (ListView) findViewById(android.R.id.list);
         listView.setAdapter(gAdapter);
-        TextView testding= (TextView) findViewById(android.R.id.testview)
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
-            {
+        TextView testding= (TextView) findViewById(R.id.testview);
+     //   listView.setOnItemClickListener(new OnItemClickListener() {
+    //        public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
+     //       {
             	
-            }
-        } );
+     //       }
+     //   } );
         
  
 	}
