@@ -9,6 +9,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+/**
+ * Adapter chatlist 
+ * 
+ * @author Safran Quader
+ * 
+ * @version 2015-01-12
+ */
 public class ChatlistAdapter extends BaseAdapter{
 
 private final Context context;

@@ -10,6 +10,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
+/**
+ * Activity to display the groupchat
+ * 
+ * @author Safran Quader
+ * 
+ * @version 2015-01-12
+ */
 public class GroupchatActivity extends Activity {
 
 	/**

@@ -1,5 +1,12 @@
 package org.watzlawek.views.adapters;
 
+/**
+ * Adapter groupchat
+ * 
+ * @author Safran Quader
+ * 
+ * @version 2015-01-12
+ */
 import org.watzlawek.R;
 
 import android.content.Context;
@@ -9,43 +16,39 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-/**
- * Adapter groupadmin
- * 
- * @author Safran Quader
- * 
- * @version 2015-01-12
- */
-public class GroupadminContactAdapter extends BaseAdapter{
+public class GroupchatAdapter extends BaseAdapter{
 	
 	private final Context context;
 	
-	private final String[] user = new String[]{"Benutzer 3", "Benutzer 4"};
+	String[] messages = new String[] {"Nachricht 1", "Nachricht 2"};
 	
-	public GroupadminContactAdapter(Context context){
+	public GroupchatAdapter(Context context){
 		this.context = context;
 	}
 	
 	public int getCount() {
-		return user.length;
+		return messages.length;
 	}
 
 	public Object getItem(int position) {
-		return user[position];
+		return messages[position];
 	}
 
 	public long getItemId(int position) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	     View rowView = inflater.inflate(R.layout.item_groupadmincontact, parent,false);
 
-	     TextView textView = (TextView) rowView.findViewById(R.id.groupadmin_contactname);
-	     textView.setText(user[position]);
+		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	    
+		View rowView = inflater.inflate(R.layout.item_groupchat_self, parent,false);
+
+	    TextView textView = (TextView) rowView.findViewById(R.id.item_groupchat_self_message);
+	    textView.setText(messages[position]);
 	     
-		return rowView;
+	    return rowView;
 	}
 
 }
