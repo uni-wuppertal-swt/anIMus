@@ -6,11 +6,13 @@ import org.watzlawek.views.adapters.ChatlistAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView; 
+import android.widget.TextView;
 
 /**
  * Activity to display the chatlist.
@@ -65,19 +67,21 @@ public class ChatlistActivity extends ListActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatlist);
         
-ChatlistAdapter gAdapter = new ChatlistAdapter(getBaseContext());
+        ChatlistAdapter gAdapter = new ChatlistAdapter(getBaseContext());
         
         ListView listView = (ListView) findViewById(android.R.id.list);
         listView.setAdapter(gAdapter);
         TextView testding= (TextView) findViewById(R.id.testview);
-     //   listView.setOnItemClickListener(new OnItemClickListener() {
-    //        public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
-     //       {
-            	
-     //       }
-     //   } );
-        
- 
+	}
+	
+	/**
+	 * Handles list item clicks
+	 */
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		Log.d("TAG", "Klick!");
+		Intent intent = new Intent(this, GroupchatActivity.class);
+    	startActivity(intent);
 	}
 	
 }

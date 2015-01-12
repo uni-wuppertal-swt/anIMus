@@ -1,5 +1,7 @@
 package org.watzlawek.views.activities;
 
-public class GroupchatActivity {
+import android.app.Activity;
+
+public class GroupchatActivity extends Activity {
 
 }
