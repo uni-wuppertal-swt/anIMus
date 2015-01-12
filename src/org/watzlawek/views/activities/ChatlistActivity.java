@@ -3,25 +3,25 @@ package org.watzlawek.views.activities;
 import org.watzlawek.R;
 import org.watzlawek.views.adapters.ChatlistAdapter;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 
 /**
- * Activity to display the chatlist.
+ * Activity to display the chatlist
  * 
  * @author Safran Quader
  * 
  * @version 2015-01-08
  */
-public class ChatlistActivity extends ListActivity{
+public class ChatlistActivity extends Activity{
 	
 	/**
 	 * Creates the options menu if the menu button is clicked (<= API 10) or onCreate is called (> API 10).
@@ -35,10 +35,6 @@ public class ChatlistActivity extends ListActivity{
 		inflater.inflate(R.menu.menu_chatlist, menu);
 		return true;
 	}
-	
-	
-	
-	
 	
 	/**
 	 * Handles click events from the options menu
@@ -60,28 +56,21 @@ public class ChatlistActivity extends ListActivity{
 	}
 	
 	/**
-	 * Initilizes the activity at first start or resume
+	 * Initilize the activity at first start or resume
 	 */
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatlist);
         
-        ChatlistAdapter gAdapter = new ChatlistAdapter(getBaseContext());
-        
-        ListView listView = (ListView) findViewById(android.R.id.list);
-        listView.setAdapter(gAdapter);
-        TextView testding= (TextView) findViewById(R.id.testview);
-	}
-	
-	/**
-	 * Handles list item clicks
-	 */
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		Log.d("TAG", "Klick!");
-		Intent intent = new Intent(this, GroupchatActivity.class);
-    	startActivity(intent);
+        ChatlistAdapter chatlistAdapter = new ChatlistAdapter(getBaseContext());        
+        ListView listView = (ListView) findViewById(R.id.chatlist_list_listview);
+        listView.setAdapter(chatlistAdapter);
+        listView.setOnItemClickListener(new OnItemClickListener() {
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				Intent intent = new Intent(ChatlistActivity.this, GroupchatActivity.class);
+	        	startActivity(intent);
+			}});
 	}
 	
 }

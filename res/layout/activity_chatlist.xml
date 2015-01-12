@@ -16,7 +16,7 @@
         android:layout_height="fill_parent" 
         android:background="#FFFFFF" >
         
-	<ListView android:id="@android:id/list"
+	<ListView android:id="@+id/chatlist_list_listview"
                android:layout_width="0dip"
                android:layout_height="match_parent"
                android:background="@null" 
@@ -33,14 +33,7 @@
         android1:layout_alignParentTop="true"
         android1:src="@drawable/animus_icon_background_lists_white" />
 
-    <ProgressBar
-        android1:id="@+id/progresscontactlist"
-        style="?android:attr/progressBarStyleLarge"
-        android1:layout_width="wrap_content"
-        android1:layout_height="wrap_content"
-        android1:layout_centerHorizontal="true"
-        android1:layout_centerVertical="true"
-        android1:visibility="invisible" />
+
 
     <TextView
         android1:id="@android:id/empty"

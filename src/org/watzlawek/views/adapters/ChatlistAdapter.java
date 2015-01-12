@@ -13,7 +13,7 @@ public class ChatlistAdapter extends BaseAdapter{
 
 private final Context context;
 	
-	private final String[] groups = new String[]{"gruppe 3", "blubb und so"};
+	private final String[] groups = new String[]{"gruppe 5", "blubb und so"};
 	
 	public ChatlistAdapter(Context context){
 		this.context = context;
@@ -33,9 +33,9 @@ private final Context context;
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	     View rowView = inflater.inflate(R.layout.item_grouplistgroup, parent,false);
+	     View rowView = inflater.inflate(R.layout.item_chatlist, parent,false);
 
-	     TextView textView = (TextView) rowView.findViewById(R.id.grouplist_groupname);
+	     TextView textView = (TextView) rowView.findViewById(R.id.chatlist_groupname);
 	     textView.setText(groups[position]);
 	     
 		return rowView;
