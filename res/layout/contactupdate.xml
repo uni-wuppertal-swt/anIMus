@@ -4,62 +4,92 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <View 
+        android:id="@+id/view9"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+    
     <TextView
         android:id="@+id/tvNameUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"/>
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/etNameUpdate"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="17dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName" >
+        <requestFocus />
+    </EditText>
 
+    <View 
+        android:id="@+id/view5"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+    
     <TextView
         android:id="@+id/tvJIDUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"/>
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+   	<View 
+        android:id="@+id/view6"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+    
     <TextView
         android:id="@+id/tvPhoneUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"/>
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+
+   	<View 
+        android:id="@+id/view7"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    
     <TextView
         android:id="@+id/tvNoteUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"/>
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
         android:id="@+id/etNoteUpdate"
-        android:layout_width="268dp"
-        android:layout_height="262dp"
+        android:layout_width="wrap_content"
+        android:layout_height="166dp"
         android:ems="10"
         android:inputType="textMultiLine" />
+
+    <View 
+        android:id="@+id/view8"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
     
-  <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+    <LinearLayout>
 
-   	<Button
-        android:id="@+id/btSaveUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:text="Button links" />
+        <Button
+            android:id="@+id/btSaveUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Button" />
 
-   	<Button
-        android:id="@+id/btCancelUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.5"
-        android:text="Button rechts" />
- </LinearLayout>
+        <Button
+            android:id="@+id/btCancelUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="Button" />
+    </LinearLayout>
+    
 
 </TableLayout>
