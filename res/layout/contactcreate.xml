@@ -1,77 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="148dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical" >
-
-    <EditText
-        android:id="@+id/etPhoneCreate"
-        android:layout_width="286dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone" >
-    </EditText>
-
-    <TextView
-        android:id="@+id/tvPhoneCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"/>
-
-    <EditText
-        android:id="@+id/etNameCreate"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" >
-        <requestFocus />
-    </EditText>
-
-    
-    <EditText
-        android:id="@+id/etJIDCreate"
-        android:layout_width="286dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.07"
-        android:ems="10"
-        android:inputType="textEmailAddress" />
 
     <TextView
         android:id="@+id/tvNameCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"/>
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <TextView
-        android:id="@+id/tvNoteCreate"
+    <EditText
+        android:id="@+id/etNameCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"/>
+        android:ems="10"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
 
     <TextView
         android:id="@+id/tvJIDCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"/>
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    
-    <LinearLayout
+    <EditText
+        android:id="@+id/etJIDCreate"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
 
-        <Button
-            android:id="@+id/btCancelCreate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="Button links" />
+    <TextView
+        android:id="@+id/tvPhoneCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <Button
-            android:id="@+id/btSaveCreate"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:text="Button rechts" />
-    </LinearLayout>
+    <EditText
+        android:id="@+id/etPhoneCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="phone" />
 
+    <TextView
+        android:id="@+id/tvNoteCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/etNoteCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="166dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btCancelCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/btSaveCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+    
 </TableLayout>
