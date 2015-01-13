@@ -22,12 +22,15 @@ public class Encryption {
 	
 	/*On-/Offline Schluesseltausch*/
 	private String PreKeyWisperMessage() {
+		return "";
 	}
 	
 	private String PreKey() {
+		return "";
 	}
 	
 	private String KeyExchangeMessage() {
+		return "";
 	}
 	
 	public Message decryptMessage(Message cipher) throws EncryptionFaultException {
