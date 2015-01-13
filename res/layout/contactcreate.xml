@@ -21,6 +21,12 @@
         <requestFocus />
     </EditText>
 
+    <View 
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+    
+    
     <TextView
         android:id="@+id/tvJIDCreate"
         android:layout_width="wrap_content"
@@ -35,6 +41,11 @@
         android:ems="10"
         android:inputType="textEmailAddress" />
 
+   	<View 
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+    
     <TextView
         android:id="@+id/tvPhoneCreate"
         android:layout_width="wrap_content"
@@ -49,6 +60,11 @@
         android:ems="10"
         android:inputType="phone" />
 
+   	<View 
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+    
     <TextView
         android:id="@+id/tvNoteCreate"
         android:layout_width="wrap_content"
@@ -63,6 +79,11 @@
         android:ems="10"
         android:inputType="textMultiLine" />
 
+    <View 
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+    
     <LinearLayout>
 
         <Button
