@@ -47,20 +47,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
-    <Button
+   	<Button
         android:id="@+id/btSaveUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:text="Button links" />
 
-    <Button
+   	<Button
         android:id="@+id/btCancelUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
         android:text="Button rechts" />
-
  </LinearLayout>
 
 </TableLayout>
