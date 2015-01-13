@@ -107,6 +107,10 @@ public class ContactlistActivity extends ListActivity {
     			app.getAutoDiscover().progressbar = this.progessbar;
     			app.getAutoDiscover().findFriends();
     			return true;
+    		case R.id.contactlistmenuCreate:
+    			Intent intent2 = new Intent(this, org.watzlawek.contactmanager.ContactCreateActivity.class);   	    	
+    	    	startActivityForResult(intent2, 0);
+    			return true;
     		default:
     			return super.onOptionsItemSelected(item);
     	}

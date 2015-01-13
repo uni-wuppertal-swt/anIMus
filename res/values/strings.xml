@@ -16,7 +16,8 @@
     <string name="NewServerDialogText">Please complete the form!</string>
     <string name="NewServerDialogButton">OK</string>
     <string name="contactlistmenuStatus">Set status</string>
-    <string name="contactlistmenuFriends">Find friends</string>
+    <string name="contactlistmenuFriends">Find contacts</string>
+    <string name="contactlistmenuCreate">New Contact</string>
     <string name="statusAvailable">Available</string>
     <string name="statusAway">Away</string>
     <string name="statusExtendedAway">Extended Away</string>
@@ -207,5 +208,6 @@
 	<string name="contactlistisEmpty">No contacts available</string>
 	<string name="conactlistContextmenuDelete">Delete</string>
 	<string name="conactlistContextmenuValidate">Validate</string>
-	<string name="conactlistContextmenuHeader">Contact menu</string>	
+	<string name="conactlistContextmenuHeader">Contact menu</string>
+		
 </resources>

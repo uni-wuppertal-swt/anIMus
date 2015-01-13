@@ -16,7 +16,8 @@
     <string name="NewServerDialogText">Bitte alle Felder ausfüllen!</string>
     <string name="NewServerDialogButton">OK</string>
     <string name="contactlistmenuStatus">Status setzen</string>
-    <string name="contactlistmenuFriends">Finde Freunde</string>
+    <string name="contactlistmenuFriends">Finde Kontakte</string>
+    <string name="contactlistmenuCreate">Kontakt erstellen</string>
     <string name="statusAvailable">Verfügbar</string>
     <string name="statusAway">Abwesend</string>
     <string name="statusExtendedAway">Länger abwesend</string>
