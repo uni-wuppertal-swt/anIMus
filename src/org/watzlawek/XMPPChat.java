@@ -118,6 +118,9 @@ public class XMPPChat extends IMChat {
 	 */
 	public XMPPChat(Context in_context, String in_username, IMServer.Status in_status, String in_jid, Connection connection, int in_serverid, XMPPServer in_server) {
 		super(in_context, in_username, in_status, in_serverid, in_server);
+
+		Toast.makeText(context.getApplicationContext(), "I am here (XMPPChat:122)", Toast.LENGTH_LONG).show();
+		
 		jid = in_jid;	
 		auto_otr = false;
 		final IMApp app = (IMApp)context.getApplicationContext();			 
