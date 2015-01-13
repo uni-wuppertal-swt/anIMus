@@ -20,6 +20,16 @@ public class Encryption {
 		
 	}
 	
+	/*On-/Offline Schluesseltausch*/
+	private String PreKeyWisperMessage() {
+	}
+	
+	private String PreKey() {
+	}
+	
+	private String KeyExchangeMessage() {
+	}
+	
 	public Message decryptMessage(Message cipher) throws EncryptionFaultException {
 		return cipher;
 	}
