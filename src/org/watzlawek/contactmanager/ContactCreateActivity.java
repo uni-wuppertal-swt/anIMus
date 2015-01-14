@@ -12,13 +12,11 @@ public class ContactCreateActivity extends Activity {
 	private Button btCancelCreate;
 	private Button btSaveCreate;
 	
-	private EditText etPhoneCreate;
 	private EditText etNameCreate;
 	private EditText etJIDCreate;
 	
-	private TextView tvPhoneCreate;
-	private TextView tvJIDCreate;
 	private TextView tvNameCreate;
+	private TextView tvJIDCreate;
 	private TextView tvNoteCreate;
 	
 	
@@ -31,13 +29,11 @@ public class ContactCreateActivity extends Activity {
         btCancelCreate = (Button) findViewById(R.id.btCancelCreate);
         btSaveCreate = (Button) findViewById(R.id.btSaveCreate);
         
-        etPhoneCreate = (EditText) findViewById(R.id.etPhoneCreate);
         etNameCreate = (EditText) findViewById(R.id.etNameCreate);
         etJIDCreate = (EditText) findViewById(R.id.etJIDCreate);  
         
-        tvPhoneCreate = (TextView) findViewById(R.id.tvPhoneCreate);
-        tvJIDCreate = (TextView) findViewById(R.id.tvJIDCreate);
         tvNameCreate = (TextView) findViewById(R.id.tvNameCreate);
+        tvJIDCreate = (TextView) findViewById(R.id.tvJIDCreate);
         tvNoteCreate = (TextView) findViewById(R.id.tvNoteCreate);
         
 	}
