@@ -131,6 +131,19 @@ public abstract class IMChat implements Comparable<IMChat>, OtrEngineHost {
 	protected int otrRequestState; 	 
 	
 	/**
+	 * States:
+	 * false: contact is not visible (deleted by user)
+	 * true: contact is visible in list
+	 */
+	protected boolean visible;
+	
+	/**
+	 * stores the note corresponding to this contact
+	 */
+	protected String note;
+	
+	
+	/**
 	 * Method for getting the current timestamp.
 	 * The format is Hour:Minutes:Seconds, e.g. 10:13:37.
 	 * 
@@ -306,6 +319,15 @@ public abstract class IMChat implements Comparable<IMChat>, OtrEngineHost {
 	 */
 	public abstract String get_username();
 	
+	
+	/**
+	 * Abstract getter for the note.
+	 * 
+	 * @return The note as a String.
+	 */
+	public abstract String get_note();
+
+	
 	/**
 	 * Abstract getter for the status icon or avatar if enabled.
 	 * The icon depends on the user's status and if the user has an avatar set.
@@ -386,6 +408,15 @@ public abstract class IMChat implements Comparable<IMChat>, OtrEngineHost {
 	 */
 	public abstract void refreshOTRSession();
 		
+	
+	/**
+	 * Abstract getter for the visibility.
+	 * 
+	 * @return The visibility for this contact (true, if visible).
+	 */
+	public abstract boolean isVisible();
+	
+	
 	/**
 	 * Getter for otrEnabled.
 	 * 
