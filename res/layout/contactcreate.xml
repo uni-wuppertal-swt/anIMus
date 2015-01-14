@@ -40,26 +40,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress" />
-
-   	<View 
-        android:id="@+id/view2"
-        android:layout_width="wrap_content"
-        android:layout_height="10dp" />
-    
-    <TextView
-        android:id="@+id/tvPhoneCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/etPhoneCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone" />
-
+   
    	<View 
         android:id="@+id/view3"
         android:layout_width="wrap_content"
