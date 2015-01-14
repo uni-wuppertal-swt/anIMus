@@ -38,19 +38,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
    	<View 
-        android:id="@+id/view6"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp" />
-    
-    <TextView
-        android:id="@+id/tvPhoneUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-
-   	<View 
         android:id="@+id/view7"
         android:layout_width="wrap_content"
         android:layout_height="40dp" />
