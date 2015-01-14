@@ -115,6 +115,7 @@ public class XMPPServer extends IMServer {
 					}
 				}
 			}
+			// If contacts in cDB should be updated regularely, the compareTo() should be calle here ------------------------------------------
 		}
 	}
 	
@@ -279,6 +280,7 @@ public class XMPPServer extends IMServer {
 			for(RosterEntry entry : rosterEntries) {
 				contacts.add(new XMPPChat(context, entry.getName(), getUserStatus(entry.getUser()), entry.getUser(), connection, server_id,this));
 			}
+			// Here, the compariso compareTo() should be calld in the cDB ----------------------------------------------------------------------------------
 		}		
 	}	
 	
