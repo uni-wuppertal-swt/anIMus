@@ -70,8 +70,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param contacts
 	 */
 	public void compareContacts(Vector<IMChat> contacts) {
-		// TODO - implement ContactDatabaseHandler.compareContacts
-		throw new UnsupportedOperationException();
+		// is changed in a moment...
 	}
 
 	
