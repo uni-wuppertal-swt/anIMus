@@ -210,4 +210,11 @@
 	<string name="conactlistContextmenuDelete">Löschen</string>
 	<string name="conactlistContextmenuValidate">Validieren</string>
 	<string name="conactlistContextmenuHeader">Kontaktmenü</string>
+	<string name="tvNameContact">Name:</string>
+	<string name="tvJIDContact">JID:</string>
+	<string name="tvNoteContact">Notiz: (max. 140 Zeichen)</string>
+	<string name="btSaveContact">Speichern</string>
+	<string name="btCancelContact">Abbrechen</string>
+	
+	
 </resources>

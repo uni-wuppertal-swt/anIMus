@@ -13,7 +13,7 @@
         android:id="@+id/tvNameUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text="@string/tvNameContact"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -34,7 +34,7 @@
         android:id="@+id/tvJIDUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text="@string/tvJIDContact"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
    	<View 
@@ -46,7 +46,7 @@
         android:id="@+id/tvNoteUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Medium Text"
+        android:text="@string/tvNoteContact"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <EditText
@@ -68,14 +68,14 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:text="Button" />
+            android:text="@string/btSaveContact" />
 
         <Button
             android:id="@+id/btCancelUpdate"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="0.5"
-            android:text="Button" />
+            android:text="@string/btCancelContact" />
     </LinearLayout>
     
 
