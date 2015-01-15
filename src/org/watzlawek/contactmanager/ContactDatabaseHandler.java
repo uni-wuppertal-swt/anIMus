@@ -4,12 +4,18 @@ package org.watzlawek.contactmanager;
 import java.util.*;
 import org.watzlawek.*;
 
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;  
+
 
 public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
+	// private static String DB_PATH = "/data/data/org.watzlawek.contactmanager/databases/";
+	// private SQLiteDatabase ContactDB;
+	
 	private static final String DATABASE_NAME = "ContactDB";
 	private static final int DATABASE_VERSION = 1;
 	private static final String DB_TABLE_NAME = "contacts";
@@ -31,7 +37,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			jid = inJID;
 			username = inUsername;
 			note = inNote;
-			serverID = inSID;
+			serverID = inSID; // in der DB haben wir das "id" klein geschrieben
 			visible = inVisible;
 		}
 	}
@@ -62,9 +68,23 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
 
 	
-	private void open_db() { // oeffnet oder erstellt die Datenbank
+	private void open_db() throws SQLException{ // oeffnet oder erstellt die Datenbank
 	//	SQLiteDatabase db = SQLiteDatabase.openDatabase(DATABASE_NAME,
 		//		null, SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		
+		
+		/**
+		 *  String contactPath = DB_PATH + DB_NAME;
+			contactDataBase = SQLiteDatabase.openDatabase(contactPath, null, SQLiteDatabase.OPEN_READONLY);
+			READONLY ist doof, das müssen wir noch ändern
+		 */
+		//oder 
+		/** private MySQLiteHelper dbHelper;
+		 *  private SQLiteDatabase database;
+		 * database = dbHelper.getWritableDatabase();
+		 */
+		
+		
 	}
 
 	
@@ -72,6 +92,14 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	private void close_db() { 
 		// TODO - implement ContactDatabaseHandler.close_db
 		throw new UnsupportedOperationException();
+		
+		//Class: "SQLiteClosable" 	An object created from a SQLiteDatabase that can be closed.
+		// http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html
+		// oder
+		/**
+		 * private MySQLiteHelper dbHelper;
+		 *  dbHelper.close();
+		 */
 	}
 
 	
@@ -123,24 +151,33 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
-
-	
 	
 	/**
+	 * This method insert a given contact into the DB if it doesn't already exist.
 	 * 
 	 * @param in_jid
+	 * @param in_username
 	 * @param in_note
+	 * @param in_SID
 	 * @param in_invisible
+	 * 
 	 */
-	private void insertContact(String in_jid, String in_note, int in_invisible) {
-		// TODO - implement ContactDatabaseHandler.insertContact
-		throw new UnsupportedOperationException();
+	private void insertContact(String in_jid, String in_username, String in_note, int in_SID, boolean in_invisible) {
+		//private SQLiteStatement  statement = null;       // SQL Anweisung
+	    //private ...  result   = null;       		// SQL Ergebnis
+		
+		//throw new UnsupportedOperationException();
+		//https://www.youtube.com/watch?v=dOA8RkTr5AI
 	}
 
 	
-	private Vector<String> read_jids() {
+	private Vector<String> read_jids(int in_SID) {
 		// TODO - implement ContactDatabaseHandler.read_jids
 		throw new UnsupportedOperationException();
+		//Vector<String> jid_vector;
+		// "Select jid from contacts where serverid = " +in_SID
+		
+		//return jid_vector;
 	}
 	
 	
