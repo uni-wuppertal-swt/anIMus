@@ -1,6 +1,7 @@
 package org.watzlawek;
 
 import org.watzlawek.R;
+import org.watzlawek.contactmanager.ContactEditActivity;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -127,6 +128,7 @@ public class ContactlistActivity extends ListActivity {
     	if (!(app.getServerManager().getConnectedServer() == null || (app.getServerManager().getConnectedServer().isOffline()))) {     		
     		menu.add(ContextMenu.NONE, 1, ContextMenu.NONE, R.string.conactlistContextmenuValidate);   
     		menu.add(ContextMenu.NONE, 2, ContextMenu.NONE, R.string.conactlistContextmenuDelete);
+    		menu.add(ContextMenu.NONE, 3, ContextMenu.NONE, R.string.conactlistContextmenuEdit);
     	}
     } 
     
@@ -152,12 +154,17 @@ public class ContactlistActivity extends ListActivity {
 			//Deleted	
 			case 2:				
 				sv.deleteBuddy(ic.get_jid());
+				// set visible false in DB (need server_id)
 				refreshContactlist();
 				sv.clearRoster();
 				sv.pullRoster();
 				sv.pullContacts();
-				
 				//this.listadapter.notify();
+				return true;
+			//Edit
+			case 3:
+				Intent intent3 = new Intent(this, org.watzlawek.contactmanager.ContactEditActivity.class);   	    	
+    	    	startActivityForResult(intent3, 0);
 				return true;
 			default: {
 				return true;

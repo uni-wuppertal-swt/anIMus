@@ -42,7 +42,8 @@
         <activity android:name="AppPrefActivity"></activity>
         <activity android:name="AboutActivity"></activity>  
         <activity android:name="DataBackupActivity"></activity> 
-        <activity android:name="org.watzlawek.contactmanager.ContactCreateActivity"></activity>      
+        <activity android:name="org.watzlawek.contactmanager.ContactCreateActivity"></activity>
+        <activity android:name="org.watzlawek.contactmanager.ContactEditActivity"></activity>      
     </application>
 
 </manifest>

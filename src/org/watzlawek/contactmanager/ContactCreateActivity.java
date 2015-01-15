@@ -14,6 +14,7 @@ public class ContactCreateActivity extends Activity {
 	
 	private EditText etNameCreate;
 	private EditText etJIDCreate;
+	private EditText etNoteCreate;
 	
 	private TextView tvNameCreate;
 	private TextView tvJIDCreate;
@@ -30,7 +31,8 @@ public class ContactCreateActivity extends Activity {
         btSaveCreate = (Button) findViewById(R.id.btSaveCreate);
         
         etNameCreate = (EditText) findViewById(R.id.etNameCreate);
-        etJIDCreate = (EditText) findViewById(R.id.etJIDCreate);  
+        etJIDCreate = (EditText) findViewById(R.id.etJIDCreate); 
+        etNoteCreate = (EditText) findViewById(R.id.etNoteCreate); 
         
         tvNameCreate = (TextView) findViewById(R.id.tvNameCreate);
         tvJIDCreate = (TextView) findViewById(R.id.tvJIDCreate);
