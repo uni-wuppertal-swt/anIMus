@@ -8,6 +8,7 @@ import net.sqlcipher.database.SQLiteException;
 import org.watzlawek.*;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -121,19 +122,13 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
 	
 	private void open_db() throws SQLException{ // oeffnet oder erstellt die Datenbank
-	//	SQLiteDatabase db = SQLiteDatabase.openDatabase(DATABASE_NAME,
-		//		null, SQLiteDatabase.CREATE_IF_NECESSARY, null);
+		//SQLiteDatabase db = SQLiteDatabase.openDatabase(DATABASE_NAME,
+			//	null, SQLiteDatabase.CREATE_IF_NECESSARY, null);
 		
 		
-		/**
-		 *  String contactPath = DB_PATH + DB_NAME;
-			contactDataBase = SQLiteDatabase.openDatabase(contactPath, null, SQLiteDatabase.OPEN_READONLY);
-			READONLY ist doof, das müssen wir noch ändern
-		 */
-		//oder 
-		/** private MySQLiteHelper dbHelper;
-		 *  private SQLiteDatabase database;
-		 * database = dbHelper.getWritableDatabase();
+		/* private MySQLiteHelper dbHelper;
+		   private SQLiteDatabase database;
+		  database = dbHelper.getWritableDatabase();
 		 */
 		
 		
