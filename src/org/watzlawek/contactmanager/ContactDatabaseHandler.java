@@ -2,13 +2,18 @@ package org.watzlawek.contactmanager;
 
 
 import java.util.*;
+
+import net.sqlcipher.database.SQLiteException;
+
 import org.watzlawek.*;
 
+import android.content.ContentValues;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;  
+import android.util.Log;
 
 
 public class ContactDatabaseHandler extends SQLiteOpenHelper{
@@ -168,6 +173,22 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		
 		//throw new UnsupportedOperationException();
 		//https://www.youtube.com/watch?v=dOA8RkTr5AI
+		
+		/**
+		 * try {
+			SQLiteDatabase db = getWritableDatabase("");
+			if (db != null) {
+				String sqlCommand = "Select ..." +SID;			
+				db.execSQL(sqlCommand);
+			}
+		} 
+		catch(SQLiteException e) {	
+			
+		}
+		
+		 */
+		
+		
 	}
 
 	
@@ -191,6 +212,25 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	private void updateContact(String in_jid, String in_username, String in_note, int in_invisible) {
 		// TODO - implement ContactDatabaseHandler.updateContact
 		throw new UnsupportedOperationException();
+		
+		/**
+		 * SQLiteDatabase db = getWritableDatabase(password);		
+		ContentValues tokenValues = new ContentValues();
+		
+		tokenValues.put(TOKENSYSTEM_DB_TABLE_XMPPJID, in_xmppjid);
+		tokenValues.put(TOKENSYSTEM_DB_TABLE_OWNIDENTIFIER, in_identifier);
+		tokenValues.put(TOKENSYSTEM_DB_TABLE_PASSWORD, in_startpassword);
+		tokenValues.put(TOKENSYSTEM_DB_TABLE_SERVICEADDRESS, in_serviceaddress);
+		
+		tokenValues.put(TOKENSYSTEM_DB_TABLE_SERVICEACOUNT, "");
+		tokenValues.put(TOKENSYSTEM_DB_TABLE_AUTHTOKEN, "");
+		
+		
+		
+		
+		db.insert(TOKENSYSTEM_DB_TABLE, null, tokenValues);
+		db.close();
+		 */
 	}
 
 }
