@@ -45,6 +45,18 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			serverID = inSID; // in der DB haben wir das "id" klein geschrieben
 			visible = inVisible;
 		}
+		
+		@Override
+		public boolean equals(Object o) {
+			if (!((o.getClass()).getName()).equals("Contact")) { return false; }
+			Contact c = (Contact)o;
+			if (!jid.equals(c.jid)) { return false; }
+			if (!username.equals(c.username)) { return false; }
+			if (!note.equals(c.note)) { return false; }
+			if (serverID != c.serverID) { return false; }
+			if (visible != c.visible) { return false; }
+			return true;
+		}
 	}
 
 	public ContactDatabaseHandler(android.content.Context context) {
@@ -116,15 +128,18 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param contacts
 	 */
 	public void compareContacts(Vector<IMChat> contacts, int serverID) {
-		/*Vector<String> jidList = read_jids();
-		Vector<Integer> sID = getServerIDs(); */
+		
 		Vector<Contact> dbContacts = getDBContacts();
 		
-		// Create a Vector<Contact> where only contacts are saved,
-		// which are visible and available on the currently connected server
+		/*
+		 * Create a Vector<Contact> where only contacts are saved,
+		 * which are available on the currently connected server
+		 * Visibility is ignored because invisible contacts should
+		 * not be inserted in the DB again. 
+		 */
 		Vector<Contact> neededContacts = new Vector<Contact>();
 		for (Contact c : dbContacts){
-			if (c.serverID == serverID && c.visible == true) 
+			if (c.serverID == serverID) 
 				neededContacts.add(c);
 		}
 		
@@ -132,12 +147,63 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		// information of IMChat and stores it. 
 		Vector<Contact> serverContacts = new Vector<Contact>();
 		for (IMChat c : contacts) {
-			Contact contact = new Contact(((XMPPChat)c).get_jid(), c.get_username(), c.get_note(), serverID, c.isVisible());
+			serverContacts.add(new Contact(
+					((XMPPChat)c).get_jid(), c.get_username(), c.get_note(), serverID, c.isVisible()));
 		}
-		// Now the comparison can start: 
 		
+		// Now the comparison can start:
+		int ncIndex = 0;
+		int scIndex = 0;
+		Contact nc;
+		Contact sc;
+		
+		while (ncIndex < neededContacts.size() && scIndex < serverContacts.size()){
+			nc = neededContacts.elementAt(ncIndex);
+			sc = serverContacts.elementAt(scIndex);
+			
+			// A contact on the server is not available in the DB - insert!
+			if (nc.jid.compareTo(sc.jid) > 0) {
+				insertContact(sc.jid, sc.username, sc.note, sc.serverID, sc.visible);
+				scIndex++;
+			}
+			
+			// Both jids are equal, compare other entries, if they have to be updated 
+			//in the DB
+			else if (nc.jid.compareTo(sc.jid) == 0) {
+				if (!nc.equals(sc)) {
+					updateContact(sc.jid, sc.username, sc.note, sc.serverID, sc.visible);
+					scIndex++;
+					ncIndex++;
+				}
+			}
+			
+			// A contact in the DB is no more on the server, delete it from the DB.
+			else {
+				deleteContact(nc.jid);
+				ncIndex++;
+			}
+		}
+		
+		// If the ncIndex has not reached the end of the vector, complete it (case 1)
+		while (ncIndex < neededContacts.size()) {
+			deleteContact(neededContacts.elementAt(ncIndex).jid);
+			ncIndex++;
+		}
+		
+		// If the scIndex has not reached the end of the vector, complete it (case 2,
+		// is only possible, if case 1 did not occur).
+		while (scIndex < serverContacts.size()) {
+			sc = serverContacts.elementAt(scIndex);
+			insertContact(sc.jid, sc.username, sc.note, sc.serverID, sc.visible);
+			scIndex++;
+		}
 	}
 
+	
+	private void deleteContact(String delJID) {
+		
+	}
+	
 	
 	private Vector<Contact> getDBContacts() {
 		// This is the real reading-method with DB access.
@@ -167,7 +233,8 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param in_invisible
 	 * 
 	 */
-	private void insertContact(String in_jid, String in_username, String in_note, int in_SID, boolean in_invisible) {
+	private void insertContact(String in_jid, String in_username, String in_note, 
+			int in_SID, boolean in_invisible) {
 		//private SQLiteStatement  statement = null;       // SQL Anweisung
 	    //private ...  result   = null;       		// SQL Ergebnis
 		
@@ -209,7 +276,8 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param in_note
 	 * @param in_invisible
 	 */
-	private void updateContact(String in_jid, String in_username, String in_note, int in_invisible) {
+	private void updateContact(String in_jid, String in_username, String in_note, 
+			int serverID, boolean in_invisible) {
 		// TODO - implement ContactDatabaseHandler.updateContact
 		throw new UnsupportedOperationException();
 		
