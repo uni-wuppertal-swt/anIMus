@@ -42,7 +42,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			jid = inJID;
 			username = inUsername;
 			note = inNote;
-			serverID = inSID; // in der DB haben wir das "id" klein geschrieben
+			serverID = inSID;
 			visible = inVisible;
 		}
 		
@@ -233,7 +233,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	
 	
 	/**
-	 * This method insert a given contact into the DB if it doesn't already exist.
+	 * This method inserts a given contact into the DB if it doesn't already exist.
 	 * 
 	 * @param in_jid
 	 * @param in_username
