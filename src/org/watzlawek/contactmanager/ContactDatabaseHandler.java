@@ -21,13 +21,48 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	// private static String DB_PATH = "/data/data/org.watzlawek.contactmanager/databases/";
 	// private SQLiteDatabase ContactDB;
 	
+	/**
+	 * Name of the database.
+	 */
 	private static final String DATABASE_NAME = "ContactDB";
+	
+	/**
+	 * Version of the database.
+	 */
 	private static final int DATABASE_VERSION = 1;
+	
+	/**
+	 * Name of the table which holds the contacts.
+	 */
 	private static final String DB_TABLE_NAME = "contacts";
+	
+	/**
+	 * Primary key column of the table "contacts".
+	 */
 	private static final String DB_COLUMN_JID = "jid";
+	
+	/**
+	 * Column of the table "contacts".
+	 * It includes the usernames.
+	 */
 	private static final String DB_COLUMN_USERNAME = "username";
+	
+	/**
+	 * Column of the table "contacts".
+	 * It includes the notes.
+	 */
 	private static final String DB_COLUMN_NOTE = "note";
+	
+	/**
+	 * Column of the table "contacts".
+	 * It includes the serverID.
+	 */
 	private static final String DB_COLUMN_SERVERID = "serverid";
+	
+	/**
+	 * Column of the table "contacts".
+	 * .
+	 */
 	private static final String DB_COLUMN_INVISIBLE = "invisible";
 	
 
