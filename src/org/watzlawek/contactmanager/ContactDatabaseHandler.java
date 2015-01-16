@@ -218,7 +218,16 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		 * Here must be filtered: Is the contact in the ServerID, which is 
 		 * requesting this List and is the contact visible?
 		 */
-		return new Vector<String>(); // Dummy
+		Vector<String> jidUserV = new Vector<String>();
+		
+		for (Contact dbc : dbContacts) {
+			if (dbc.serverID == serverID && dbc.visible == true) {
+				jidUserV.add(dbc.jid);
+				jidUserV.add(dbc.username);
+			}
+		}
+		
+		return jidUserV; // Dummy
 	}
 	
 	
@@ -259,13 +268,17 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 
 	
-	private Vector<String> read_jids(int in_SID) {
-		// TODO - implement ContactDatabaseHandler.read_jids
-		throw new UnsupportedOperationException();
-		//Vector<String> jid_vector;
+	private Vector<String> readJIDs(int serverID) {
+		Vector<String> jidVector = new Vector<String>();
 		// "Select jid from contacts where serverid = " +in_SID
+		Vector<Contact> dbContacts = getDBContacts();
 		
-		//return jid_vector;
+		for (Contact dbc : dbContacts) {
+			if (dbc.serverID == serverID) 
+				jidVector.add(dbc.jid);
+		}
+		
+		return jidVector;
 	}
 	
 	
