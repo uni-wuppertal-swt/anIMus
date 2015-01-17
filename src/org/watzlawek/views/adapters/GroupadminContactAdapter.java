@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Adapter groupadmin
@@ -51,7 +52,7 @@ public class GroupadminContactAdapter extends BaseAdapter{
 	     TextView textView = (TextView) rowView.findViewById(R.id.groupadmin_contactname);
 	     textView.setText(user[position]);
 	     TextView groupnametextView = (TextView) rowView.findViewById(R.id.groupadmin_groupname_textview);
-	     groupnametextView.setText(actualname);
+	     Toast.makeText(context.getApplicationContext(), actualname, Toast.LENGTH_LONG).show();
 		return rowView;
 	}
 
