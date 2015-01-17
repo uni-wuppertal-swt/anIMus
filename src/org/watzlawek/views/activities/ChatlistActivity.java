@@ -23,6 +23,7 @@ import android.widget.ListView;
  */
 public class ChatlistActivity extends Activity{
 	
+	
 	/**
 	 * Creates the options menu if the menu button is clicked (<= API 10) or onCreate is called (> API 10).
 	 * 
@@ -69,7 +70,9 @@ public class ChatlistActivity extends Activity{
         listView.setOnItemClickListener(new OnItemClickListener() 
         {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				
 				Intent intent = new Intent(ChatlistActivity.this, GroupchatActivity.class);
+				
 	        	startActivity(intent);
 			}
 		});

@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         android:text="@string/GroupadministrationGroupnameTextedit" />
 
+
     <EditText
         android:id="@+id/groupadmin_groupname_edittext"
         android:layout_width="match_parent"

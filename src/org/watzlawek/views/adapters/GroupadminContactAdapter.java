@@ -19,8 +19,9 @@ import android.widget.TextView;
 public class GroupadminContactAdapter extends BaseAdapter{
 	
 	private final Context context;
+	private String actualname = "blubb";
 	
-	private final String[] user = new String[]{"Benutzer 3", "Benutzer 4"};
+	private String[] user = new String[]{"Benutzer 3", "Benutzer 4"};
 	
 	public GroupadminContactAdapter(Context context){
 		this.context = context;
@@ -28,6 +29,11 @@ public class GroupadminContactAdapter extends BaseAdapter{
 	
 	public int getCount() {
 		return user.length;
+	}
+	public void setname(String a) 
+	{
+		actualname=a;
+		return ;
 	}
 
 	public Object getItem(int position) {
@@ -44,7 +50,8 @@ public class GroupadminContactAdapter extends BaseAdapter{
 
 	     TextView textView = (TextView) rowView.findViewById(R.id.groupadmin_contactname);
 	     textView.setText(user[position]);
-	     
+	     TextView groupnametextView = (TextView) rowView.findViewById(R.id.groupadmin_groupname_textview);
+	     groupnametextView.setText(actualname);
 		return rowView;
 	}
 

@@ -21,7 +21,8 @@ import android.widget.ListView;
  * @version 2015-01-12
  */
 public class GroupchatActivity extends Activity {
-
+	private int groupnumber=5;
+    private String test="mal sehen";
 	/**
 	 * Initilize the activity at first start or resume
 	 */
@@ -46,6 +47,7 @@ public class GroupchatActivity extends Activity {
         {
 			public void onClick(View v) {
 				Intent intent = new Intent(GroupchatActivity.this, GroupadminActivity.class);
+				intent.putExtra("testding", test);
 	        	startActivity(intent);
 			}
 		});

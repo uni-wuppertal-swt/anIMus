@@ -20,11 +20,14 @@ public class GroupadminActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupadmin);
-
+        Bundle extras = getIntent().getExtras();
+        String number = extras.getString("testding");
         GroupadminContactAdapter gAdapter = new GroupadminContactAdapter(getBaseContext());
+        gAdapter.setname(number);
+        
         
         ListView listView = (ListView) findViewById(R.id.groupadmin_contactlist);
-        listView.setAdapter(gAdapter); 
+        listView.setAdapter(gAdapter);
 	} 
 	
 }
