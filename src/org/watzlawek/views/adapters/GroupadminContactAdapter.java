@@ -52,7 +52,7 @@ public class GroupadminContactAdapter extends BaseAdapter{
 	     TextView textView = (TextView) rowView.findViewById(R.id.groupadmin_contactname);
 	     textView.setText(user[position]);
 	     TextView groupnametextView = (TextView) rowView.findViewById(R.id.groupadmin_groupname_textview);
-	     Toast.makeText(context.getApplicationContext(), actualname, Toast.LENGTH_LONG).show();
+	  //   Toast.makeText(context.getApplicationContext(), actualname, Toast.LENGTH_LONG).show();
 		return rowView;
 	}
 

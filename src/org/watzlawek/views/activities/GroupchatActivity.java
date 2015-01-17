@@ -23,6 +23,7 @@ import android.widget.ListView;
                            // zu tun: sendbutton
 public class GroupchatActivity extends Activity {
 	private int groupnumber=5;
+	private String message;
 //    private String test="mal sehen";
 	/**
 	 * Initilize the activity at first start or resume
