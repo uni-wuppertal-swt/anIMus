@@ -215,4 +215,6 @@
 	<string name="GroupadministrationCancelButton">Abbrechen</string>
 	<string name="GroupadministrationOkButton">Speichern</string>
 	<string name="GroupadministrationContactsTextview">Kontakte:</string>
+	<string name="Groupchatsendbutton">Senden</string>
+	<string name="Groupchateditbutton">Gruppe editieren</string>
 </resources>

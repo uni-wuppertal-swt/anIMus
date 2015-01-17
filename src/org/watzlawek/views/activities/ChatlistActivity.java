@@ -66,7 +66,8 @@ public class ChatlistActivity extends Activity{
         ChatlistAdapter chatlistAdapter = new ChatlistAdapter(getBaseContext());        
         ListView listView = (ListView) findViewById(R.id.chatlist_list_listview);
         listView.setAdapter(chatlistAdapter);
-        listView.setOnItemClickListener(new OnItemClickListener() {
+        listView.setOnItemClickListener(new OnItemClickListener() 
+        {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				Intent intent = new Intent(ChatlistActivity.this, GroupchatActivity.class);
 	        	startActivity(intent);
