@@ -9,6 +9,7 @@ import java.lang.String;
 import android.content.*;
 import org.jivesoftware.smack.packet.*;
 
+import android.widget.Toast;
 
 public class Encryption {
 	private Vector<String> mMemberList;
