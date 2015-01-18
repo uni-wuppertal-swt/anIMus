@@ -91,12 +91,15 @@ public class Encryption {
 		ratchet_flag = false;
 	}*/
 	
-	public Message decryptMessage(MessageKey MK, Message cipher) throws EncryptionFaultException {
-		
+	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
+		return cipher;
 
 		
 	}
 		/**
+		 * MessageKey MK,
+		 * 
+		 * 
 		 * Muessen noch deklariert werden:
 
 		message_key MK;
