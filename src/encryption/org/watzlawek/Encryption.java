@@ -3,8 +3,9 @@ package encryption.org.watzlawek;
 
 import java.util.Collections;
 import java.util.Comparator;
-
+import java.util.Iterator;
 import java.util.Vector;
+
 import java.lang.String;
 import android.content.*;
 import org.jivesoftware.smack.packet.*;
@@ -30,6 +31,11 @@ public class Encryption {
 			     return s1.security_level() -  s2.security_level();
 			   }
 			});
+		
+		
+
+		
+	        
 		Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
 		// ref in XMPPChat:122
 	}
@@ -85,7 +91,11 @@ public class Encryption {
 		ratchet_flag = false;
 	}*/
 	
-	//public Message decryptMessage(MessageKey MK, Message cipher) throws EncryptionFaultException {
+	public Message decryptMessage(MessageKey MK, Message cipher) throws EncryptionFaultException {
+		
+
+		
+	}
 		/**
 		 * Muessen noch deklariert werden:
 
@@ -183,7 +193,17 @@ public class Encryption {
 	}
 	*/
 	public void setMemberList(Vector<String> mMemberList){
-		this.mMemberList = mMemberList; 
+
+		this.mMemberList = mMemberList;
+		
+	      Iterator<Secure_Core> iter = cores.iterator();
+	        while (iter.hasNext()) {
+	        	Secure_Core core = iter.next();
+	            iter.remove();
+	            
+	        } 
+		
+ 
 	}
 	
 	
