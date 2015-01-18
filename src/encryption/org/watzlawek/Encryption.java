@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class Encryption {
 	private Vector<String> mMemberList;
 	private Vector<Secure_Core> cores;
-
+	private Secure_Core core;
 	
 	
 	/**
@@ -196,9 +196,10 @@ public class Encryption {
 
 		this.mMemberList = mMemberList;
 		
+		
 	      Iterator<Secure_Core> iter = cores.iterator();
 	        while (iter.hasNext()) {
-	        	Secure_Core core = iter.next();
+	        	core = iter.next();
 	            iter.remove();
 	            
 	        } 
