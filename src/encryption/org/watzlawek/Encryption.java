@@ -34,10 +34,10 @@ public class Encryption {
 	private String KeyExchangeMessage() {
 		return "";
 	}
-	
-	private void KeyAgreement(){
+	/*
+	private void KeyAgreement(){*/
 		/**Alice*/
-		RK = nullptr;
+		/*RK = nullptr;
 		HKs = nullptr;
 		HKr = nullptr;
 		NHKs = nullptr;
@@ -52,9 +52,9 @@ public class Encryption {
 		Nr = 0;
 		PNs = 0;
 		ratchet_flag = true;
-		
+		*/
 		/**Bob*/
-		RK = nullptr;
+		/*RK = nullptr;
 		HKr = nullptr;
 		HKs = nullptr;
 		NHKr = nullptr;
@@ -69,9 +69,9 @@ public class Encryption {
 		Nr = 0;
 		PNs = 0;
 		ratchet_flag = false;
-	}
+	}*/
 	
-	public Message decryptMessage(MessageKey MK, Message cipher) throws EncryptionFaultException {
+	//public Message decryptMessage(MessageKey MK, Message cipher) throws EncryptionFaultException {
 		/**
 		 * Muessen noch deklariert werden:
 
@@ -88,7 +88,7 @@ public class Encryption {
 		  with skipped-over message keys (and their associated header keys) from
 		  persistent storage.
 		  */
-		try_skipped_header_and_message_keys();
+		//try_skipped_header_and_message_keys();
 		
 		/**
 		 * Given a current header key,
@@ -99,14 +99,14 @@ public class Encryption {
 		  corresponding to the future message number.  If passed a chain key
 		  with value <none>, this function does nothing.
 		*/
-		stage_skipped_header_and_message_keys();
+		//stage_skipped_header_and_message_keys();
 		
 		/**
 		 * Commits any skipped-over
 		  message keys from the staging area to persistent storage (along 
 		  with their associated header keys).
 		*/
-		commit_skipped_header_and_message_keys();
+		/*commit_skipped_header_and_message_keys();
 		
 		if (plaintext = try_skipped_header_and_message_keys())
 			return plaintext;
@@ -144,8 +144,8 @@ public class Encryption {
 			CKr = CKp;
 			return read();
 		}
-	}
-	
+	}*/
+	/*
 	public Message encryptMessage(MessageKey MK, Message text) throws EncryptionFaultException {
 		message_key MK;
 
@@ -167,7 +167,7 @@ public class Encryption {
 
 		return text;
 	}
-	
+	*/
 	public void setMemberList(Vector<String> mMemberList){
 		this.mMemberList = mMemberList; 
 	}
