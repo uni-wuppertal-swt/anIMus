@@ -35,6 +35,42 @@ public class Encryption {
 		return "";
 	}
 	
+	private void KeyAgreement(){
+		/**Alice*/
+		RK = nullptr;
+		HKs = nullptr;
+		HKr = nullptr;
+		NHKs = nullptr;
+		NHKr = nullptr;
+		CKs = nullptr;
+		//CKr;
+		DHIs = A;
+		DHIr = B;
+		DHRs = nullptr;
+		DHRr = B1;
+		Ns = 0;
+		Nr = 0;
+		PNs = 0;
+		ratchet_flag = true;
+		
+		/**Bob*/
+		RK = nullptr;
+		HKr = nullptr;
+		HKs = nullptr;
+		NHKr = nullptr;
+		NHKs = nullptr;
+		CKr = nullptr;
+		//CKs;
+		DHIs = B;
+		DHIr = A;
+		DHRs = B1;
+		DHRr = nullptr;
+		Ns = 0;
+		Nr = 0;
+		PNs = 0;
+		ratchet_flag = false;
+	}
+	
 	public Message decryptMessage(MessageKey MK, Message cipher) throws EncryptionFaultException {
 		/**
 		 * Muessen noch deklariert werden:
