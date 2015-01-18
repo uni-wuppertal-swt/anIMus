@@ -24,24 +24,29 @@ import android.widget.AdapterView.OnItemClickListener;
                    // zu tun: häckchen setzen, speichern, abbrechen
 public class GroupadminActivity extends Activity {
 	
+//	private grouplist lokallist;
+	private String name="blubb";
+	private int groupnumber;
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupadmin);
         Bundle extras = getIntent().getExtras();
-        String number = extras.getString("testding");
+        groupnumber = extras.getInt("groupnr");
+       // name = ?;
         GroupadminContactAdapter gAdapter = new GroupadminContactAdapter(getBaseContext());
-        gAdapter.setname(number);
+        gAdapter.setname(name);
         
         
         ListView listView = (ListView) findViewById(R.id.groupadmin_contactlist);
         listView.setAdapter(gAdapter);
-        // häckchen setzen
+        // häckchen setzen   wird togglebutton gedrückt?
         listView.setOnItemClickListener(new OnItemClickListener() 
         {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
-				
+			//	angeklickten kontakt in lokale liste übernehmen
+				// oder aus lokaler liste herausnehmen
+				//togglebutton geklickt?
 			}
 		});
         
@@ -51,6 +56,8 @@ public class GroupadminActivity extends Activity {
         {
 			public void onClick(View v) {
 				// gruppeneinstellungen übernehmen
+				    //gruppennamen auf text von groupadmin_groupname_edittext setzen
+				    //kontaktliste der gruppen mit lokaler liste überschreiben
 				// activity schließen und zur alten zurückspringen
 			}
 		});

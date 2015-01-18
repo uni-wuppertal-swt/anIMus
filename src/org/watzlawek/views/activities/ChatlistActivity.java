@@ -23,8 +23,9 @@ import android.widget.ListView;
  */
 public class ChatlistActivity extends Activity{
 	
-	//private String test="mal sehen";
+
 	private int groupnumber=5;
+	private String groupname;
 	
 	/**
 	 * Creates the options menu if the menu button is clicked (<= API 10) or onCreate is called (> API 10).
@@ -49,7 +50,9 @@ public class ChatlistActivity extends Activity{
 	    switch (item.getItemId()) {                    
 	        case R.id.chatlistmenuNewGroup:                                     // neue gruppe erstellen schickt auf Groupeditactivity
 	        	Intent intent = new Intent(this, GroupadminActivity.class);
-	       // 	intent.putExtra("testding", test);
+	        	//gruppennummer für neue Gruppe herausfinden und merken
+	        	//gruppennamen setzen?
+	        	//gruppe erstellen und in liste einfügen
 	        	intent.putExtra("groupnr", groupnumber);                     
 	        	startActivity(intent);
 
