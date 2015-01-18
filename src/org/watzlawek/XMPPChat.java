@@ -33,6 +33,9 @@ import android.os.Vibrator;
 import android.util.Log;
 import android.widget.Toast;
 
+import encryption.org.watzlawek.*;
+import encryption.org.watzlawek.Encryption;
+
 /**
  * This class is the backend for ChatActivity.
  * It holds all specific information of a XMPP contact like the Jabber ID.
@@ -44,6 +47,8 @@ import android.widget.Toast;
  * @version 2013-09-10
  */
 public class XMPPChat extends IMChat {
+	
+	private encryption.org.watzlawek.Encryption encryption_manager;
 	
 	/**
 	 * False if OTR Request was sent, or True if OTR Request was received
@@ -119,7 +124,9 @@ public class XMPPChat extends IMChat {
 	public XMPPChat(Context in_context, String in_username, IMServer.Status in_status, String in_jid, Connection connection, int in_serverid, XMPPServer in_server) {
 		super(in_context, in_username, in_status, in_serverid, in_server);
 
-		Toast.makeText(context.getApplicationContext(), "I am here (XMPPChat:122)", Toast.LENGTH_LONG).show();
+		
+		encryption_manager = new encryption.org.watzlawek.Encryption();
+		//Toast.makeText(context.getApplicationContext(), "I am here (XMPPChat:122)", Toast.LENGTH_LONG).show();
 		
 		jid = in_jid;	
 		auto_otr = false;

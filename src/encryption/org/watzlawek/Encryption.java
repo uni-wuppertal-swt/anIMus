@@ -1,5 +1,9 @@
 package encryption.org.watzlawek;
 
+
+import java.util.Collections;
+import java.util.Comparator;
+
 import java.util.Vector;
 import java.lang.String;
 import android.content.*;
@@ -8,8 +12,8 @@ import org.jivesoftware.smack.packet.*;
 
 public class Encryption {
 	private Vector<String> mMemberList;
-	private String context;
-	 
+	private Vector<Secure_Core> cores;
+
 	
 	
 	/**
@@ -17,7 +21,16 @@ public class Encryption {
 	 * @param context
 	 */
 	public Encryption (Context context){
+		cores = new Vector<Secure_Core>();
+		cores.add(new NullEncryption_Core());
 		
+		Collections.sort(cores, new Comparator<Secure_Core>() {
+			   public int compare(Secure_Core s1, Secure_Core s2){
+			     return s1.security_level() -  s2.security_level();
+			   }
+			});
+		Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
+		// ref in XMPPChat:122
 	}
 	
 	/**
