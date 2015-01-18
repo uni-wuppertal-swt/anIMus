@@ -7,14 +7,14 @@ import org.watzlawek.models.Group;
 import org.watzlawek.views.adapters.GroupadminContactAdapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 
 /**
  * Activity to display the groupadministration.
@@ -36,10 +36,10 @@ public class GroupadminActivity extends Activity {
         setContentView(R.layout.activity_groupadmin);
         Bundle extras = getIntent().getExtras();
         groupnumber = extras.getInt("groupnr");
-       // name = ?;
+       // name=
         GroupadminContactAdapter gAdapter = new GroupadminContactAdapter(getBaseContext());
         gAdapter.setname(name);
-        
+        gAdapter.setnr(groupnumber);
         
         ListView listView = (ListView) findViewById(R.id.groupadmin_contactlist);
         listView.setAdapter(gAdapter);

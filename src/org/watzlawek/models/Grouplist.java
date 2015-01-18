@@ -13,7 +13,7 @@ public class Grouplist {
 	private Grouplist() 
 	{
 		mGrouplist=new Vector<Group>();
-		mLength=0;
+		mLength=-1;
 	}
 	
 	public static Grouplist getInstance()
@@ -27,7 +27,7 @@ public class Grouplist {
 	public void addGroup(Group group)
 	{
 		mLength=mLength+1;
-		
+		mGrouplist.add(group);
 	}
 	
 	public int getLength()
@@ -39,7 +39,10 @@ public class Grouplist {
 		
 	}
 	
-	public Group getGroup(int id){
+	public Group getGroup(int id)
+	{
+		if ((id<=mLength) && (id>=0))
+		  return mGrouplist.elementAt(id);
 		return null;
 	}
 	

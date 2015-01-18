@@ -21,6 +21,7 @@ public class GroupadminContactAdapter extends BaseAdapter{
 	
 	private final Context context;
 	private String actualname = "blubb";
+	private int number=0;
 	
 	private String[] user = new String[]{"Benutzer 3", "Benutzer 4"};
 	
@@ -35,6 +36,10 @@ public class GroupadminContactAdapter extends BaseAdapter{
 	{
 		actualname=a;
 		return ;
+	}
+	public void setnr(int i)
+	{
+		number=i;
 	}
 
 	public Object getItem(int position) {
@@ -52,7 +57,7 @@ public class GroupadminContactAdapter extends BaseAdapter{
 	     TextView textView = (TextView) rowView.findViewById(R.id.groupadmin_contactname);
 	     textView.setText(user[position]);
 	     TextView groupnametextView = (TextView) rowView.findViewById(R.id.groupadmin_groupname_textview);
-	  //   Toast.makeText(context.getApplicationContext(), actualname, Toast.LENGTH_LONG).show();
+	//     Toast.makeText(context.getApplicationContext(), String.valueOf(number), Toast.LENGTH_SHORT).show();
 		return rowView;
 	}
 
