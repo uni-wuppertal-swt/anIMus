@@ -70,8 +70,7 @@ public class ChatlistActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatlist);
-        
-        //groupnumber= ...?                //anzahl gruppen?
+                             
         
         ChatlistAdapter chatlistAdapter = new ChatlistAdapter(getBaseContext());        
         ListView listView = (ListView) findViewById(R.id.chatlist_list_listview);
@@ -81,6 +80,7 @@ public class ChatlistActivity extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				
 				Intent intent = new Intent(ChatlistActivity.this, GroupchatActivity.class);
+				//groupnumber= ...?
 				intent.putExtra("groupnr", groupnumber);
 	        	startActivity(intent);
 			}
