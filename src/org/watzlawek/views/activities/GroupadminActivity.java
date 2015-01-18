@@ -1,6 +1,9 @@
 package org.watzlawek.views.activities;
 
+import java.util.Vector;
+
 import org.watzlawek.R;
+import org.watzlawek.models.Group;
 import org.watzlawek.views.adapters.GroupadminContactAdapter;
 
 import android.app.Activity;
@@ -24,7 +27,7 @@ import android.widget.AdapterView.OnItemClickListener;
                    // zu tun: häckchen setzen, speichern, abbrechen
 public class GroupadminActivity extends Activity {
 	
-//	private grouplist lokallist;
+	private Vector<Group> lokallist=new Vector<Group>();
 	private String name="blubb";
 	private int groupnumber;
 	@Override

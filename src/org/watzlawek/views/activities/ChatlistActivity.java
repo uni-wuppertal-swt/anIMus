@@ -1,6 +1,8 @@
 package org.watzlawek.views.activities;
 
 import org.watzlawek.R;
+import org.watzlawek.models.Group;
+import org.watzlawek.models.Grouplist;
 import org.watzlawek.views.adapters.ChatlistAdapter;
 
 import android.app.Activity;
@@ -23,7 +25,6 @@ import android.widget.ListView;
  */
 public class ChatlistActivity extends Activity{
 	
-
 	private int groupnumber=5;
 	private String groupname;
 	
@@ -50,6 +51,10 @@ public class ChatlistActivity extends Activity{
 	    switch (item.getItemId()) {                    
 	        case R.id.chatlistmenuNewGroup:                                     // neue gruppe erstellen schickt auf Groupeditactivity
 	        	Intent intent = new Intent(this, GroupadminActivity.class);
+	        	Group newgroup= new Group();
+	        	newgroup.setName("neue Gruppe");
+	        	Grouplist.getInstance().addGroup(newgroup);
+	        	groupnumber=Grouplist.getInstance().getLength();
 	        	//gruppennummer für neue Gruppe herausfinden und merken
 	        	//gruppennamen setzen?
 	        	//gruppe erstellen und in liste einfügen

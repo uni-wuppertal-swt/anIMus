@@ -26,6 +26,7 @@ public class Group {
 	private Context mContext;
 	//private Encryption mEncryption;
 	private IMChatMessageListener mMessageListener;
+//	private Grouplist mContacts; 
 	private MessageLog mMessageLog;
 	private String mName;
 	private IMServer mServer;
@@ -36,13 +37,28 @@ public class Group {
 	protected IMServer.Status status;
 	
 	
-	public Group(Context in_context, IMServer.Status in_status, int in_serverid, IMServer in_server) {
+/*	public Group(Context in_context, IMServer.Status in_status, int in_serverid, IMServer in_server) {
 		context = in_context;
 	//	encryption = new Encryption(context);
 		mServerId = in_serverid;
 		mMessageLog = new MessageLog();
 		mServer = in_server;
 		status = in_status;
+	}   */
+	
+	public Group()
+	{
+		mMessageLog = new MessageLog();
+	}
+	
+	public void setName(String newname)
+	{
+		mName=newname;
+	}
+	
+	public String getName()
+	{
+		return mName;
 	}
 	
 	public String currentTimeStamp() {
