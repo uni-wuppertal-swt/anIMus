@@ -7,20 +7,11 @@ import net.sqlcipher.database.SQLiteException;
 
 import org.watzlawek.*;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;  
-import android.util.Log;
-
+import android.database.sqlite.SQLiteOpenHelper; 
 
 public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
-	// private static String DB_PATH = "/data/data/org.watzlawek.contactmanager/databases/";
-	// private SQLiteDatabase ContactDB;
 	
 	/**
 	 * Name of the database.
@@ -62,9 +53,9 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	
 	/**
 	 * Column of the table "contacts".
-	 * .
+	 * Stores, if the user is visible in the contactlist.
 	 */
-	private static final String DB_COLUMN_INVISIBLE = "invisible";
+	private static final String DB_COLUMN_VISIBLE = "visible";
 	
 
 	private class Contact{
@@ -101,11 +92,12 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
 	public void onCreate(android.database.sqlite.SQLiteDatabase db) {
 		String createDB = "CREATE TABLE " +DB_TABLE_NAME +"(" +
-				DB_COLUMN_JID +" VARCHAR(30) PRIMARY KEY,"+
+				DB_COLUMN_JID +" VARCHAR(30),"+
 				DB_COLUMN_USERNAME +" VARCHAR(30)" +
 				DB_COLUMN_NOTE +" VARCHAR(140),"+
 				DB_COLUMN_SERVERID + " INTEGER"+
-				DB_COLUMN_INVISIBLE +" INTEGER)";
+				DB_COLUMN_VISIBLE +" INTEGER, PRIMARY KEY(" + 
+				DB_COLUMN_JID + ", " + DB_COLUMN_SERVERID + "))";
 		db.execSQL(createDB);
 	}
 
@@ -119,37 +111,6 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		
 	}
 
-
-	
-	private void open_db() throws SQLException{ // oeffnet oder erstellt die Datenbank
-		//SQLiteDatabase db = SQLiteDatabase.openDatabase(DATABASE_NAME,
-			//	null, SQLiteDatabase.CREATE_IF_NECESSARY, null);
-		
-		
-		/* private MySQLiteHelper dbHelper;
-		   private SQLiteDatabase database;
-		  database = dbHelper.getWritableDatabase();
-		 */
-		
-		
-	}
-
-	
-	
-	private void close_db() { 
-		// TODO - implement ContactDatabaseHandler.close_db
-		throw new UnsupportedOperationException();
-		
-		//Class: "SQLiteClosable" 	An object created from a SQLiteDatabase that can be closed.
-		// http://developer.android.com/reference/android/database/sqlite/SQLiteDatabase.html
-		// oder
-		/**
-		 * private MySQLiteHelper dbHelper;
-		 *  dbHelper.close();
-		 */
-	}
-
-	
 	
 	/**
 	 * This method compares the contacts on the server(serverID) with the 
@@ -209,14 +170,14 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			
 			// A contact in the DB is no more on the server, delete it from the DB.
 			else {
-				deleteContact(nc.jid);
+				deleteContact(nc.jid, nc.serverID);
 				ncIndex++;
 			}
 		}
 		
 		// If the ncIndex has not reached the end of the vector, complete it (case 1)
 		while (ncIndex < neededContacts.size()) {
-			deleteContact(neededContacts.elementAt(ncIndex).jid);
+			deleteContact(neededContacts.elementAt(ncIndex).jid, neededContacts.elementAt(ncIndex).serverID);
 			ncIndex++;
 		}
 		
@@ -230,15 +191,53 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 
 	
-	private void deleteContact(String delJID) {
-		
+	private void deleteContact(String delJID, int delServerID) {
+		try {
+			SQLiteDatabase db = getWritableDatabase();		
+
+			if (db != null) {
+				String sqlCommand = "DELETE FROM " + DB_TABLE_NAME + " WHERE " 
+						+ DB_COLUMN_JID + " = " + delJID + " AND " 
+						+ DB_COLUMN_SERVERID + " = " + delServerID + ";";			
+				db.execSQL(sqlCommand);
+				db.close();
+			}
+		}
+		catch (SQLiteException e) {}
 	}
 	
 	
 	private Vector<Contact> getDBContacts() {
-		// This is the real reading-method with DB access.
-		// ...
-		return new Vector<Contact>(); // Dummy
+		Vector<Contact> contactList = new Vector<Contact>();
+		SQLiteDatabase db = null;
+		String sqlCommand = "SELECT * FROM " + DB_TABLE_NAME;
+		try {
+			db = getReadableDatabase();
+			
+			if (db != null) {
+				android.database.Cursor queryCursor = db.rawQuery(sqlCommand, null);
+			
+				if(queryCursor.moveToFirst()) {
+					do {
+						Contact currentContact;
+						currentContact = new Contact(queryCursor.getString(0), queryCursor.getString(1), 
+								queryCursor.getString(2), Integer.parseInt(queryCursor.getString(3)), 
+								Boolean.parseBoolean(queryCursor.getString(4)));
+
+						contactList.add(currentContact);
+					} 	while(queryCursor.moveToNext());
+				}
+				queryCursor.close();
+				db.close();
+			}
+			
+		}
+		catch (SQLiteException e){
+			
+		}
+		
+		
+		return contactList;
 	}
 	
 	
@@ -257,48 +256,40 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			}
 		}
 		
-		return jidUserV; // Dummy
+		return jidUserV;
 	}
 	
 	
 	
+
 	/**
-	 * This method inserts a given contact into the DB if it doesn't already exist.
 	 * 
-	 * @param in_jid
-	 * @param in_username
-	 * @param in_note
-	 * @param in_SID
-	 * @param in_invisible
-	 * 
+	 *  This method inserts a given contact into the DB if it doesn't already exist.
+	 * @param inJID
+	 * @param inUsername
+	 * @param inNote
+	 * @param inSID
+	 * @param inVisible
 	 */
-	private void insertContact(String in_jid, String in_username, String in_note, 
-			int in_SID, boolean in_invisible) {
-		//private SQLiteStatement  statement = null;       // SQL Anweisung
-	    //private ...  result   = null;       		// SQL Ergebnis
+	private void insertContact(String inJID, String inUsername, String inNote, 
+			int inSID, boolean inVisible) {
 		
-		//throw new UnsupportedOperationException();
-		//https://www.youtube.com/watch?v=dOA8RkTr5AI
-		
-		/**
-		 * try {
-			SQLiteDatabase db = getWritableDatabase("");
+		try {
+			SQLiteDatabase db = getWritableDatabase();
 			if (db != null) {
-				String sqlCommand = "Select ..." +SID;			
+				String sqlCommand = "INSERT INTO " + DB_TABLE_NAME + " VALUES (" + inJID + ", " 
+						+ inUsername + ", " + inNote + ", " + inSID + ", " + inVisible + ");";			
 				db.execSQL(sqlCommand);
+				db.close();
 			}
 		} 
 		catch(SQLiteException e) {	
 			
 		}
-		
-		 */
-		
-		
 	}
 
 	
-	private Vector<String> readJIDs(int serverID) {
+	/*private Vector<String> readJIDs(int serverID) {
 		Vector<String> jidVector = new Vector<String>();
 		// "Select jid from contacts where serverid = " +in_SID
 		Vector<Contact> dbContacts = getDBContacts();
@@ -309,39 +300,35 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		}
 		
 		return jidVector;
-	}
+	}*/
 	
 	
+
 	/**
 	 * 
-	 * @param in_jid
-	 * @param in_username
-	 * @param in_note
-	 * @param in_invisible
+	 * @param inJID
+	 * @param inUsername
+	 * @param inNote
+	 * @param inServerID
+	 * @param inVisible
 	 */
-	private void updateContact(String in_jid, String in_username, String in_note, 
-			int serverID, boolean in_invisible) {
-		// TODO - implement ContactDatabaseHandler.updateContact
-		throw new UnsupportedOperationException();
+	private void updateContact(String inJID, String inUsername, String inNote, 
+			int inServerID, boolean inVisible) {
 		
-		/**
-		 * SQLiteDatabase db = getWritableDatabase(password);		
-		ContentValues tokenValues = new ContentValues();
+		try {
+			SQLiteDatabase db = getWritableDatabase();		
+
+			if (db != null) {
+				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = " 
+						+ inUsername + ", " + DB_COLUMN_NOTE + " = " + inNote + ", " + DB_COLUMN_VISIBLE
+						+ " = " + inVisible + " WHERE " + DB_COLUMN_JID + " = " + inJID
+						+ " AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
+				db.execSQL(sqlCommand);
+				db.close();
+			}
+		}
+		catch (SQLiteException e) {}
 		
-		tokenValues.put(TOKENSYSTEM_DB_TABLE_XMPPJID, in_xmppjid);
-		tokenValues.put(TOKENSYSTEM_DB_TABLE_OWNIDENTIFIER, in_identifier);
-		tokenValues.put(TOKENSYSTEM_DB_TABLE_PASSWORD, in_startpassword);
-		tokenValues.put(TOKENSYSTEM_DB_TABLE_SERVICEADDRESS, in_serviceaddress);
-		
-		tokenValues.put(TOKENSYSTEM_DB_TABLE_SERVICEACOUNT, "");
-		tokenValues.put(TOKENSYSTEM_DB_TABLE_AUTHTOKEN, "");
-		
-		
-		
-		
-		db.insert(TOKENSYSTEM_DB_TABLE, null, tokenValues);
-		db.close();
-		 */
 	}
 
 }
