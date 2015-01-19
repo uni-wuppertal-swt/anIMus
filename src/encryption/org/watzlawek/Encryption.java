@@ -12,25 +12,42 @@ import org.jivesoftware.smack.packet.*;
 
 import android.widget.Toast;
 
+import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.XMPPConnection;
+import org.jivesoftware.smack.XMPPException;
+//import org.jivesoftware.smack.packet.Presence;
+
 public class Encryption {
 	private Vector<String> mMemberList;
 	private Vector<Secure_Core> cores;
 	private Secure_Core core;
+	private XMPPConnection connection;
+	private Context context;
 	
 	
 	/**
 	 * Constructor 
 	 * @param context
 	 */
-	public Encryption (Context context){
+	public Encryption (Context context, ConnectionConfiguration connectionConfig){
 		cores = new Vector<Secure_Core>();
 		cores.add(new NullEncryption_Core());
+		this.connection = new XMPPConnection(connectionConfig);
+		this.context = context;
+		
+		 try {
+	            connection.connect();
+	        } catch (XMPPException ex) {
+	            //chatClient.setConnection(null);
+	        }
 		
 		Collections.sort(cores, new Comparator<Secure_Core>() {
 			   public int compare(Secure_Core s1, Secure_Core s2){
 			     return s1.security_level() -  s2.security_level();
 			   }
 			});
+		
+		
 		
 		
 
