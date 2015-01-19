@@ -3,6 +3,7 @@ package org.watzlawek.contactmanager;
 import org.watzlawek.R;
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,5 +37,18 @@ public class ContactEditActivity extends Activity {
         tvJIDUpdate = (TextView) findViewById(R.id.tvJIDCreate);
         tvNoteUpdate = (TextView) findViewById(R.id.tvNoteCreate);
         
+        
+        btCancelUpdate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	finish();
+            }
+        });
+        
+        
+        btSaveUpdate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	// Datenbankzugriff
+            }
+        });
 	}
 }
