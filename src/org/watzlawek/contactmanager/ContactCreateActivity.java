@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.view.View;
 
 public class ContactCreateActivity extends Activity {
 	
@@ -37,6 +38,18 @@ public class ContactCreateActivity extends Activity {
         tvNameCreate = (TextView) findViewById(R.id.tvNameCreate);
         tvJIDCreate = (TextView) findViewById(R.id.tvJIDCreate);
         tvNoteCreate = (TextView) findViewById(R.id.tvNoteCreate);
+        
+        btCancelCreate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	finish();
+            }
+        });
+        
+        btSaveCreate.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+            	//ContactDatabaseHandler cdbh = new ContactDatabaseHandler();
+            }
+        });
         
 	}
 }
