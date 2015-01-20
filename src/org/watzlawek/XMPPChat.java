@@ -1,6 +1,7 @@
 package org.watzlawek;
 
 import java.util.StringTokenizer;
+import java.util.Vector;
 
 import net.java.otr4j.OtrException;
 import net.java.otr4j.session.SessionID;
@@ -127,6 +128,9 @@ public class XMPPChat extends IMChat {
 		
 		encryption_manager = new encryption.org.watzlawek.Encryption(context, connection);
 		//Toast.makeText(context.getApplicationContext(), "I am here (XMPPChat:122)", Toast.LENGTH_LONG).show();
+		Vector<String> vect_jid = new Vector<String>();
+		vect_jid.add(in_jid);
+		encryption_manager.setMemberList(vect_jid);
 		
 		jid = in_jid;	
 		auto_otr = false;

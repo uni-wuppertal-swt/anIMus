@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
 
+import java.lang.StringBuffer;
 import java.lang.String;
 import android.content.*;
 import org.jivesoftware.smack.packet.*;
@@ -73,6 +74,42 @@ public class Encryption {
 		// ref in XMPPChat:122
 	}
 	
+	
+	public void setMemberList(Vector<String> mMemberList){
+
+		
+		
+		this.mMemberList = new Vector<JID>();
+		
+	      Iterator<String> iter = mMemberList.iterator();
+	        while (iter.hasNext()) {
+	        	this.mMemberList.add( new JID( iter.next() ));
+	            iter.remove();
+	            
+	        } 
+		
+//test
+	         StringBuffer stbu = new StringBuffer("Es existieren folgende JIDs :");
+		      Iterator<JID> iter2 = this.mMemberList.iterator();
+		        while (iter2.hasNext()) {
+		        	stbu.append(iter2.next().getJID() + ", ");
+		        	 
+		            iter2.remove();
+		            
+		        } 
+
+		        Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
+		
+		/*
+	      Iterator<Secure_Core> iter = cores.iterator();
+	        while (iter.hasNext()) {
+	        	core = iter.next();
+	            iter.remove();
+	            
+	        } 
+		*/
+ 
+	}
 	
 	/**
 	 * On-/Offline Schluesseltausch
@@ -229,31 +266,7 @@ public class Encryption {
 		return text;
 	}
 	*/
-	public void setMemberList(Vector<String> mMemberList){
 
-		
-		
-		this.mMemberList = new Vector<JID>();
-		
-	      Iterator<String> iter = mMemberList.iterator();
-	        while (iter.hasNext()) {
-	        	this.mMemberList.add( new JID( iter.next() ));
-	            iter.remove();
-	            
-	        } 
-		
-
-		
-		/*
-	      Iterator<Secure_Core> iter = cores.iterator();
-	        while (iter.hasNext()) {
-	        	core = iter.next();
-	            iter.remove();
-	            
-	        } 
-		*/
- 
-	}
 	
 	
 	
