@@ -53,14 +53,16 @@ public class Encryption {
 		this.context = context;
 		
 		if(this.connection==null)Toast.makeText(context.getApplicationContext(), "Wir haben kein Objekt, von dem wir wuesten!", Toast.LENGTH_LONG).show();
+		if(this.connection.isConnected())Toast.makeText(context.getApplicationContext(), "Verbindung steht!", Toast.LENGTH_LONG).show();
 		
-		/*
+/*		
 		 try {
-	            connection.connect();
+			 this.connection.connect();
 	        } catch (XMPPException ex) {
 	            //chatClient.setConnection(null);
 	        }
-		*/
+	*/
+		
 		Collections.sort(cores, new Comparator<Secure_Core>() {
 			   public int compare(Secure_Core s1, Secure_Core s2){
 			     return s1.security_level() -  s2.security_level();
