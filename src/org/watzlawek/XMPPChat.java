@@ -275,6 +275,11 @@ public class XMPPChat extends IMChat {
 		return jid;
 	}
 	
+	
+	public int get_serverId() {
+		return serverId;
+	}
+	
 	/**
 	 * Getter method for the username.
 	 * 
