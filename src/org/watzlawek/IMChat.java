@@ -135,12 +135,12 @@ public abstract class IMChat implements Comparable<IMChat>, OtrEngineHost {
 	 * false: contact is not visible (deleted by user)
 	 * true: contact is visible in list
 	 */
-	protected boolean visible;
+	protected boolean visible = true;
 	
 	/**
 	 * stores the note corresponding to this contact
 	 */
-	protected String note;
+	protected String note = "";
 	
 	
 	/**
@@ -320,6 +320,7 @@ public abstract class IMChat implements Comparable<IMChat>, OtrEngineHost {
 	public abstract String get_username();
 	
 	
+	public abstract int get_serverId();
 	/**
 	 * Abstract getter for the note.
 	 * 
