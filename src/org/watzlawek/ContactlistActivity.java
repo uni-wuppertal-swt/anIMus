@@ -1,6 +1,7 @@
 package org.watzlawek;
 
 import org.watzlawek.R;
+import org.watzlawek.contactmanager.ContactDatabaseHandler;
 import org.watzlawek.contactmanager.ContactEditActivity;
 
 import android.app.ListActivity;
@@ -55,6 +56,9 @@ public class ContactlistActivity extends ListActivity {
 	 * @see AppPrefHandler#getTheme() Possible values of the theme identifier.
 	 */
 	private String theme;
+	
+	
+	private Context context;
 	
 	/**
 	 * Getter for the contact list element layout depending on the theme.
@@ -143,6 +147,8 @@ public class ContactlistActivity extends ListActivity {
 		XMPPChat ic = (XMPPChat) this.listadapter.getItem(cmi.position);
 		XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
 		
+		context = this;
+		
 		switch (item.getItemId()) {		
 			//Validate
 			case 1:		
@@ -155,6 +161,9 @@ public class ContactlistActivity extends ListActivity {
 			case 2:				
 				sv.deleteBuddy(ic.get_jid());
 				// set visible false in DB (need server_id)
+				ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
+				cdbh.updateContact(ic.get_jid(), ic.get_username(), ic.get_note(), ic.get_serverId(), false);
+				cdbh.close();
 				refreshContactlist();
 				sv.clearRoster();
 				sv.pullRoster();
