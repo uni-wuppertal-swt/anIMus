@@ -1,7 +1,11 @@
 package org.watzlawek.contactmanager;
 
+import org.watzlawek.IMApp;
 import org.watzlawek.R;
+import org.watzlawek.XMPPServer;
+
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,12 +24,16 @@ public class ContactEditActivity extends Activity {
 	private TextView tvJIDUpdate;
 	private TextView tvNoteUpdate;
 	
+	private Context context;
+	
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactupdate);
+        
+        context = this;
         
         btCancelUpdate = (Button) findViewById(R.id.btCancelUpdate);
         btSaveUpdate = (Button) findViewById(R.id.btSaveUpdate);
@@ -47,7 +55,18 @@ public class ContactEditActivity extends Activity {
         
         btSaveUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	// Datenbankzugriff
+               	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
+               	ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
+               	cdbh.insertContact(
+               			"dummy",
+               			//tvJIDUpdate.getText().toString().substring(5), 
+               			etNameUpdate.getText().toString(), 
+               			etNoteUpdate.getText().toString(), conServer.getServerId(),	true);
+               	conServer.addNewBuddyToContact(
+               			//tvJIDUpdate.getText().toString().substring(5), 
+               			"Dummy",
+               			etNameUpdate.getText().toString());
+                	
             }
         });
 	}
