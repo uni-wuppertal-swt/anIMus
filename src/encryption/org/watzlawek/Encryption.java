@@ -19,7 +19,7 @@ import org.jivesoftware.smack.XMPPException;
 //import org.jivesoftware.smack.packet.Presence;
 
 public class Encryption {
-	private Vector<String> mMemberList;
+	private Vector<JID> mMemberList;
 	private Vector<Secure_Core> cores;
 	private Secure_Core core;
 	private Connection connection;
@@ -231,16 +231,27 @@ public class Encryption {
 	*/
 	public void setMemberList(Vector<String> mMemberList){
 
-		this.mMemberList = mMemberList;
 		
 		
+		this.mMemberList = new Vector<JID>();
+		
+	      Iterator<String> iter = mMemberList.iterator();
+	        while (iter.hasNext()) {
+	        	this.mMemberList.add( new JID( iter.next() ));
+	            iter.remove();
+	            
+	        } 
+		
+
+		
+		/*
 	      Iterator<Secure_Core> iter = cores.iterator();
 	        while (iter.hasNext()) {
 	        	core = iter.next();
 	            iter.remove();
 	            
 	        } 
-		
+		*/
  
 	}
 	
