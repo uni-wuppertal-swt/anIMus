@@ -6,13 +6,15 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
 
+import org.jivesoftware.smack.Chat;
+import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionConfiguration;
+import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Message;
 
 import android.content.Context;
-import android.widget.Toast;
 //import org.jivesoftware.smack.packet.Presence;
 
 public class Encryption {
@@ -88,9 +90,15 @@ public class Encryption {
 	            iter.remove();
 	            
 	        }
-	         
+	        if(this.connection.isConnected())
+	        {
+
+	        	 //chat.sendMessage("Howdy!");
+	        	
+	        }
 		
 //test
+	        /*
 	         StringBuffer stbu = new StringBuffer("Es existieren folgende JIDs :");
 		      Iterator<JID> iter2 = this.mMemberList.iterator();
 		        while (iter2.hasNext()) {
@@ -99,8 +107,11 @@ public class Encryption {
 		            iter2.remove();
 		            
 		        } 
-
+*/
+	        
 		       // Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
+		        
+		        
 		        
 		/*
 	      Iterator<Secure_Core> iter = cores.iterator();
