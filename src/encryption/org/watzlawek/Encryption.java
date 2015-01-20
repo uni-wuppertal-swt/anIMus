@@ -51,6 +51,9 @@ public class Encryption {
 		cores.add(new TextSecure_Core());
 		this.connection = connection;
 		this.context = context;
+		
+		if(this.connection==null)Toast.makeText(context.getApplicationContext(), "Wir haben kein Objekt, von dem wir wuesten!", Toast.LENGTH_LONG).show();
+		
 		/*
 		 try {
 	            connection.connect();
@@ -99,7 +102,7 @@ public class Encryption {
 		            
 		        } 
 
-		        Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
+		       // Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
 		        
 		/*
 	      Iterator<Secure_Core> iter = cores.iterator();
