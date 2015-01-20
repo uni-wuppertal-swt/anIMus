@@ -51,13 +51,13 @@ public class Encryption {
 		cores.add(new TextSecure_Core());
 		this.connection = connection;
 		this.context = context;
-		
+		/*
 		 try {
 	            connection.connect();
 	        } catch (XMPPException ex) {
 	            //chatClient.setConnection(null);
 	        }
-		
+		*/
 		Collections.sort(cores, new Comparator<Secure_Core>() {
 			   public int compare(Secure_Core s1, Secure_Core s2){
 			     return s1.security_level() -  s2.security_level();
@@ -70,7 +70,7 @@ public class Encryption {
 
 		
 	        
-		Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
+		//Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
 		// ref in XMPPChat:122
 	}
 	
@@ -78,7 +78,7 @@ public class Encryption {
 	public void setMemberList(Vector<String> mMemberList){
 
 		
-		
+
 		this.mMemberList = new Vector<JID>();
 		
 	      Iterator<String> iter = mMemberList.iterator();
@@ -86,7 +86,8 @@ public class Encryption {
 	        	this.mMemberList.add( new JID( iter.next() ));
 	            iter.remove();
 	            
-	        } 
+	        }
+	         
 		
 //test
 	         StringBuffer stbu = new StringBuffer("Es existieren folgende JIDs :");
@@ -99,7 +100,7 @@ public class Encryption {
 		        } 
 
 		        Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
-		
+		        
 		/*
 	      Iterator<Secure_Core> iter = cores.iterator();
 	        while (iter.hasNext()) {

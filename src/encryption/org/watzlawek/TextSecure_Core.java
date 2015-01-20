@@ -29,7 +29,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 
 	public short security_level() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 1;
 	}
 
 	public boolean isReady() {
