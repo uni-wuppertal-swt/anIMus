@@ -125,7 +125,7 @@ public class XMPPChat extends IMChat {
 		super(in_context, in_username, in_status, in_serverid, in_server);
 
 		
-		encryption_manager = new encryption.org.watzlawek.Encryption(context);
+		encryption_manager = new encryption.org.watzlawek.Encryption(context, connection);
 		//Toast.makeText(context.getApplicationContext(), "I am here (XMPPChat:122)", Toast.LENGTH_LONG).show();
 		
 		jid = in_jid;	
