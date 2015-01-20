@@ -25,7 +25,7 @@ import android.widget.ListView;
  */
 public class ChatlistActivity extends Activity{
 	
-	private int groupnumber=5;
+	private int groupnumber=0;
 	private String groupname;
 	
 	/**
@@ -55,9 +55,6 @@ public class ChatlistActivity extends Activity{
 	        	newgroup.setName("neue Gruppe");
 	        	Grouplist.getInstance().addGroup(newgroup);
 	        	groupnumber=Grouplist.getInstance().getLength();
-	        	//gruppennummer für neue Gruppe herausfinden und merken
-	        	//gruppennamen setzen?
-	        	//gruppe erstellen und in liste einfügen
 	        	intent.putExtra("groupnr", groupnumber);                     
 	        	startActivity(intent);
 
@@ -74,8 +71,7 @@ public class ChatlistActivity extends Activity{
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatlist);
-                             
+        setContentView(R.layout.activity_chatlist);                    
         
         ChatlistAdapter chatlistAdapter = new ChatlistAdapter(getBaseContext());        
         ListView listView = (ListView) findViewById(R.id.chatlist_list_listview);
@@ -86,6 +82,7 @@ public class ChatlistActivity extends Activity{
 				
 				Intent intent = new Intent(ChatlistActivity.this, GroupchatActivity.class);
 				//groupnumber= ...?
+				// es muss herausgefunden werden welcher gruppenchat geöffnet werden soll
 				intent.putExtra("groupnr", groupnumber);
 	        	startActivity(intent);
 			}

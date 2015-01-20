@@ -37,6 +37,8 @@ public class GroupchatActivity extends Activity {
         EditText messageedittext=(EditText) findViewById(R.id.groupchat_message_edittext);
         ListView listView = (ListView) findViewById(R.id.groupchat_listview);
         listView.setAdapter(groupchatAdapter); 
+        Bundle extras = getIntent().getExtras();
+        groupnumber = extras.getInt("groupnr");
         
         Button sendbutton = (Button) findViewById(R.id.groupchat_send_button);
         sendbutton.setOnClickListener(new OnClickListener() {                              // sendbutton

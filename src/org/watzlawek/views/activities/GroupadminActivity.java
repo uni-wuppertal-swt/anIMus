@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import org.watzlawek.R;
 import org.watzlawek.models.Group;
+import org.watzlawek.models.Grouplist;
 import org.watzlawek.views.adapters.GroupadminContactAdapter;
 
 import android.app.Activity;
@@ -13,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,11 +38,13 @@ public class GroupadminActivity extends Activity {
         setContentView(R.layout.activity_groupadmin);
         Bundle extras = getIntent().getExtras();
         groupnumber = extras.getInt("groupnr");
-       // name=
+        name=Grouplist.getInstance().getGroup(groupnumber).getName();
         GroupadminContactAdapter gAdapter = new GroupadminContactAdapter(getBaseContext());
         gAdapter.setname(name);
         gAdapter.setnr(groupnumber);
         
+        
+        		
         ListView listView = (ListView) findViewById(R.id.groupadmin_contactlist);
         listView.setAdapter(gAdapter);
         // häckchen setzen   wird togglebutton gedrückt?
@@ -58,20 +62,23 @@ public class GroupadminActivity extends Activity {
         safebutton.setOnClickListener(new OnClickListener()                                
         {
 			public void onClick(View v) {
-				// gruppeneinstellungen übernehmen
-				    //gruppennamen auf text von groupadmin_groupname_edittext setzen
+				EditText edit= (EditText) findViewById(R.id.groupadmin_groupname_edittext);
+				name=edit.getText().toString();
+				// gruppeneinstellungen übernehmen				   
+				Grouplist.getInstance().getGroup(groupnumber).setName(name);
 				    //kontaktliste der gruppen mit lokaler liste überschreiben
 				// activity schließen und zur alten zurückspringen
+				finish();
 			}
 		});
         
-      //button "abbrechen"
+ 
         Button cancelbutton = (Button) findViewById(R.id.groupadmin_cancel_button);
         cancelbutton.setOnClickListener(new OnClickListener()                                
         {
 			public void onClick(View v) {
-
-				// activity schließen und zur alten zurückspringen
+				finish();
+				
 			}
 		});
 	} 

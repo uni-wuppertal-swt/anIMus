@@ -1,7 +1,5 @@
 package org.watzlawek.views.adapters;
 
-import java.util.Vector;
-
 import org.watzlawek.R;
 import org.watzlawek.models.Group;
 import org.watzlawek.models.Grouplist;
@@ -23,11 +21,11 @@ import android.widget.Toast;
  */
 public class ChatlistAdapter extends BaseAdapter{
 
-private final Context context;
-private int anz=0;
+private final Context context; 
+private int anz=1;
     
-	private final String[] groups = new String[]{"gruppe 5", "blubb und so"};
-	
+	private String[] groups = new String[]{"hier muss was stehen? wtf"};
+
 	public ChatlistAdapter(Context context){
 		this.context = context;
 	}
@@ -41,22 +39,33 @@ private int anz=0;
 	}
 
 	public long getItemId(int position) {
-		return 0;
+		return 0; 
 	}
 
 	public View getView(int position, View convertView, ViewGroup parent) {  // wird nicht beim zurückgehen aufgerufen?
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		//groups setzen
-		anz=Grouplist.getInstance().getLength();
-		Toast.makeText(context.getApplicationContext(), String.valueOf(anz), Toast.LENGTH_SHORT).show();
-		for(int i=0;i<=anz;i++)  // stringarray länge setzen?
+		
+		anz=Grouplist.getInstance().getLength()+1;
+		//Toast.makeText(context.getApplicationContext(), String.valueOf(anz), Toast.LENGTH_SHORT).show();
+		// was wenn noch keine Gruppe existiert?
+		if (anz!=0) 
 		{
-			groups[i]="blubb";
-		}
+			
+			groups = new String[anz];  
+			for(int i=0;i<anz;i++)  // stringarray länge setzen?
+			{
+				//Toast.makeText(context.getApplicationContext(), Grouplist.getInstance().getGroup(i).getName(), Toast.LENGTH_SHORT).show();
+				groups[i]=Grouplist.getInstance().getGroup(i).getName();
+				
+			}
+			//Toast.makeText(context.getApplicationContext(), groups[0], Toast.LENGTH_SHORT).show();
+		} 
+		
+		
 	    View rowView = inflater.inflate(R.layout.item_chatlist, parent,false);
 
 	    TextView textView = (TextView) rowView.findViewById(R.id.chatlist_groupname);
-	    textView.setText(groups[position]); // wird nicht nochmals ausgeführt?
+	    textView.setText(groups[position]); //das erste textview wird nicht gesetzt?
 	     
 		return rowView;
 	}

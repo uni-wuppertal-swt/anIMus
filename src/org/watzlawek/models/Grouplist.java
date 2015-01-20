@@ -36,7 +36,7 @@ public class Grouplist {
 	}
 	
 	public void deleteGRoup(int id){
-		
+		mGrouplist.remove(id);
 	}
 	
 	public Group getGroup(int id)
