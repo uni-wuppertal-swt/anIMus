@@ -12,6 +12,7 @@ import org.jivesoftware.smack.packet.*;
 
 import android.widget.Toast;
 
+import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.XMPPException;
@@ -21,18 +22,33 @@ public class Encryption {
 	private Vector<String> mMemberList;
 	private Vector<Secure_Core> cores;
 	private Secure_Core core;
-	private XMPPConnection connection;
+	private Connection connection;
 	private Context context;
 	
 	
 	/**
 	 * Constructor 
 	 * @param context
+	 * @param connectionConfig : config to create a new XMPPConnection
 	 */
 	public Encryption (Context context, ConnectionConfiguration connectionConfig){
+
+
+		this(context, new XMPPConnection(connectionConfig));
+
+	}
+
+	/**
+	 * Constructor 
+	 * @param context
+	 * @param connection : gets a smack Connection Interface
+	 */
+	
+	public Encryption (Context context, Connection connection){
 		cores = new Vector<Secure_Core>();
 		cores.add(new NullEncryption_Core());
-		this.connection = new XMPPConnection(connectionConfig);
+		cores.add(new TextSecure_Core());
+		this.connection = connection;
 		this.context = context;
 		
 		 try {
@@ -56,6 +72,7 @@ public class Encryption {
 		Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
 		// ref in XMPPChat:122
 	}
+	
 	
 	/**
 	 * On-/Offline Schluesseltausch
