@@ -5,6 +5,8 @@ import java.util.Vector;
 import org.jivesoftware.smack.packet.Message;
 
 import android.content.Context;
+import javax.crypto.*;
+
 
 public class TextSecure_Core extends NullEncryption_Core implements Secure_Core {
 
