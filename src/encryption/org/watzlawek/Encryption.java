@@ -1,10 +1,18 @@
 package encryption.org.watzlawek;
 
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Vector;
+
 import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionConfiguration;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Message;
+
+import android.content.Context;
+import android.widget.Toast;
 //import org.jivesoftware.smack.packet.Presence;
 
 public class Encryption {
@@ -40,8 +48,8 @@ public class Encryption {
 		this.connection = connection;
 		this.context = context;
 		
-		if(this.connection==null)Toast.makeText(context.getApplicationContext(), "Wir haben kein Objekt, von dem wir wuesten!", Toast.LENGTH_LONG).show();
-		if(this.connection.isConnected())Toast.makeText(context.getApplicationContext(), "Verbindung steht!", Toast.LENGTH_LONG).show();
+		//if(this.connection==null)Toast.makeText(context.getApplicationContext(), "Wir haben kein Objekt, von dem wir wuesten!", Toast.LENGTH_LONG).show();
+		//if(this.connection.isConnected())Toast.makeText(context.getApplicationContext(), "Verbindung steht!", Toast.LENGTH_LONG).show();
 		
 /*		
 		 try {
@@ -157,21 +165,22 @@ public class Encryption {
 	}*/
 	
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
-		Message plain;
-		MessageKey MK;
-		plain = decrypt("",MK,cipher);
+		//Message plain;
+		//MessageKey MK;
+		//plain = decrypt("",MK,cipher);
 		
-		return plain;
-
+		//return plain;
+		return null;
 		
 	}
 
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
-		Message cipher;
-		MessageKey MK;
-		cipher = encrypt("",MK,plain);
+		//Message cipher;
+		//MessageKey MK;
+		//cipher = encrypt("",MK,plain);
 
-		return cipher;
+		//return cipher;
+		return null;
 	}
 
 	
