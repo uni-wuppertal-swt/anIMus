@@ -108,7 +108,9 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param newVersion
 	 */
 	public void onUpgrade(android.database.sqlite.SQLiteDatabase db, int oldVersion, int newVersion) {
-		
+		String command = "DROP TABLE IF EXISTS " + DATABASE_NAME;
+		db.execSQL(command);
+		onCreate(db);
 	}
 
 	
@@ -162,7 +164,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			//in the DB
 			else if (nc.jid.compareTo(sc.jid) == 0) {
 				if (!nc.equals(sc)) {
-					updateContact(sc.jid, sc.username, sc.note, sc.serverID, sc.visible);
+					updateContact(sc.jid, sc.username, sc.note, sc.serverID);
 					scIndex++;
 					ncIndex++;
 				}
@@ -260,7 +262,43 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
+	private boolean getState(String inJID, int inServerID) {
+		Boolean b = false;
+		try {
+			SQLiteDatabase db = getReadableDatabase();
+			if (db != null) {
+				String sqlCommand = "SELECT " + DB_COLUMN_VISIBLE 
+						+ " WHERE " + DB_COLUMN_JID + " = "	+ inJID 
+						+ " AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
+				
+				
+				android.database.Cursor queryCursor = db.rawQuery(sqlCommand, null);
+				
+				if(queryCursor.moveToFirst()) {
+						b = Boolean.parseBoolean(queryCursor.getString(0));
+				}
+				queryCursor.close();
+				db.close();
+			}
+		} 
+		catch(SQLiteException e) {	
+			
+		}
+		return b;
+	}
 	
+	
+	public Vector<IMChat> getVisibleContacts(Vector<IMChat> contacts, int serverID) {
+		Vector<IMChat> vContacts = new Vector<IMChat>();
+		
+		for (IMChat imc : contacts) {
+			if (getState(((XMPPChat)imc).get_jid(), imc.get_serverId())){
+				vContacts.add(imc);
+			}
+		}
+		
+		return vContacts;
+	}
 
 	/**
 	 * 
@@ -271,7 +309,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param inSID
 	 * @param inVisible
 	 */
-	private void insertContact(String inJID, String inUsername, String inNote, 
+	public void insertContact(String inJID, String inUsername, String inNote, 
 			int inSID, boolean inVisible) {
 		
 		try {
@@ -304,6 +342,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	
 	
 
+	
 	/**
 	 * 
 	 * @param inJID
@@ -313,6 +352,34 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param inVisible
 	 */
 	private void updateContact(String inJID, String inUsername, String inNote, 
+			int inServerID) {
+		
+		try {
+			SQLiteDatabase db = getWritableDatabase();		
+
+			if (db != null) {
+				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = " 
+						+ inUsername + ", " + DB_COLUMN_NOTE + " = " + inNote + " WHERE " 
+						+ DB_COLUMN_JID + " = " + inJID	+ " AND " 
+						+ DB_COLUMN_SERVERID + " = " + inServerID + ";";			
+				db.execSQL(sqlCommand);
+				db.close();
+			}
+		}
+		catch (SQLiteException e) {}
+		
+	}
+	
+	
+	/**
+	 * 
+	 * @param inJID
+	 * @param inUsername
+	 * @param inNote
+	 * @param inServerID
+	 * @param inVisible
+	 */
+	public void updateContact(String inJID, String inUsername, String inNote, 
 			int inServerID, boolean inVisible) {
 		
 		try {
