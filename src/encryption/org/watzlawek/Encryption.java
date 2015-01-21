@@ -6,15 +6,13 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
 
-import org.jivesoftware.smack.Chat;
-import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionConfiguration;
-import org.jivesoftware.smack.MessageListener;
 import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Message;
 
 import android.content.Context;
+import android.widget.Toast;
 //import org.jivesoftware.smack.packet.Presence;
 
 public class Encryption {
@@ -69,7 +67,6 @@ public class Encryption {
 		
 		
 		
-		
 
 		
 	        
@@ -77,22 +74,26 @@ public class Encryption {
 		// ref in XMPPChat:122
 	}
 	
+	public void receiveMessage(String str)
+	{Toast.makeText(this.context.getApplicationContext(), str, Toast.LENGTH_LONG).show();}
+	
 	
 	public void setMemberList(Vector<String> mMemberList){
 
 		
 
 		this.mMemberList = new Vector<JID>();
-		
-	      Iterator<String> iter = mMemberList.iterator();
-	        while (iter.hasNext()) {
-	        	this.mMemberList.add( new JID( iter.next() ));
-	            iter.remove();
-	            
-	        }
+
 	        if(this.connection.isConnected())
 	        {
 
+	  	      Iterator<String> iter = mMemberList.iterator();
+		        while (iter.hasNext()) {
+		        	this.mMemberList.add(new JID( this, iter.next(), this.connection ));
+		        	iter.remove();
+		            
+		        }
+	        	
 	        	 //chat.sendMessage("Howdy!");
 	        	
 	        }
