@@ -7,8 +7,10 @@ import net.sqlcipher.database.SQLiteException;
 
 import org.watzlawek.*;
 
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper; 
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
@@ -86,18 +88,18 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		}
 	}
 
-	public ContactDatabaseHandler(android.content.Context context) {
+	public ContactDatabaseHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
-	public void onCreate(android.database.sqlite.SQLiteDatabase db) {
+	public void onCreate(SQLiteDatabase db) {
 		String createDB = "CREATE TABLE " +DB_TABLE_NAME +"(" +
 				DB_COLUMN_JID +" VARCHAR(30),"+
-				DB_COLUMN_USERNAME +" VARCHAR(30)" +
+				DB_COLUMN_USERNAME +" VARCHAR(30)," +
 				DB_COLUMN_NOTE +" VARCHAR(140),"+
-				DB_COLUMN_SERVERID + " INTEGER"+
+				DB_COLUMN_SERVERID + " INTEGER,"+
 				DB_COLUMN_VISIBLE +" INTEGER, PRIMARY KEY(" + 
-				DB_COLUMN_JID + ", " + DB_COLUMN_SERVERID + "))";
+				DB_COLUMN_JID + ", " + DB_COLUMN_SERVERID + "));";
 		db.execSQL(createDB);
 	}
 
@@ -108,7 +110,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param newVersion
 	 */
 	public void onUpgrade(android.database.sqlite.SQLiteDatabase db, int oldVersion, int newVersion) {
-		String command = "DROP TABLE IF EXISTS " + DATABASE_NAME;
+		String command = "DROP TABLE IF EXISTS " + DATABASE_NAME +";";
 		db.execSQL(command);
 		onCreate(db);
 	}
@@ -314,10 +316,11 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		
 		try {
 			SQLiteDatabase db = getWritableDatabase();
-			if (db != null) {
-				String sqlCommand = "INSERT INTO " + DB_TABLE_NAME + " VALUES (" + inJID + ", " 
-						+ inUsername + ", " + inNote + ", " + inSID + ", " + inVisible + ");";			
-				db.execSQL(sqlCommand);
+			if (db != null) {// TO DO; SQL Syntax Fehler Fixen
+				String sqlCommand = "INSERT INTO " + DB_TABLE_NAME + " VALUES (" + " ' " + inJID +  " ' " + ", "
+						+ " ' " +inUsername + " ' " +", " + " ' "+ inNote + " ' "+ ", " + inSID + ", " + inVisible + ");";
+                Log.v("Ausgabe-SQL-Insert", sqlCommand);
+                db.execSQL(sqlCommand);
 				db.close();
 			}
 		} 
