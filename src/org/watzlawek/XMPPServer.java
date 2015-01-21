@@ -283,9 +283,11 @@ public class XMPPServer extends IMServer {
 			for(RosterEntry entry : rosterEntries) {
 				contacts.add(new XMPPChat(context, entry.getName(), getUserStatus(entry.getUser()), entry.getUser(), connection, server_id,this));
 			}
-			ContactDatabaseHandler cdbh = new ContactDatabaseHandler(this);
+
+			ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
 			cdbh.compareContacts(contacts, server_id);
 			contacts = cdbh.getVisibleContacts(contacts, server_id);
+			cdbh.close();
 		}		
 	}	
 	
