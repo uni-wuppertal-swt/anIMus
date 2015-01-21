@@ -139,7 +139,7 @@ public class ContactlistActivity extends ListActivity {
     @Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-		IMApp app =(IMApp)getApplicationContext();
+		IMApp app =(IMApp)getApplicationContext(); // WICHTIG !!! APP CONTEXT
 		
 		AdapterView.AdapterContextMenuInfo cmi =
 		        (AdapterView.AdapterContextMenuInfo) item.getMenuInfo ();
