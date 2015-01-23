@@ -25,16 +25,13 @@ public class ContactCreateActivity extends Activity {
 	private TextView tvJIDCreate;
 	private TextView tvNoteCreate;
 	
-	private Context context; 
-	
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactcreate);
-        
-        context = this;
+
         
         btCancelCreate = (Button) findViewById(R.id.btCancelCreate);
         btSaveCreate = (Button) findViewById(R.id.btSaveCreate);
@@ -56,7 +53,7 @@ public class ContactCreateActivity extends Activity {
         btSaveCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
-            	ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
+            	ContactDatabaseHandler cdbh = new ContactDatabaseHandler((IMApp)getApplicationContext());
             	cdbh.insertContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString(), 
             			etNoteCreate.getText().toString(), conServer.getServerId(),	true);
             	conServer.addNewBuddyToContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString());
