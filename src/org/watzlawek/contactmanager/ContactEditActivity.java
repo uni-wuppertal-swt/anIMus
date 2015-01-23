@@ -24,16 +24,12 @@ public class ContactEditActivity extends Activity {
 	private TextView tvJIDUpdate;
 	private TextView tvNoteUpdate;
 	
-	private Context context;
-	
 	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactupdate);
-        
-        context = this;
         
         btCancelUpdate = (Button) findViewById(R.id.btCancelUpdate);
         btSaveUpdate = (Button) findViewById(R.id.btSaveUpdate);
@@ -56,7 +52,7 @@ public class ContactEditActivity extends Activity {
         btSaveUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
-               	ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
+               	ContactDatabaseHandler cdbh = new ContactDatabaseHandler((IMApp)getApplicationContext());
                	cdbh.insertContact(
                			"dummy",
                			//tvJIDUpdate.getText().toString().substring(5), 
