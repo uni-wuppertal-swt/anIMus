@@ -19,7 +19,7 @@ public class NullEncryption_Core implements Secure_Core {
 
 	public String getid() {
 		// TODO Auto-generated method stub
-		return null;
+		return "Null-Encryption";
 	}
 
 	public boolean supports(EncryptionModeENUM mode) {

@@ -18,7 +18,7 @@ import android.widget.Toast;
 public class Encryption {
 	private Vector<JID> mMemberList;
 	private Vector<Secure_Core> cores;
-	private Secure_Core core;
+	private Secure_Core core1,core2 ;
 	private Connection connection;
 	private Context context;
 	
@@ -64,8 +64,10 @@ public class Encryption {
 			     return s1.security_level() -  s2.security_level();
 			   }
 			});
-		Toast.makeText(context.getApplicationContext(), cores.elementAt(0).security_level(), Toast.LENGTH_LONG).show();
 		
+		//if(this.cores==null)Toast.makeText(context.getApplicationContext(), "Oh no,leaf the core alone!" , Toast.LENGTH_LONG).show();
+		//int seclevel = cores.elementAt(1).security_level();
+		//Toast.makeText(context.getApplicationContext(), "Der erste Kern hat den Sicherheitswert" + Integer.toString(seclevel) +  "!" , Toast.LENGTH_LONG).show();
 		
 
 		
@@ -114,14 +116,44 @@ public class Encryption {
 		        
 		        
 		        
-		/*
+		
+	        
 	      Iterator<Secure_Core> iter = cores.iterator();
 	        while (iter.hasNext()) {
-	        	core = iter.next();
+	        	core1 = iter.next();
+	        		if(this.mMemberList.size() < 2)
+	        		{
+	        			if(core1.supports(EncryptionModeENUM.SINGLEUSER_DIRECT))break;
+	        		}
+	        		else
+	        		{
+	        			if(core1.supports(EncryptionModeENUM.MULTIUSER_DIRECT))break;
+	        		}
+	        				
+	        				
 	            iter.remove();
 	            
-	        } 
-		*/
+	        }
+	        
+	        Collections.reverse(cores);
+	        
+		     iter = cores.iterator();
+		        while (iter.hasNext()) {
+		        	core2 = iter.next();
+		        		if(this.mMemberList.size() < 2)
+		        		{
+		        			if(core2.supports(EncryptionModeENUM.SINGLEUSER_DIRECT))break;
+		        		}
+		        		else
+		        		{
+		        			if(core2.supports(EncryptionModeENUM.MULTIUSER_DIRECT))break;
+		        		}
+		        				
+		        				
+		            iter.remove();
+		            
+		        }
+		
  
 	}
 	
