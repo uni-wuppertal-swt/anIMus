@@ -64,7 +64,7 @@ public class Encryption {
 			     return s1.security_level() -  s2.security_level();
 			   }
 			});
-		
+		Toast.makeText(context.getApplicationContext(), cores.elementAt(0).security_level(), Toast.LENGTH_LONG).show();
 		
 		
 
