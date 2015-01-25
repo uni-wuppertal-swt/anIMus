@@ -8,15 +8,23 @@ import android.content.Context;
 
 public class NullEncryption_Core implements Secure_Core {
 
+	protected String seed = "Seed";
+	
+	protected Message message_encrypt;
+	protected Message message_decrpt;
+	
+	
 	public NullEncryption_Core() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void init(Context con, Vector<String> jid) {
+	public void init(Context con, Vector<JID> jid) {
 		// TODO Auto-generated method stub
 
 	}
 
+	public void setSeed(String seed){this.seed = seed;}
+	
 	public String getid() {
 		// TODO Auto-generated method stub
 		return "Null-Encryption";
@@ -43,23 +51,21 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public void setCipherMessage(Message message) {
-		// TODO Auto-generated method stub
+		this.message_encrypt = message;
 
 	}
 
 	public Message getCipherMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.message_encrypt;
 	}
 
 	public void setTextMessage(Message message) {
-		// TODO Auto-generated method stub
+		this.message_decrpt = message;
 
 	}
 
 	public Message getTextMessage() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.message_decrpt;
 	}
 
 	public void setHeader(Header header) {

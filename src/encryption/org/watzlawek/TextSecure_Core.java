@@ -14,7 +14,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		// TODO Auto-generated constructor stub
 	}
 
-	public void init(Context con, Vector<String> jid) {
+	public void init(Context con, Vector<JID> jid) {
 		// TODO Auto-generated method stub
 
 	}

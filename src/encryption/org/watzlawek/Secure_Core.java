@@ -23,8 +23,13 @@ public interface Secure_Core {
 	 * @param jid : jids to interact with
 	 */
 	
-	void init(Context con, Vector<String> jid);
-
+	void init(Context con, Vector<JID> jid);
+	
+	/**
+	 * chance seed for encryption
+	 */
+	void setSeed(String seed);
+	
 	/**
 	 * returns a id to specify the service 
 	 * @return id-String
@@ -87,9 +92,6 @@ public interface Secure_Core {
 	void setHeader(Header header);
 	Header getHeader();
 	
-	/**
-	 * 
-	 */
-	void nextMessage();
+
 	
 }
