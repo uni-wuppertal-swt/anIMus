@@ -79,7 +79,8 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public void nextMessage() {
-		// TODO Auto-generated method stub
+		Message message_encrypt = null;
+		Message message_decrpt = null;
 
 	}
 
