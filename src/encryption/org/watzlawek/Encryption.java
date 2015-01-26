@@ -1,10 +1,17 @@
 package encryption.org.watzlawek;
 
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionConfiguration;
@@ -14,6 +21,8 @@ import org.jivesoftware.smack.packet.Message;
 import android.content.Context;
 import android.widget.Toast;
 //import org.jivesoftware.smack.packet.Presence;
+import encryption.org.watzlawek.AES256Cipher;
+
 
 public class Encryption {
 	private Vector<JID> mMemberList;
@@ -209,9 +218,11 @@ public class Encryption {
 	}*/
 	
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
-		//Message plain;
-		//MessageKey MK;
-		//plain = decrypt("",MK,cipher);
+		Message plain;
+		String iv	= "";
+		String key	= "";
+		String text	= cipher.getBody();
+		//plain = decrypt(iv.getBytes(),key.getBytes(),text.getBytes());
 		
 		//return plain;
 		return null;
@@ -219,10 +230,12 @@ public class Encryption {
 	}
 
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
-		//Message cipher;
-		//MessageKey MK;
-		//cipher = encrypt("",MK,plain);
-
+		Message cipher;
+		String iv	= "";
+		String key	= "";
+		String text	= plain.getBody();
+		//cipher = decrypt(iv.getBytes(),key.getBytes(),text.getBytes());
+		
 		//return cipher;
 		return null;
 	}
