@@ -148,8 +148,6 @@ public class ContactlistActivity extends ListActivity {
 		XMPPChat ic = (XMPPChat) this.listadapter.getItem(cmi.position);
 		XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
 		
-		context = this;
-		
 		switch (item.getItemId()) {		
 			//Validate
 			case 1:		
@@ -178,7 +176,12 @@ public class ContactlistActivity extends ListActivity {
 				return true;
 			// Show
 			case 4:
-				Intent intent4 = new Intent(this, org.watzlawek.contactmanager.ContactShowActivity.class);   	    	
+    			Bundle intentParameter = new Bundle();
+    			intentParameter.putString("jid", ic.get_jid());
+    			intentParameter.putString("name", ic.get_username());
+    			intentParameter.putString("note", ic.get_note());
+				Intent intent4 = new Intent(this, org.watzlawek.contactmanager.ContactShowActivity.class); 
+				intent4.putExtras(intentParameter);
     	    	startActivityForResult(intent4, 0);
 				return true;
 			default: {
