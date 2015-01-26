@@ -13,7 +13,7 @@
         android:id="@+id/tvNameShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tvNameContact" 
+        android:text="@string/tvNameShow" 
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
@@ -26,7 +26,7 @@
         android:id="@+id/tvJIDShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tvJIDContact"
+        android:text="@string/tvJIDShow"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
    	<View 
@@ -38,7 +38,7 @@
         android:id="@+id/tvNoteShow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tvNoteContact"
+        android:text="@string/tvNoteShow"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 
