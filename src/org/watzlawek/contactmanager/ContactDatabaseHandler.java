@@ -60,7 +60,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * Column of the table "contacts".
 	 * Stores, if the user is visible in the contactlist.
 	 */
-	private static final String DB_COLUMN_VISIBLE = "visible2";
+	private static final String DB_COLUMN_VISIBLE = "visible";
 	
 
 	private class Contact{
