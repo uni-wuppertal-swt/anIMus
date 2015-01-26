@@ -30,6 +30,7 @@ public class ContactEditActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactupdate);
+        Bundle intentParameter = getIntent().getExtras();
         
         btCancelUpdate = (Button) findViewById(R.id.btCancelUpdate);
         btSaveUpdate = (Button) findViewById(R.id.btSaveUpdate);
