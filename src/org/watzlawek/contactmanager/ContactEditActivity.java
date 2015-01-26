@@ -62,7 +62,7 @@ public class ContactEditActivity extends Activity {
                			//tvJIDUpdate.getText().toString().substring(5), 
                			"Dummy",
                			etNameUpdate.getText().toString());
-                	
+                finish();	
             }
         });
 	}
