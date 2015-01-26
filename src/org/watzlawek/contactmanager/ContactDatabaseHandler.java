@@ -31,6 +31,8 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 */
 	private static final String DB_TABLE_NAME = "contacts";
 	
+	
+	private static final String DB_COLUMN_ID = "_id";
 	/**
 	 * Primary key column of the table "contacts".
 	 */
@@ -58,7 +60,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * Column of the table "contacts".
 	 * Stores, if the user is visible in the contactlist.
 	 */
-	private static final String DB_COLUMN_VISIBLE = "visible";
+	private static final String DB_COLUMN_VISIBLE = "visible2";
 	
 
 	private class Contact{
