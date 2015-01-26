@@ -140,6 +140,11 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			if (c.serverID == serverID) 
 				neededContacts.add(c);
 		}
+		Collections.sort(neededContacts, new Comparator<ContactDatabaseHandler.Contact>() {
+			public int compare(ContactDatabaseHandler.Contact c1, ContactDatabaseHandler.Contact c2) {
+				return c1.jid.compareTo(c2.jid);
+			}
+		});
 		
 		// Create a new Vector<Contact>, which extracts all important 
 		// information of IMChat and stores it. 
@@ -148,6 +153,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			serverContacts.add(new Contact(
 					((XMPPChat)c).get_jid(), c.get_username(), c.get_note(), serverID, c.isVisible()));
 		}
+		
 		
 		// Now the comparison can start:
 		int ncIndex = 0;
