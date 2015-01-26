@@ -279,6 +279,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			SQLiteDatabase db = getReadableDatabase();
 			if (db != null) {
 				String sqlCommand = "SELECT " + DB_COLUMN_VISIBLE 
+						+ " FROM " + DB_TABLE_NAME 
 						+ " WHERE " + DB_COLUMN_JID + " = '" + inJID 
 						+ "' AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
 				
