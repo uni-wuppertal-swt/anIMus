@@ -7,6 +7,7 @@ import net.sqlcipher.database.SQLiteException;
 
 import org.watzlawek.*;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -201,8 +202,8 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
 			if (db != null) {
 				String sqlCommand = "DELETE FROM " + DB_TABLE_NAME + " WHERE " 
-						+ DB_COLUMN_JID + " = " + delJID + " AND " 
-						+ DB_COLUMN_SERVERID + " = " + delServerID + ";";			
+						+ DB_COLUMN_JID + " = '" + delJID + "' AND " 
+						+ DB_COLUMN_SERVERID + " = '" + delServerID + "';";			
 				db.execSQL(sqlCommand);
 				db.close();
 			}
@@ -214,7 +215,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	private Vector<Contact> getDBContacts() {
 		Vector<Contact> contactList = new Vector<Contact>();
 		SQLiteDatabase db = null;
-		String sqlCommand = "SELECT * FROM " + DB_TABLE_NAME;
+		String sqlCommand = "SELECT * FROM " + DB_TABLE_NAME +";";
 		try {
 			db = getReadableDatabase();
 			
@@ -226,7 +227,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 						Contact currentContact;
 						currentContact = new Contact(queryCursor.getString(0), queryCursor.getString(1), 
 								queryCursor.getString(2), Integer.parseInt(queryCursor.getString(3)), 
-								Boolean.parseBoolean(queryCursor.getString(4)));
+								(Integer.parseInt(queryCursor.getString(4)) == 1 ? true : false));
 
 						contactList.add(currentContact);
 					} 	while(queryCursor.moveToNext());
@@ -270,14 +271,14 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			SQLiteDatabase db = getReadableDatabase();
 			if (db != null) {
 				String sqlCommand = "SELECT " + DB_COLUMN_VISIBLE 
-						+ " WHERE " + DB_COLUMN_JID + " = "	+ inJID 
-						+ " AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
+						+ " WHERE " + DB_COLUMN_JID + " = '" + inJID 
+						+ "' AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
 				
 				
 				android.database.Cursor queryCursor = db.rawQuery(sqlCommand, null);
 				
 				if(queryCursor.moveToFirst()) {
-						b = Boolean.parseBoolean(queryCursor.getString(0));
+						b = (Integer.parseInt(queryCursor.getString(0)) == 1 ? true : false);
 				}
 				queryCursor.close();
 				db.close();
@@ -317,10 +318,30 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		try {
 			SQLiteDatabase db = getWritableDatabase();
 			if (db != null) {// TO DO; SQL Syntax Fehler Fixen
-				String sqlCommand = "INSERT INTO " + DB_TABLE_NAME + " VALUES (" + " ' " + inJID +  " ' " + ", "
-						+ " ' " +inUsername + " ' " +", " + " ' "+ inNote + " ' "+ ", " + inSID + ", " + inVisible + ");";
+				int visible = (inVisible ? 1 : 0);
+				String sqlCommand = "INSERT INTO " + DB_TABLE_NAME + " VALUES ('" + inJID +  "', '"
+						+inUsername + "', '"+ inNote + "', " + inSID + ", " + visible + ");";
                 Log.v("Ausgabe-SQL-Insert", sqlCommand);
                 db.execSQL(sqlCommand);
+				
+				/*
+				// Create a new map of values, where column names are the keys
+				ContentValues values = new ContentValues();
+				values.put(ContactDatabaseHandler.DB_COLUMN_JID, inJID);
+				values.put(ContactDatabaseHandler.DB_COLUMN_USERNAME, inUsername);
+				values.put(ContactDatabaseHandler.DB_COLUMN_NOTE , inNote);
+				values.put(ContactDatabaseHandler.DB_COLUMN_SERVERID , inSID);
+				values.put(ContactDatabaseHandler.DB_COLUMN_VISIBLE , inVisible);
+				
+
+				// Insert the new row, returning the primary key value of the new row
+				long newRowId;
+				newRowId = db.insert(
+						ContactDatabaseHandler.DB_TABLE_NAME,
+						null,
+				         values);
+				*/
+				
 				db.close();
 			}
 		} 
@@ -361,9 +382,9 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			SQLiteDatabase db = getWritableDatabase();		
 
 			if (db != null) {
-				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = " 
-						+ inUsername + ", " + DB_COLUMN_NOTE + " = " + inNote + " WHERE " 
-						+ DB_COLUMN_JID + " = " + inJID	+ " AND " 
+				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = '" 
+						+ inUsername + "', " + DB_COLUMN_NOTE + " = '" + inNote + "' WHERE " 
+						+ DB_COLUMN_JID + " = '" + inJID	+ "' AND " 
 						+ DB_COLUMN_SERVERID + " = " + inServerID + ";";			
 				db.execSQL(sqlCommand);
 				db.close();
@@ -389,10 +410,11 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			SQLiteDatabase db = getWritableDatabase();		
 
 			if (db != null) {
-				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = " 
-						+ inUsername + ", " + DB_COLUMN_NOTE + " = " + inNote + ", " + DB_COLUMN_VISIBLE
-						+ " = " + inVisible + " WHERE " + DB_COLUMN_JID + " = " + inJID
-						+ " AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
+				int visible = (inVisible ? 1 : 0);
+				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = '" 
+						+ inUsername + "', " + DB_COLUMN_NOTE + " = '" + inNote + "', " + DB_COLUMN_VISIBLE
+						+ " = " + visible + " WHERE " + DB_COLUMN_JID + " = '" + inJID
+						+ "' AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
 				db.execSQL(sqlCommand);
 				db.close();
 			}

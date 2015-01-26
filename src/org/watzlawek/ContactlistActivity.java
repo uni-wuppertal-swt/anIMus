@@ -133,6 +133,7 @@ public class ContactlistActivity extends ListActivity {
     		menu.add(ContextMenu.NONE, 1, ContextMenu.NONE, R.string.conactlistContextmenuValidate);   
     		menu.add(ContextMenu.NONE, 2, ContextMenu.NONE, R.string.conactlistContextmenuDelete);
     		menu.add(ContextMenu.NONE, 3, ContextMenu.NONE, R.string.conactlistContextmenuEdit);
+    		menu.add(ContextMenu.NONE, 4, ContextMenu.NONE, R.string.conactlistContextmenuShow);
     	}
     } 
     
@@ -170,10 +171,15 @@ public class ContactlistActivity extends ListActivity {
 				sv.pullContacts();
 				//this.listadapter.notify();
 				return true;
-			//Edit
+			// Edit
 			case 3:
 				Intent intent3 = new Intent(this, org.watzlawek.contactmanager.ContactEditActivity.class);   	    	
     	    	startActivityForResult(intent3, 0);
+				return true;
+			// Show
+			case 4:
+				Intent intent4 = new Intent(this, org.watzlawek.contactmanager.ContactShowActivity.class);   	    	
+    	    	startActivityForResult(intent4, 0);
 				return true;
 			default: {
 				return true;
@@ -190,7 +196,7 @@ public class ContactlistActivity extends ListActivity {
      */
     @Override
     public void onResume() {
-    	super.onResume();
+    	super.onResume(); 
 
 		AppPrefHandler appprefhandler = new AppPrefHandler(this);
 		theme = appprefhandler.getTheme();

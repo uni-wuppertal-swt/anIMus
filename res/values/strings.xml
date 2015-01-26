@@ -206,6 +206,7 @@
 	</string-array>	
 	<string name="AnimaServiceAddress">anIMa Service Address</string>
 	<string name="contactlistisEmpty">No contacts available</string>
+	<string name="conactlistContextmenuShow">Show</string>
 	<string name="conactlistContextmenuedit">Edit</string>
 	<string name="conactlistContextmenuDelete">Delete</string>
 	<string name="conactlistContextmenuValidate">Validate</string>
@@ -215,4 +216,8 @@
 	<string name="tvNoteContact">Note: (max. 140 character)</string>
 	<string name="btSaveContact">Save</string>
 	<string name="btCancelContact">Cancel</string>
+	<string name="btShowContact">Back</string>
+	<string name="tvNameShow">Name: </string>
+	<string name="tvJIDShow">JID: </string>
+	<string name="tvNoteShow">Note: </string>
 </resources>
