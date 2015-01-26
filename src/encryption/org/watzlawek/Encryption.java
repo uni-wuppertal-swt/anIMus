@@ -234,7 +234,7 @@ public class Encryption {
 		String iv	= "";
 		String key	= "";
 		String text	= plain.getBody();
-		//cipher = decrypt(iv.getBytes(),key.getBytes(),text.getBytes());
+		//cipher = encrypt(iv.getBytes(),key.getBytes(),text.getBytes());
 		
 		//return cipher;
 		return null;
