@@ -369,6 +369,11 @@ public abstract class IMChat implements Comparable<IMChat>, OtrEngineHost {
 		messageListener = input;
 	}
 	
+	
+	public void setNote(String n) {
+		note = n;
+	}
+	
 	/**
 	 * Sets a new status when the contact's status changes.
 	 * 

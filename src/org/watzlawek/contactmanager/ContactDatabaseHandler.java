@@ -297,6 +297,33 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
+	private String getNote(String inJID, int inServerID) {
+		String note = "";
+		try {
+			SQLiteDatabase db = getReadableDatabase();
+			if (db != null) {
+				String sqlCommand = "SELECT " + DB_COLUMN_NOTE 
+						+ " FROM " + DB_TABLE_NAME 
+						+ " WHERE " + DB_COLUMN_JID + " = '" + inJID 
+						+ "' AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
+				
+				
+				android.database.Cursor queryCursor = db.rawQuery(sqlCommand, null);
+				
+				if(queryCursor.moveToFirst()) {
+						note = queryCursor.getString(0);
+				}
+				queryCursor.close();
+				db.close();
+			}
+		} 
+		catch(SQLiteException e) {	
+			
+		}
+		return note;
+	}
+
+	
 	private boolean getState(String inJID, int inServerID) {
 		Boolean b = false;
 		try {
@@ -329,6 +356,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		
 		for (IMChat imc : contacts) {
 			if (getState(((XMPPChat)imc).get_jid(), imc.get_serverId())){
+				imc.setNote(getNote(((XMPPChat)imc).get_jid(), imc.get_serverId()));
 				vContacts.add(imc);
 			}
 		}

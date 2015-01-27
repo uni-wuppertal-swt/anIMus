@@ -29,14 +29,27 @@
         android:id="@+id/view5"
         android:layout_width="wrap_content"
         android:layout_height="30dp" />
+  
     
+    <LinearLayout>
     <TextView
         android:id="@+id/tvJIDUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvJIDContact"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/tvJIDUpdate2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.23"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    </LinearLayout>
+    
+    
    	<View 
         android:id="@+id/view7"
         android:layout_width="wrap_content"

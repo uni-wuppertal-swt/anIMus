@@ -22,6 +22,7 @@ public class ContactEditActivity extends Activity {
 	
 	private TextView tvNameUpdate;
 	private TextView tvJIDUpdate;
+	private TextView tvJIDUpdate2;
 	private TextView tvNoteUpdate;
 	
 	
@@ -43,6 +44,11 @@ public class ContactEditActivity extends Activity {
         tvNoteUpdate = (TextView) findViewById(R.id.tvNoteCreate);
         
         
+        tvJIDUpdate2.setText(" " + intentParameter.getString("jid"));
+        
+        etNameUpdate.setText(" " + intentParameter.getString("name"));
+        etNoteUpdate.setText(" " + intentParameter.getString("note"));
+        
         btCancelUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	finish();
@@ -54,14 +60,14 @@ public class ContactEditActivity extends Activity {
             public void onClick(View v) {
                	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
                	ContactDatabaseHandler cdbh = new ContactDatabaseHandler((IMApp)getApplicationContext());
-               	cdbh.insertContact(
-               			"dummy",
-               			//tvJIDUpdate.getText().toString().substring(5), 
+               	cdbh.updateContact(
+               			//"dummy",
+               			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString(), 
                			etNoteUpdate.getText().toString(), conServer.getServerId(),	true);
                	conServer.addNewBuddyToContact(
-               			//tvJIDUpdate.getText().toString().substring(5), 
-               			"Dummy",
+               			tvJIDUpdate2.getText().toString().substring(1), 
+               			//"Dummy",
                			etNameUpdate.getText().toString());
                 finish();	
             }

@@ -171,7 +171,12 @@ public class ContactlistActivity extends ListActivity {
 				return true;
 			// Edit
 			case 3:
-				Intent intent3 = new Intent(this, org.watzlawek.contactmanager.ContactEditActivity.class);   	    	
+				Bundle intentPar = new Bundle();
+    			intentPar.putString("jid", ic.get_jid());
+    			intentPar.putString("name", ic.get_username());
+    			intentPar.putString("note", ic.get_note());
+				Intent intent3 = new Intent(this, org.watzlawek.contactmanager.ContactEditActivity.class); 
+				intent3.putExtras(intentPar);
     	    	startActivityForResult(intent3, 0);
 				return true;
 			// Show
