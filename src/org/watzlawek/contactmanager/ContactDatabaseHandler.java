@@ -31,8 +31,6 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 */
 	private static final String DB_TABLE_NAME = "contacts";
 	
-	
-	private static final String DB_COLUMN_ID = "_id";
 	/**
 	 * Primary key column of the table "contacts".
 	 */

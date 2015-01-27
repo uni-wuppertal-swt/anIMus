@@ -72,11 +72,11 @@ public class ContactEditActivity extends Activity {
                			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString());
                	
-               	IMApp app =(IMApp)getApplicationContext();
-                XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
-				sv.clearRoster();
-				sv.pullRoster();
-				sv.pullContacts();
+               	//IMApp app =(IMApp)getApplicationContext();
+                //XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
+                conServer.clearRoster();
+				conServer.pullRoster();
+				conServer.pullContacts();
                 finish();	
             }
         });
