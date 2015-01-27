@@ -40,17 +40,18 @@ public class ContactEditActivity extends Activity {
         etNameUpdate = (EditText) findViewById(R.id.etNameUpdate); 
         etNoteUpdate = (EditText) findViewById(R.id.etNoteUpdate); 
         
-        tvNameUpdate = (TextView) findViewById(R.id.tvNameCreate);
-        tvJIDUpdate = (TextView) findViewById(R.id.tvJIDCreate);
-        tvNoteUpdate = (TextView) findViewById(R.id.tvNoteCreate);
+        tvNameUpdate = (TextView) findViewById(R.id.tvNameUpdate);
+        tvJIDUpdate = (TextView) findViewById(R.id.tvJIDUpdate);
+        tvJIDUpdate2 = (TextView) findViewById(R.id.tvJIDUpdate2);
+        tvNoteUpdate = (TextView) findViewById(R.id.tvNoteUpdate);
              
         //if (intentPar != null)
-        //	tvJIDUpdate2.setText(" " + intentPar.getString("jid"));
+        tvJIDUpdate2.setText(" " + intentPar.getString("jid"));
         //else
         //	tvJIDUpdate2.setText("Bullshit");
         
-        //etNameUpdate.setText(intentPar.getString("name"));
-        //etNoteUpdate.setText(intentPar.getString("note"));
+        etNameUpdate.setText(intentPar.getString("name"));
+        etNoteUpdate.setText(intentPar.getString("note"));
         
         btCancelUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
