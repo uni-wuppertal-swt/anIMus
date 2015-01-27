@@ -31,7 +31,8 @@ public class ContactEditActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.contactupdate);
-        Bundle intentParameter = getIntent().getExtras();
+        
+        Bundle intentPar = getIntent().getExtras();
         
         btCancelUpdate = (Button) findViewById(R.id.btCancelUpdate);
         btSaveUpdate = (Button) findViewById(R.id.btSaveUpdate);
@@ -42,12 +43,14 @@ public class ContactEditActivity extends Activity {
         tvNameUpdate = (TextView) findViewById(R.id.tvNameCreate);
         tvJIDUpdate = (TextView) findViewById(R.id.tvJIDCreate);
         tvNoteUpdate = (TextView) findViewById(R.id.tvNoteCreate);
+             
+        //if (intentPar != null)
+        //	tvJIDUpdate2.setText(" " + intentPar.getString("jid"));
+        //else
+        //	tvJIDUpdate2.setText("Bullshit");
         
-        
-        tvJIDUpdate2.setText(" " + intentParameter.getString("jid"));
-        
-        etNameUpdate.setText(" " + intentParameter.getString("name"));
-        etNoteUpdate.setText(" " + intentParameter.getString("note"));
+        //etNameUpdate.setText(intentPar.getString("name"));
+        //etNoteUpdate.setText(intentPar.getString("note"));
         
         btCancelUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -27,10 +27,12 @@ public class ContactShowActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        IMApp app =(IMApp)getApplicationContext();
+        //IMApp app =(IMApp)getApplicationContext();
         		
         setContentView(R.layout.contactshow);
         Bundle intentParameter = getIntent().getExtras();
+        
+        
         btShowContact = (Button) findViewById(R.id.btShowContact);
 
         tvNameShow = (TextView) findViewById(R.id.tvNameShow);
