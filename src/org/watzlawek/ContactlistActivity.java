@@ -178,11 +178,6 @@ public class ContactlistActivity extends ListActivity {
 				Intent intent3 = new Intent(this, org.watzlawek.contactmanager.ContactEditActivity.class); 
 				intent3.putExtras(intentPar);
     	    	startActivityForResult(intent3, 0);
-    	    	
-    	    	refreshContactlist();
-				sv.clearRoster();
-				sv.pullRoster();
-				sv.pullContacts();
 				return true;
 			// Show
 			case 4:

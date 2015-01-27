@@ -65,14 +65,18 @@ public class ContactEditActivity extends Activity {
                	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
                	ContactDatabaseHandler cdbh = new ContactDatabaseHandler((IMApp)getApplicationContext());
                	cdbh.updateContact(
-               			//"dummy",
                			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString(), 
                			etNoteUpdate.getText().toString(), conServer.getServerId(),	true);
                	conServer.addNewBuddyToContact(
                			tvJIDUpdate2.getText().toString().substring(1), 
-               			//"Dummy",
                			etNameUpdate.getText().toString());
+               	
+               	IMApp app =(IMApp)getApplicationContext();
+                XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
+				sv.clearRoster();
+				sv.pullRoster();
+				sv.pullContacts();
                 finish();	
             }
         });
