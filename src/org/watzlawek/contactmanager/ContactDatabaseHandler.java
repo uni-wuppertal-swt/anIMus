@@ -175,7 +175,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			//in the DB
 			else if (nc.jid.compareTo(sc.jid) == 0) {
 				if (!nc.equals(sc)) {
-					updateContact(sc.jid, sc.username, sc.note, sc.serverID);
+					updateContact(sc.jid, sc.username, sc.serverID);
 					scIndex++;
 					ncIndex++;
 				}
@@ -220,6 +220,17 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
+	public boolean exists(String jid, int serverID) {
+		Vector<String> jids = getJIDs(serverID);
+		
+		for (String s : jids) {
+			if (s.equals(jid)) { return true;}
+		}
+		
+		return false;
+	}
+	
+	
 	private Vector<Contact> getDBContacts() {
 		Vector<Contact> contactList = new Vector<Contact>();
 		SQLiteDatabase db = null;
@@ -251,6 +262,19 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		
 		
 		return contactList;
+	}
+	
+	
+	private Vector<String> getJIDs(int serverID) {
+		Vector<String> jidVector = new Vector<String>();
+		Vector<Contact> dbContacts = getDBContacts();
+	
+		for (Contact dbc : dbContacts) {
+			if (dbc.serverID == serverID) 
+				jidVector.add(dbc.jid);
+		}
+	
+		return jidVector;
 	}
 	
 	
@@ -358,20 +382,6 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			
 		}
 	}
-
-	
-	/*private Vector<String> readJIDs(int serverID) {
-		Vector<String> jidVector = new Vector<String>();
-		// "Select jid from contacts where serverid = " +in_SID
-		Vector<Contact> dbContacts = getDBContacts();
-		
-		for (Contact dbc : dbContacts) {
-			if (dbc.serverID == serverID) 
-				jidVector.add(dbc.jid);
-		}
-		
-		return jidVector;
-	}*/
 	
 	
 
@@ -384,15 +394,14 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 * @param inServerID
 	 * @param inVisible
 	 */
-	private void updateContact(String inJID, String inUsername, String inNote, 
-			int inServerID) {
+	private void updateContact(String inJID, String inUsername, int inServerID) {
 		
 		try {
 			SQLiteDatabase db = getWritableDatabase();		
 
 			if (db != null) {
 				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = '" 
-						+ inUsername + "', " + DB_COLUMN_NOTE + " = '" + inNote + "' WHERE " 
+						+ inUsername + "' WHERE " 
 						+ DB_COLUMN_JID + " = '" + inJID	+ "' AND " 
 						+ DB_COLUMN_SERVERID + " = " + inServerID + ";";			
 				db.execSQL(sqlCommand);

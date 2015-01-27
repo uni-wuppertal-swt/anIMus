@@ -54,8 +54,14 @@ public class ContactCreateActivity extends Activity {
             public void onClick(View v) {
             	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
             	ContactDatabaseHandler cdbh = new ContactDatabaseHandler((IMApp)getApplicationContext());
-            	cdbh.insertContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString(), 
-            			etNoteCreate.getText().toString(), conServer.getServerId(),	true);
+            	if (!cdbh.exists(etJIDCreate.getText().toString(), conServer.getServerId())){
+            		cdbh.insertContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString(), 
+            				etNoteCreate.getText().toString(), conServer.getServerId(),	true);
+            	}
+            	else {
+            		cdbh.updateContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString(), 
+            				etNoteCreate.getText().toString(), conServer.getServerId(),	true);
+            	}
             	conServer.addNewBuddyToContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString());
             	finish();
             }
