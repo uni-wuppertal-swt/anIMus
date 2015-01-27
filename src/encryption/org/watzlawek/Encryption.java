@@ -1,6 +1,7 @@
 package encryption.org.watzlawek;
 
 
+import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -218,26 +219,74 @@ public class Encryption {
 	}*/
 	
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
-		Message plain;
+		Message plain = null;
 		String iv	= "";
 		String key	= "";
 		String text	= cipher.getBody();
-		//plain = decrypt(iv.getBytes(),key.getBytes(),text.getBytes());
+		AES256Cipher DecryptObject = null;
 		
-		//return plain;
-		return null;
+		try {
+			plain.setBody(DecryptObject.decrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
+		} catch (InvalidKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidAlgorithmParameterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalBlockSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return plain;
 		
 	}
 
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
-		Message cipher;
+		Message cipher = null;
 		String iv	= "";
 		String key	= "";
 		String text	= plain.getBody();
-		//cipher = encrypt(iv.getBytes(),key.getBytes(),text.getBytes());
+		AES256Cipher EncryptObject = null;
+
+		try {
+			cipher.setBody(EncryptObject.encrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
+		} catch (InvalidKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvalidAlgorithmParameterException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalBlockSizeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BadPaddingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		//return cipher;
-		return null;
+		return cipher;
 	}
 
 	
