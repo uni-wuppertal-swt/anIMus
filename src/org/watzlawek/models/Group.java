@@ -37,6 +37,7 @@ public class Group {
 	protected IMServer.Status status;
 	
 	
+	
 /*	public Group(Context in_context, IMServer.Status in_status, int in_serverid, IMServer in_server) {
 		context = in_context;
 	//	encryption = new Encryption(context);
@@ -49,6 +50,11 @@ public class Group {
 	public Group()
 	{
 		mMessageLog = new MessageLog();
+	}
+	
+	public void setContacts()
+	{
+		
 	}
 	
 	public void setName(String newname)

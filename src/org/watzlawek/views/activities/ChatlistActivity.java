@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * Activity to display the chatlist
@@ -79,11 +80,10 @@ public class ChatlistActivity extends Activity{
         listView.setOnItemClickListener(new OnItemClickListener() 
         {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				
+				//Toast.makeText(getApplicationContext(), String.valueOf(arg2), Toast.LENGTH_SHORT).show();
+				//   arg2 von 0 bis ... ist pos des geklickten items
 				Intent intent = new Intent(ChatlistActivity.this, GroupchatActivity.class);
-				//groupnumber= ...?
-				// es muss herausgefunden werden welcher gruppenchat geöffnet werden soll
-				intent.putExtra("groupnr", groupnumber);
+				intent.putExtra("groupnr", arg2);
 	        	startActivity(intent);
 			}
 		});

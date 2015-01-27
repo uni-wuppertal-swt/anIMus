@@ -16,6 +16,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -39,6 +40,8 @@ public class GroupadminActivity extends Activity {
         Bundle extras = getIntent().getExtras();
         groupnumber = extras.getInt("groupnr");
         name=Grouplist.getInstance().getGroup(groupnumber).getName();
+        TextView groupnametextView = (TextView) findViewById(R.id.groupadmin_groupname_textview);
+ 	     groupnametextView.setText("neuer Name der Gruppe: "+name);
         GroupadminContactAdapter gAdapter = new GroupadminContactAdapter(getBaseContext());
         gAdapter.setname(name);
         gAdapter.setnr(groupnumber);
@@ -51,6 +54,8 @@ public class GroupadminActivity extends Activity {
         listView.setOnItemClickListener(new OnItemClickListener() 
         {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				//angeklickte nummer: arg2
+				
 			//	angeklickten kontakt in lokale liste übernehmen
 				// oder aus lokaler liste herausnehmen
 				//togglebutton geklickt?
@@ -67,7 +72,7 @@ public class GroupadminActivity extends Activity {
 				// gruppeneinstellungen übernehmen				   
 				Grouplist.getInstance().getGroup(groupnumber).setName(name);
 				    //kontaktliste der gruppen mit lokaler liste überschreiben
-				// activity schließen und zur alten zurückspringen
+				
 				finish();
 			}
 		});

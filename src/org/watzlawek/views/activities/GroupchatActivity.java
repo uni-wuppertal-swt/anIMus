@@ -1,6 +1,7 @@
 package org.watzlawek.views.activities;
 
 import org.watzlawek.R;
+import org.watzlawek.models.Grouplist;
 import org.watzlawek.views.adapters.GroupchatAdapter;
 
 import android.app.Activity;
@@ -11,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 /**
  * Activity to display the groupchat
@@ -39,6 +41,9 @@ public class GroupchatActivity extends Activity {
         listView.setAdapter(groupchatAdapter); 
         Bundle extras = getIntent().getExtras();
         groupnumber = extras.getInt("groupnr");
+        TextView groupnametextView = (TextView) findViewById(R.id.Groupchatnametextview);
+	    groupnametextView.setText(Grouplist.getInstance().getGroup(groupnumber).getName());
+        
         
         Button sendbutton = (Button) findViewById(R.id.groupchat_send_button);
         sendbutton.setOnClickListener(new OnClickListener() {                              // sendbutton
