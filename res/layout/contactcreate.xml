@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+     <View 
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+    
+    <TextView
+        android:id="@+id/tvNameCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvNameContact"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/etNameCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <View 
+        android:id="@+id/view1"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+    
+    
+    <TextView
+        android:id="@+id/tvJIDCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvJIDContact"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/etJIDCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+   
+   	<View 
+        android:id="@+id/view3"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+    
+    <TextView
+        android:id="@+id/tvNoteCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvNoteContact"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/etNoteCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="166dp"
+        android:ems="10"
+        android:inputType="textMultiLine" />
+
+    <View 
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+    
+    <LinearLayout>
+
+        <Button
+            android:id="@+id/btSaveCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="@string/btSaveContact" />
+
+        <Button
+            android:id="@+id/btCancelCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="@string/btCancelContact" />
+    </LinearLayout>
+
+</TableLayout>

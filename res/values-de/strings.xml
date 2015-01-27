@@ -16,7 +16,8 @@
     <string name="NewServerDialogText">Bitte alle Felder ausfüllen!</string>
     <string name="NewServerDialogButton">OK</string>
     <string name="contactlistmenuStatus">Status setzen</string>
-    <string name="contactlistmenuFriends">Finde Freunde</string>
+    <string name="contactlistmenuFriends">Finde Kontakte</string>
+    <string name="contactlistmenuCreate">Kontakt erstellen</string>
     <string name="statusAvailable">Verfügbar</string>
     <string name="statusAway">Abwesend</string>
     <string name="statusExtendedAway">Länger abwesend</string>
@@ -205,7 +206,20 @@
 	</string-array>	
 	<string name="AnimaServiceAddress">anIMa Service-Adresse</string>
 	<string name="contactlistisEmpty">Keine Kontakte vorhanden</string>
+	<string name="conactlistContextmenuShow">Anzeigen</string>
+	<string name="conactlistContextmenuEdit">Bearbeiten</string>
 	<string name="conactlistContextmenuDelete">Löschen</string>
 	<string name="conactlistContextmenuValidate">Validieren</string>
 	<string name="conactlistContextmenuHeader">Kontaktmenü</string>
+	<string name="tvNameContact">Name:</string>
+	<string name="tvJIDContact">JID:</string>
+	<string name="tvNoteContact">Notiz: (max. 140 Zeichen)</string>
+	<string name="btSaveContact">Speichern</string>
+	<string name="btCancelContact">Abbrechen</string>
+	<string name="btShowContact">Zurück</string>
+	<string name="tvNameShow">Name: </string>
+	<string name="tvJIDShow">JID: </string>
+	<string name="tvNoteShow">Notiz: </string>
+	
+	
 </resources>

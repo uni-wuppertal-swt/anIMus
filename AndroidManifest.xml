@@ -41,7 +41,10 @@
         <activity android:name=".ChatActivity"></activity>
         <activity android:name="AppPrefActivity"></activity>
         <activity android:name="AboutActivity"></activity>  
-        <activity android:name="DataBackupActivity"></activity>       
+        <activity android:name="DataBackupActivity"></activity> 
+        <activity android:name="org.watzlawek.contactmanager.ContactCreateActivity"></activity>
+        <activity android:name="org.watzlawek.contactmanager.ContactEditActivity"></activity>   
+        <activity android:name="org.watzlawek.contactmanager.ContactShowActivity"></activity>     
     </application>
 
 </manifest>

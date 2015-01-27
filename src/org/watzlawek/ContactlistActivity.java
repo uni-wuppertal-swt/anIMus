@@ -1,6 +1,8 @@
 package org.watzlawek;
 
 import org.watzlawek.R;
+import org.watzlawek.contactmanager.ContactDatabaseHandler;
+import org.watzlawek.contactmanager.ContactEditActivity;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -55,6 +57,9 @@ public class ContactlistActivity extends ListActivity {
 	 */
 	private String theme;
 	
+	
+	private Context context;
+	
 	/**
 	 * Getter for the contact list element layout depending on the theme.
 	 * The layout is stored in a XML file.
@@ -107,6 +112,10 @@ public class ContactlistActivity extends ListActivity {
     			app.getAutoDiscover().progressbar = this.progessbar;
     			app.getAutoDiscover().findFriends();
     			return true;
+    		case R.id.contactlistmenuCreate:
+    			Intent intent2 = new Intent(this, org.watzlawek.contactmanager.ContactCreateActivity.class);   	    	
+    	    	startActivityForResult(intent2, 0);
+    			return true;
     		default:
     			return super.onOptionsItemSelected(item);
     	}
@@ -123,13 +132,15 @@ public class ContactlistActivity extends ListActivity {
     	if (!(app.getServerManager().getConnectedServer() == null || (app.getServerManager().getConnectedServer().isOffline()))) {     		
     		menu.add(ContextMenu.NONE, 1, ContextMenu.NONE, R.string.conactlistContextmenuValidate);   
     		menu.add(ContextMenu.NONE, 2, ContextMenu.NONE, R.string.conactlistContextmenuDelete);
+    		menu.add(ContextMenu.NONE, 3, ContextMenu.NONE, R.string.conactlistContextmenuEdit);
+    		menu.add(ContextMenu.NONE, 4, ContextMenu.NONE, R.string.conactlistContextmenuShow);
     	}
     } 
     
     @Override
 	public boolean onContextItemSelected(MenuItem item) {
 		AdapterContextMenuInfo contextMenuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-		IMApp app =(IMApp)getApplicationContext();
+		IMApp app =(IMApp)getApplicationContext(); // WICHTIG !!! APP CONTEXT
 		
 		AdapterView.AdapterContextMenuInfo cmi =
 		        (AdapterView.AdapterContextMenuInfo) item.getMenuInfo ();
@@ -148,12 +159,35 @@ public class ContactlistActivity extends ListActivity {
 			//Deleted	
 			case 2:				
 				sv.deleteBuddy(ic.get_jid());
+				// set visible false in DB (need server_id)
+				ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
+				cdbh.updateContact(ic.get_jid(), ic.get_username(), ic.get_note(), ic.get_serverId(), false);
+				cdbh.close();
 				refreshContactlist();
 				sv.clearRoster();
 				sv.pullRoster();
 				sv.pullContacts();
-				
 				//this.listadapter.notify();
+				return true;
+			// Edit
+			case 3:
+				Bundle intentPar = new Bundle();
+    			intentPar.putString("jid", ic.get_jid());
+    			intentPar.putString("name", ic.get_username());
+    			intentPar.putString("note", ic.get_note());
+				Intent intent3 = new Intent(this, org.watzlawek.contactmanager.ContactEditActivity.class); 
+				intent3.putExtras(intentPar);
+    	    	startActivityForResult(intent3, 0);
+				return true;
+			// Show
+			case 4:
+    			Bundle intentParameter = new Bundle();
+    			intentParameter.putString("jid", ic.get_jid());
+    			intentParameter.putString("name", ic.get_username());
+    			intentParameter.putString("note", ic.get_note());
+				Intent intent4 = new Intent(this, org.watzlawek.contactmanager.ContactShowActivity.class); 
+				intent4.putExtras(intentParameter);
+    	    	startActivityForResult(intent4, 0);
 				return true;
 			default: {
 				return true;
@@ -170,7 +204,7 @@ public class ContactlistActivity extends ListActivity {
      */
     @Override
     public void onResume() {
-    	super.onResume();
+    	super.onResume(); 
 
 		AppPrefHandler appprefhandler = new AppPrefHandler(this);
 		theme = appprefhandler.getTheme();

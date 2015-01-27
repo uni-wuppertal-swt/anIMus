@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <View 
+        android:id="@+id/view10"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp" />
+    
+    <LinearLayout>
+        
+    <TextView
+        android:id="@+id/tvNameShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvNameShow"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/tvNameShow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.25"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</LinearLayout>
+
+    <View 
+        android:id="@+id/view11"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+ <LinearLayout>
+        
+    <TextView
+        android:id="@+id/tvJIDShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvJIDShow"
+        
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+        <TextView
+            android:id="@+id/tvJIDShow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.11"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+</LinearLayout>
+   	<View 
+        android:id="@+id/view12"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    
+    <TextView
+        android:id="@+id/tvNoteShow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tvNoteShow"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    
+    <TextView
+        android:id="@+id/tvNoteShow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <View 
+        android:id="@+id/view13"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    
+    <LinearLayout>
+
+        <Button
+            android:id="@+id/btShowContact"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:text="@string/btShowContact" />
+
+    </LinearLayout>
+    
+
+</TableLayout>

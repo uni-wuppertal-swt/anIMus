@@ -81,6 +81,12 @@ public class XMPPChat extends IMChat {
 	private VCard vcard;
 	
 	/**
+	 * Needed for initial comparison with a server.
+	 */
+	private String phonenumber;
+	
+	
+	/**
 	 * Special Constructor for Auto Discover Service Account
 	 * This listener will receive data from the Service Account and will start the process to validate the anIMa User account.
 	 * @param in_context The application's context.
@@ -269,6 +275,11 @@ public class XMPPChat extends IMChat {
 		return jid;
 	}
 	
+	
+	public int get_serverId() {
+		return serverId;
+	}
+	
 	/**
 	 * Getter method for the username.
 	 * 
@@ -289,6 +300,17 @@ public class XMPPChat extends IMChat {
 		
 		return name;
 	}
+	
+	
+	/** Getter for the note to a contact.
+	 * 
+	 * @return the not as a String.
+	 */
+	public String get_note() {
+		return note;
+	};
+	
+	
 	
 	/**
 	 * Getter method for the status icon depending on the contact's status.
@@ -364,6 +386,17 @@ public class XMPPChat extends IMChat {
 			}
 		}
 	}
+	
+	
+	/**
+	 * Getter for the visibility.
+	 * 
+	 * @return The visibility for this contact (true, if visible).
+	 */
+	public boolean isVisible() {
+		return visible;
+	};
+	
 	
 	/**
 	 * Returns a string representation for the contact.
