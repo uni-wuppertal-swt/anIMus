@@ -36,7 +36,6 @@ public class GroupchatActivity extends Activity {
         setContentView(R.layout.activity_groupchat); 
         
         GroupchatAdapter groupchatAdapter = new GroupchatAdapter(getBaseContext());
-        EditText messageedittext=(EditText) findViewById(R.id.groupchat_message_edittext);
         ListView listView = (ListView) findViewById(R.id.groupchat_listview);
         listView.setAdapter(groupchatAdapter); 
         Bundle extras = getIntent().getExtras();
@@ -47,8 +46,12 @@ public class GroupchatActivity extends Activity {
         
         Button sendbutton = (Button) findViewById(R.id.groupchat_send_button);
         sendbutton.setOnClickListener(new OnClickListener() {                              // sendbutton
-			public void onClick(View v) {
-				
+			public void onClick(View v) 
+			{
+				EditText mesedit= (EditText) findViewById(R.id.groupchat_message_edittext);
+				if (!mesedit.getText().toString().equals("") )
+				message=mesedit.getText().toString();
+				Grouplist.getInstance().getGroup(groupnumber).send(message);
 			}
 		});
         Button editbutton = (Button) findViewById(R.id.groupchat_edit_button);

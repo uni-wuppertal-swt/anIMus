@@ -47,12 +47,11 @@ private int anz=1;
 		
 		anz=Grouplist.getInstance().getLength()+1;
 		//Toast.makeText(context.getApplicationContext(), String.valueOf(anz), Toast.LENGTH_SHORT).show();
-		// was wenn noch keine Gruppe existiert?
 		if (anz!=0) 
 		{
 			
 			groups = new String[anz];  
-			for(int i=0;i<anz;i++)  // stringarray länge setzen?
+			for(int i=0;i<anz;i++)  
 			{
 				//Toast.makeText(context.getApplicationContext(), Grouplist.getInstance().getGroup(i).getName(), Toast.LENGTH_SHORT).show();
 				groups[i]=Grouplist.getInstance().getGroup(i).getName();
