@@ -3,7 +3,7 @@ package org.watzlawek.views.activities;
 import java.util.Vector;
 
 import org.watzlawek.R;
-import org.watzlawek.models.Group;
+import org.watzlawek.XMPPServer;
 import org.watzlawek.models.Grouplist;
 import org.watzlawek.views.adapters.GroupadminContactAdapter;
 
@@ -50,6 +50,7 @@ public class GroupadminActivity extends Activity {
         gAdapter.setname(name);
         gAdapter.setnr(groupnumber);
         //lokallist setzen:
+      //  XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
      //   ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
    //     lokallist = cdbh.getJIDsUsernames(serverID);
         lokallist.add("jo");

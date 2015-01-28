@@ -46,6 +46,11 @@ private int anz=1;
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		anz=Grouplist.getInstance().getLength()+1;
+		for(int j=0;j<anz;j++)
+		{
+			
+		}
+			
 		//Toast.makeText(context.getApplicationContext(), String.valueOf(anz), Toast.LENGTH_SHORT).show();
 		if (anz!=0) 
 		{
