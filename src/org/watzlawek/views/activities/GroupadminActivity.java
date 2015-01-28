@@ -27,12 +27,16 @@ import android.widget.Toast;
  * @version 2015-01-09
  */ 
 
-                   // zu tun: häckchen setzen, speichern, abbrechen
+                   // zu tun: häckchen setzen, bestehende kontakte anzeigen?
 public class GroupadminActivity extends Activity {
 	
-	private Vector<Group> lokallist=new Vector<Group>();
+	private Vector<String> lokallist=new Vector<String>();
+	private Vector<String> contacts=new Vector<String>();
+	private int lllenght=0;
+	private Boolean[] lltocontactsyesno=new Boolean[1];
 	private String name="blubb";
 	private int groupnumber;
+	private int i;
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -45,9 +49,28 @@ public class GroupadminActivity extends Activity {
         GroupadminContactAdapter gAdapter = new GroupadminContactAdapter(getBaseContext());
         gAdapter.setname(name);
         gAdapter.setnr(groupnumber);
+        //lokallist setzen:
+     //   ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
+   //     lokallist = cdbh.getJIDsUsernames(serverID);
+        lokallist.add("jo");
+        lokallist.add("test");
+        lokallist.add("blubb");
+        lokallist.add("irgendwas");
+        lokallist.add("nochmehr");
+        lokallist.add("auch etwas");
+        // ACHTUNG: Der Vector beinhaltet immer abwechselnd JID und Username.
+  //      cdbh.close();
+        lllenght=lokallist.size();
+        lltocontactsyesno=new Boolean[lllenght];
+    //    Toast.makeText(getApplicationContext(), String.valueOf(lllenght), Toast.LENGTH_SHORT).show();
+        String[] blubb = new String[lllenght];
+        for(i=0; i<lllenght; i++)
+        {
+        	lltocontactsyesno[i]=false;     // problem: man muss jeden einzeln nochmal auswählen
+        	blubb[i]=lokallist.elementAt(i);
+        }		
+        gAdapter.setuser(blubb);
         
-        
-        		
         ListView listView = (ListView) findViewById(R.id.groupadmin_contactlist);
         listView.setAdapter(gAdapter);
         // häckchen setzen   wird togglebutton gedrückt?
@@ -55,6 +78,8 @@ public class GroupadminActivity extends Activity {
         {
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				//angeklickte nummer: arg2
+			//	Toast.makeText(getApplicationContext(), String.valueOf(arg2), Toast.LENGTH_SHORT).show();
+				lltocontactsyesno[arg2]=!lltocontactsyesno[arg2];
 				
 			//	angeklickten kontakt in lokale liste übernehmen
 				// oder aus lokaler liste herausnehmen
@@ -73,7 +98,15 @@ public class GroupadminActivity extends Activity {
 				// gruppeneinstellungen übernehmen				   
 				Grouplist.getInstance().getGroup(groupnumber).setName(name);
 				    //kontaktliste der gruppen mit lokaler liste überschreiben
-				
+				for(int i=0;i<lllenght;i++)
+				{
+					if (lltocontactsyesno[i])
+					{
+						contacts.add(lokallist.elementAt(i));
+						Toast.makeText(getApplicationContext(), lokallist.elementAt(i), Toast.LENGTH_SHORT).show();
+					}
+				}
+				Grouplist.getInstance().getGroup(groupnumber).setContactsInGroup(contacts);
 				finish();
 			}
 		});

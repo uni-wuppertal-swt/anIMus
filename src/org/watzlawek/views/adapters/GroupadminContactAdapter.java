@@ -37,6 +37,11 @@ public class GroupadminContactAdapter extends BaseAdapter{
 		actualname=a;
 		return ;
 	}
+	public void setuser(String[] newuser)
+	{
+		user=newuser;
+	}
+	
 	public void setnr(int i)
 	{
 		number=i;
