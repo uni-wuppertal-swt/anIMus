@@ -82,9 +82,11 @@ public class ChatlistActivity extends Activity{
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 				//Toast.makeText(getApplicationContext(), String.valueOf(arg2), Toast.LENGTH_SHORT).show();
 				//   arg2 von 0 bis ... ist pos des geklickten items
+				if (Grouplist.getInstance().getLength()!=-1)
+				{
 				Intent intent = new Intent(ChatlistActivity.this, GroupchatActivity.class);
 				intent.putExtra("groupnr", arg2);
-	        	startActivity(intent);
+	        	startActivity(intent);}
 			}
 		});
 	}

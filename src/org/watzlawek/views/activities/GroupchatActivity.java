@@ -33,7 +33,7 @@ public class GroupchatActivity extends Activity {
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_groupchat);
+        setContentView(R.layout.activity_groupchat); 
         
         GroupchatAdapter groupchatAdapter = new GroupchatAdapter(getBaseContext());
         EditText messageedittext=(EditText) findViewById(R.id.groupchat_message_edittext);
@@ -54,7 +54,7 @@ public class GroupchatActivity extends Activity {
         Button editbutton = (Button) findViewById(R.id.groupchat_edit_button);
         editbutton.setOnClickListener(new OnClickListener()                                // edit button schickt auf groupeditactivity
         {
-			public void onClick(View v) {
+			public void onClick(View v) { 
 				Intent intent = new Intent(GroupchatActivity.this, GroupadminActivity.class);
 				intent.putExtra("groupnr", groupnumber);
 	        	startActivity(intent);

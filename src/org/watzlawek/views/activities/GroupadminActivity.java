@@ -60,7 +60,7 @@ public class GroupadminActivity extends Activity {
 				// oder aus lokaler liste herausnehmen
 				//togglebutton geklickt?
 			}
-		});
+		}); 
         
         //button "speichern"
         Button safebutton = (Button) findViewById(R.id.groupadmin_safe_button);
@@ -68,6 +68,7 @@ public class GroupadminActivity extends Activity {
         {
 			public void onClick(View v) {
 				EditText edit= (EditText) findViewById(R.id.groupadmin_groupname_edittext);
+				if (!edit.getText().toString().equals("") )
 				name=edit.getText().toString();
 				// gruppeneinstellungen übernehmen				   
 				Grouplist.getInstance().getGroup(groupnumber).setName(name);
