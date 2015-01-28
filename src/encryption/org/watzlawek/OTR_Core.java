@@ -12,7 +12,9 @@ import javax.crypto.spec.SecretKeySpec;
 import net.java.otr4j.OtrEngineImpl;
 import net.java.otr4j.OtrPolicy;
 import net.java.otr4j.session.SessionID;
+import net.java.otr4j.session.SessionStatus;
 
+import org.jivesoftware.smack.XMPPException;
 import org.watzlawek.IMApp;
 import org.watzlawek.IMChatMessageEvent;
 import org.watzlawek.IMChatMessageListener;
@@ -23,6 +25,7 @@ import org.watzlawek.XMPPServer;
 import android.content.Context;
 import android.os.Build.VERSION;
 import android.util.Log;
+import android.widget.Toast;
 
 public class OTR_Core extends NullEncryption_Core implements Secure_Core {
 
@@ -126,4 +129,112 @@ public class OTR_Core extends NullEncryption_Core implements Secure_Core {
 	
 	}
 	
+/*
+ public void send(String message) {	
+		IMApp app = (IMApp)context.getApplicationContext();		
+    	if( app.haveNetworkConnection() ) { // Auto Reconnect if try to send a message / verbuggt
+    		if (!app.getServerManager().getConnectedServer().isOffline()) {
+    			//int lastserver = app.getServerManager().getCurrentPosition();
+    			//app.getServerManager().disconnect();
+    			//app.killSystemService();
+    			//app.getServerManager().connect(0); // verbuggt
+    			//app.startSystemService();
+    		
+    		try {			
+    			if (otrEnabled) {
+					String newOTRmesg = engine.transformSending(sessionID, message);					
+					chat.sendMessage(newOTRmesg);		
+    			} else {    				
+    				chat.sendMessage(message);	
+    			}
+    		}
+    		catch(XMPPException e) {
+    			Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+    			toast.show();
+    		}
+		
+    		//Remove cryptic OTR Messages from Chat
+    		if (!(message.length() > 3 && message.substring(0, 4).equals("?OTR"))) 			
+    			messages = messages + MessageFormat(context.getText(R.string.IMChatMe).toString(), message, "blue", 1);
+    		} else {
+    			Toast toast = Toast.makeText(context, R.string.chatOfflineMode, Toast.LENGTH_LONG);
+    			toast.show();
+    		}    		
+    	} 
+    	else {
+    		Toast toast = Toast.makeText(context, R.string.IMAppNoInternet, Toast.LENGTH_LONG);
+			toast.show();			
+    	}
+	}
+ */
 
+/*
+ 	public void startOTRSession(){
+		if (!otrEnabled) { 			
+			IMApp app = (IMApp)context.getApplicationContext();
+			String ownJID = ((XMPPServer)app.getServerManager().getConnectedServer()).getConnection().getUser();	
+			sessionID = new SessionID(ownJID, jid, "Scytale");			
+			if (this.encryption.getKeyPairFromDB() == null) { 
+				MakeAKeyPair(false); 
+				messages = messages + SystemMessageFormat(context.getText(R.string.chatOtrKeyGen).toString());
+			}
+			ownfingerprint =  encryption.getFingerprint(getKeyPair(sessionID).getPublic());
+			otrEnabled = true;	
+			engine.startSession(sessionID);					
+			securedchatmessage = false;
+			if (auto_otr) messages = messages + SystemMessageFormat(context.getText(R.string.chatOtrAccept).toString());
+			else {
+				messages = messages + SystemMessageFormat(context.getText(R.string.chatOtrRequest).toString());
+				refreshOTRSession();
+				
+			}
+			if(messageListener != null) messageListener.newMessage(new IMChatMessageEvent(this));
+			
+			if (this.isOTRSecured()) {
+				messages = messages + SystemMessageFormat(context.getText(R.string.chatOtrSecured).toString()); 
+				securedchatmessage = false;			
+			}
+		}
+	}
+
+ */
+
+/*
+	public void stopOTRSession() {		
+		if (otrEnabled) { 
+			otrEnabled = false;	
+			auto_otr = false;
+			securedchatmessage = false;
+			messages = messages + SystemMessageFormat(context.getText(R.string.chatOtrEnded).toString());
+			if(messageListener != null) messageListener.newMessage(new IMChatMessageEvent(this));
+			if (engine.getSessionStatus(sessionID).equals(SessionStatus.ENCRYPTED)) {			
+			engine.endSession(sessionID);			
+			engine.endSession(sessionID);			
+			otrRequestState = 0;
+			}
+		}
+	}
+
+*/
+
+/*
+	public void stopOTRSession() {		
+		if (otrEnabled) { 
+			otrEnabled = false;	
+			auto_otr = false;
+			securedchatmessage = false;
+			messages = messages + SystemMessageFormat(context.getText(R.string.chatOtrEnded).toString());
+			if(messageListener != null) messageListener.newMessage(new IMChatMessageEvent(this));
+			if (engine.getSessionStatus(sessionID).equals(SessionStatus.ENCRYPTED)) {			
+			engine.endSession(sessionID);			
+			engine.endSession(sessionID);			
+			otrRequestState = 0;
+			}
+		}
+	}
+
+*/
+
+/*
+
+*/
