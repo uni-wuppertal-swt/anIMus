@@ -104,7 +104,7 @@ public class GroupadminActivity extends Activity {
 					if (lltocontactsyesno[i])
 					{
 						contacts.add(lokallist.elementAt(i));
-						Toast.makeText(getApplicationContext(), lokallist.elementAt(i), Toast.LENGTH_SHORT).show();
+					//	Toast.makeText(getApplicationContext(), lokallist.elementAt(i), Toast.LENGTH_SHORT).show();
 					}
 				}
 				Grouplist.getInstance().getGroup(groupnumber).setContactsInGroup(contacts);
