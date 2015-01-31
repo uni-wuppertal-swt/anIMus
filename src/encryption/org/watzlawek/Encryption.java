@@ -31,6 +31,7 @@ public class Encryption {
 	private Secure_Core core1,core2 ;
 	private Connection connection;
 	private Context context;
+	private boolean encryption_on = false;
 	
 	
 	/**
@@ -84,6 +85,10 @@ public class Encryption {
 	        
 		//Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
 		// ref in XMPPChat:122
+	}
+	
+	public void setEncryption(boolean on){
+		encryption_on = on;
 	}
 	
 	public void receiveMessage(String str)
@@ -219,6 +224,18 @@ public class Encryption {
 	}*/
 	
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
+
+		if(encryption_on){
+			core2.setCipherMessage(cipher);
+			return core2.getTextMessage();
+		}
+		else
+		{
+			core1.setCipherMessage(cipher);
+			return core1.getTextMessage();
+
+		}
+		/*
 		Message plain = null;
 		String iv	= "";
 		String key	= "";
@@ -249,12 +266,25 @@ public class Encryption {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return plain;
+		*/
+		//return plain;
 		
 	}
 
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
+		if(encryption_on){
+			core2.setTextMessage(plain);
+			return core2.getCipherMessage();
+		}
+		else
+		{
+			core1.setTextMessage(plain);
+			return core1.getCipherMessage();
+
+		}
+		
+		/*
+		
 		Message cipher = null;
 		String iv	= "";
 		String key	= "";
@@ -287,6 +317,7 @@ public class Encryption {
 		}
 		
 		return cipher;
+		*/
 	}
 
 	
