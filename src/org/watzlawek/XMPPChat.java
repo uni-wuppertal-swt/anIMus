@@ -407,14 +407,24 @@ public class XMPPChat extends IMChat {
     			//app.startSystemService();
     		
     		try {			
-    			if (otrEnabled) {
-					String newOTRmesg = engine.transformSending(sessionID, message);					
-					chat.sendMessage(newOTRmesg);		
-    			} else {    				
-    				chat.sendMessage(message);	
-    			}
+    			encryption_manager.setEncryption(otrEnabled);
+    			//if (otrEnabled) {
+					//String newOTRmesg = engine.transformSending(sessionID, message);					
+					//chat.sendMessage(newOTRmesg);
+    				Message mes = new Message();
+    				mes.setBody(message);
+					chat.sendMessage(encryption_manager.encryptMessage(mes));
+    			//} else {    				
+    			//	Message mes = new Message();
+    			//	mes.setBody(message);
+    			//	chat.sendMessage(mes);	
+    			//}
     		}
     		catch(XMPPException e) {
+    			Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
+    			toast.show();
+    		}
+    		catch(EncryptionFaultException e) {
     			Toast toast = Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG);
     			toast.show();
     		}
