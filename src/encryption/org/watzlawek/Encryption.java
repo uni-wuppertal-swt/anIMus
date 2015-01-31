@@ -55,7 +55,7 @@ public class Encryption {
 	public Encryption (Context context, Connection connection){
 		cores = new Vector<Secure_Core>();
 		cores.add(new NullEncryption_Core());
-		cores.add(new TextSecure_Core());
+		//cores.add(new TextSecure_Core());
 		this.connection = connection;
 		this.context = context;
 		
@@ -77,8 +77,8 @@ public class Encryption {
 			});
 		
 		//if(this.cores==null)Toast.makeText(context.getApplicationContext(), "Oh no,leaf the core alone!" , Toast.LENGTH_LONG).show();
-		//int seclevel = cores.elementAt(1).security_level();
-		//Toast.makeText(context.getApplicationContext(), "Der erste Kern hat den Sicherheitswert" + Integer.toString(seclevel) +  "!" , Toast.LENGTH_LONG).show();
+		int seclevel = cores.elementAt(0).security_level();
+		Toast.makeText(context.getApplicationContext(), "Der erste Kern hat den Sicherheitswert" + Integer.toString(seclevel) +  "!" , Toast.LENGTH_LONG).show();
 		
 
 		
@@ -152,6 +152,8 @@ public class Encryption {
 	        
 	        Collections.reverse(cores);
 	        
+	        core2 = core1;
+	        
 		     iter = cores.iterator();
 		        while (iter.hasNext()) {
 		        	core2 = iter.next();
@@ -168,7 +170,8 @@ public class Encryption {
 		            iter.remove();
 		            
 		        }
-		
+		        Toast.makeText(context.getApplicationContext(), "Kern 1:" + core1.getid() , Toast.LENGTH_LONG).show();
+		        Toast.makeText(context.getApplicationContext(), "Kern 2:" + core2.getid() , Toast.LENGTH_LONG).show();
  
 	}
 	
@@ -224,8 +227,9 @@ public class Encryption {
 	}*/
 	
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
-
-		if(encryption_on){
+	
+	return cipher;	
+		/*if(encryption_on){
 			core2.setCipherMessage(cipher);
 			return core2.getTextMessage();
 		}
@@ -234,7 +238,7 @@ public class Encryption {
 			core1.setCipherMessage(cipher);
 			return core1.getTextMessage();
 
-		}
+		}*/
 		/*
 		Message plain = null;
 		String iv	= "";
@@ -272,6 +276,9 @@ public class Encryption {
 	}
 
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
+		//Toast.makeText(context.getApplicationContext(), "Toast test" , Toast.LENGTH_LONG).show();
+		
+
 		if(encryption_on){
 			core2.setTextMessage(plain);
 			return core2.getCipherMessage();
