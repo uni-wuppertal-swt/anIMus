@@ -51,12 +51,12 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public void setCipherMessage(Message message) {
-		this.message_encrypt = message;
+		this.message_decrpt = message;
 
 	}
 
 	public Message getCipherMessage() {
-		return this.message_decrpt;
+		return this.message_encrypt;
 	}
 
 	public void setTextMessage(Message message) {
@@ -65,13 +65,13 @@ public class NullEncryption_Core implements Secure_Core {
 			mes.setBody(message.getBody() + " quark");
 
 		
-		this.message_decrpt = mes;
+			this.message_encrypt = mes;
 		
 
 	}
 
 	public Message getTextMessage() {
-		return this.message_encrypt;
+		return this.message_decrpt;
 	}
 
 	public void setHeader(Header header) {
