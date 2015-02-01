@@ -235,13 +235,13 @@ public class Encryption {
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
 		
 		if(encryption_on){
-			core2.setCipherMessage(cipher);
-			return core2.getTextMessage();
+			core1.setCipherMessage(cipher);
+			return core1.getTextMessage();
 		}
 		else
 		{
-			core1.setCipherMessage(cipher);
-			return core1.getTextMessage();
+			core2.setCipherMessage(cipher);
+			return core2.getTextMessage();
 
 		}
 		/*
@@ -284,14 +284,14 @@ public class Encryption {
 		//Toast.makeText(context.getApplicationContext(), "Toast test" , Toast.LENGTH_LONG).show();
 		
 
-		/*		if(encryption_on){
-			core2.setTextMessage(plain);
-			return core2.getCipherMessage();
-		}
-		else
-		{ */
+		if(encryption_on){
 			core1.setTextMessage(plain);
 			return core1.getCipherMessage();
+		}
+		else
+		{
+			core2.setTextMessage(plain);
+			return core2.getCipherMessage();
 
 //		}	
 		
