@@ -77,8 +77,8 @@ public class Encryption {
 			});
 		
 		//if(this.cores==null)Toast.makeText(context.getApplicationContext(), "Oh no,leaf the core alone!" , Toast.LENGTH_LONG).show();
-		int seclevel = cores.elementAt(0).security_level();
-		Toast.makeText(context.getApplicationContext(), "Der erste Kern hat den Sicherheitswert" + Integer.toString(seclevel) +  "!" , Toast.LENGTH_LONG).show();
+		//int seclevel = cores.elementAt(0).security_level();
+		//Toast.makeText(context.getApplicationContext(), "Der erste Kern hat den Sicherheitswert" + Integer.toString(seclevel) +  "!" , Toast.LENGTH_LONG).show();
 		
 
 		
@@ -170,6 +170,10 @@ public class Encryption {
 		            iter.remove();
 		            
 		        }
+		        
+		        core1 = cores.elementAt(1);
+		        core2 = cores.elementAt(0);
+		        
 		        Toast.makeText(context.getApplicationContext(), "Kern 1:" + core1.getid() , Toast.LENGTH_LONG).show();
 		        Toast.makeText(context.getApplicationContext(), "Kern 2:" + core2.getid() , Toast.LENGTH_LONG).show();
  
