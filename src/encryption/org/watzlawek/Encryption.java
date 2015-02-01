@@ -130,7 +130,7 @@ public class Encryption {
 		       // Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
 		        
 		        
-	        Toast.makeText(context.getApplicationContext(), "anzahl Nr 1:" + cores.size() , Toast.LENGTH_LONG).show();  
+	        //Toast.makeText(context.getApplicationContext(), "anzahl Nr 1:" + cores.size() , Toast.LENGTH_LONG).show();  
 		
 	        
 	      Iterator<Secure_Core> iter = cores.iterator();
@@ -172,12 +172,12 @@ public class Encryption {
 		        }
 		        
 
-	        Toast.makeText(context.getApplicationContext(), "anzahl Nr 2:" + cores.size() , Toast.LENGTH_LONG).show();
+	        //Toast.makeText(context.getApplicationContext(), "anzahl Nr 2:" + cores.size() , Toast.LENGTH_LONG).show();
 	        //core1 = cores.elementAt(1);
 		        //core2 = cores.elementAt(0);
 		        
-		        Toast.makeText(context.getApplicationContext(), "Kern 1:" + core1.getid() , Toast.LENGTH_LONG).show();
-		        Toast.makeText(context.getApplicationContext(), "Kern 2:" + core2.getid() , Toast.LENGTH_LONG).show();
+		        //Toast.makeText(context.getApplicationContext(), "Kern 1:" + core1.getid() , Toast.LENGTH_LONG).show();
+		        //Toast.makeText(context.getApplicationContext(), "Kern 2:" + core2.getid() , Toast.LENGTH_LONG).show();
  
 	}
 	
@@ -233,9 +233,8 @@ public class Encryption {
 	}*/
 	
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
-	
-	return cipher;	
-		/*if(encryption_on){
+		
+		if(encryption_on){
 			core2.setCipherMessage(cipher);
 			return core2.getTextMessage();
 		}
@@ -244,7 +243,7 @@ public class Encryption {
 			core1.setCipherMessage(cipher);
 			return core1.getTextMessage();
 
-		}*/
+		}
 		/*
 		Message plain = null;
 		String iv	= "";

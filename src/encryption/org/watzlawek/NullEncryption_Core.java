@@ -71,7 +71,7 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public Message getTextMessage() {
-		return this.message_decrpt;
+		return this.message_encrypt;
 	}
 
 	public void setHeader(Header header) {
