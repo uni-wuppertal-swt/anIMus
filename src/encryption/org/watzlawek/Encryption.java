@@ -150,10 +150,10 @@ public class Encryption {
 	            
 	        }
 	        
-	        Collections.reverse(cores);
+	       // Collections.reverse(cores);
 	        
-	        core2 = core1;
-	        
+	       // core2 = core1;
+	        /*
 		     iter = cores.iterator();
 		        while (iter.hasNext()) {
 		        	core2 = iter.next();
@@ -170,7 +170,7 @@ public class Encryption {
 		            iter.remove();
 		            
 		        }
-		        
+		     */   
 		        core1 = cores.elementAt(1);
 		        core2 = cores.elementAt(0);
 		        

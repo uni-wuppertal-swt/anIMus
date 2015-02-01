@@ -17,6 +17,12 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 	public TextSecure_Core() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String getid() {
+		// TODO Auto-generated method stub
+		return "TextSecure-Encryption";
+	}
+	
 	/*
 	public void init(Context con, Vector<JID> jid) {
 		// TODO Auto-generated method stub
