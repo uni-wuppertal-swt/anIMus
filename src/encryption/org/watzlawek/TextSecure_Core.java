@@ -22,7 +22,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		// TODO Auto-generated method stub
 		return "TextSecure-Encryption";
 	}
-	
+	/*
 	public void setTextMessage(Message message) {
 
 		Message mes = new Message();
@@ -33,7 +33,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 	
 
 }
-	
+	*/
 	/*
 	public void init(Context con, Vector<JID> jid) {
 		// TODO Auto-generated method stub
@@ -64,11 +64,11 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		// TODO Auto-generated method stub
 
 	}
-
+*/
 	public void setCipherMessage(Message message) {
-		Message plain = null;
+		Message plain = new Message();
 		String iv	= "";
-		String key	= "";
+		String key	= "Deine Mudda";
 		String text	= message.getBody();
 		AES256Cipher DecryptObject = null;
 		
@@ -97,22 +97,22 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			e.printStackTrace();
 		}
 
-
+		this.message_decrpt = plain;
 	}
-*/
+
 	/*
 	public Message getCipherMessage() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 */
-	/*
+	
 	public void setTextMessage(Message message) {
 		// TODO Auto-generated method stub
 		
-		Message cipher = null;
+		Message cipher = new Message();
 		String iv	= "";
-		String key	= "";
+		String key	= "Deine Mudda";
 		String text	= message.getBody();
 		AES256Cipher EncryptObject = null;
 
@@ -140,10 +140,10 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		this.message_encrypt = cipher;
 
 	}
-
+	/*
 	public Message getTextMessage() {
 		// TODO Auto-generated method stub
 		return null;
