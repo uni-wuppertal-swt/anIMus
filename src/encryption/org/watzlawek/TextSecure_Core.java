@@ -67,8 +67,8 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 */
 	public void setCipherMessage(Message message) {
 		Message plain = new Message();
-		String iv	= "";
-		String key	= "Deine Mudda";
+		String iv	= "Deine Mudda_3456";
+		String key	= "Deine Mudda_3456";
 		String text	= message.getBody();
 		AES256Cipher DecryptObject = new AES256Cipher();
 		
@@ -76,25 +76,25 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			plain.setBody(DecryptObject.decrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			plain.setBody(e.getMessage());
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			plain.setBody(e.getMessage());
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			plain.setBody(e.getMessage());
 		} catch (NoSuchPaddingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			plain.setBody(e.getMessage());
 		} catch (InvalidAlgorithmParameterException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			plain.setBody(e.getMessage());
 		} catch (IllegalBlockSizeException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			plain.setBody(e.getMessage());
 		} catch (BadPaddingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			plain.setBody(e.getMessage());
 		}
 
 		this.message_decrypt = plain;
@@ -111,37 +111,44 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		// TODO Auto-generated method stub
 		
 		Message cipher = new Message();
-		String iv	= "";
-		String key	= "Deine Mudda";
+		String iv	= "Deine Mudda_3456";
+		String key	= "Deine Mudda_3456";
 		String text	= message.getBody();
 		AES256Cipher EncryptObject = new AES256Cipher();
+		
+		//cipher.setBody(message.getBody());
+		
 
 		try {
 			cipher.setBody(EncryptObject.encrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			cipher.setBody(e.getMessage());
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			cipher.setBody(e.getMessage());
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			cipher.setBody(e.getMessage());
 		} catch (NoSuchPaddingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			cipher.setBody(e.getMessage());
 		} catch (InvalidAlgorithmParameterException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			cipher.setBody(e.getMessage());
 		} catch (IllegalBlockSizeException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			cipher.setBody(e.getMessage());
 		} catch (BadPaddingException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			cipher.setBody(e.getMessage());
 		}
 		
-		this.message_encrypt = cipher;
+		this.setCipherMessage(cipher);
+		
+		this.message_encrypt = this.getTextMessage();
+		
+		//this.message_encrypt = message;
 
 	}
 	/*

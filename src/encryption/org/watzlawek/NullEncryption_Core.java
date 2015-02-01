@@ -51,7 +51,7 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public void setCipherMessage(Message message) {
-		this.message_decrpt = message;
+		this.message_decrypt = message;
 
 	}
 
@@ -71,7 +71,7 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public Message getTextMessage() {
-		return this.message_decrpt;
+		return this.message_decrypt;
 	}
 
 	public void setHeader(Header header) {
@@ -86,7 +86,7 @@ public class NullEncryption_Core implements Secure_Core {
 
 	public void nextMessage() {
 		Message message_encrypt = null;
-		Message message_decrpt = null;
+		Message message_decrypt = null;
 
 	}
 
