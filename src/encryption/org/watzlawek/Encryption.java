@@ -55,7 +55,7 @@ public class Encryption {
 	public Encryption (Context context, Connection connection){
 		cores = new Vector<Secure_Core>();
 		cores.add(new NullEncryption_Core());
-		//cores.add(new TextSecure_Core());
+		cores.add(new TextSecure_Core());
 		this.connection = connection;
 		this.context = context;
 		

@@ -17,7 +17,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 	public TextSecure_Core() {
 		// TODO Auto-generated constructor stub
 	}
-
+	/*
 	public void init(Context con, Vector<JID> jid) {
 		// TODO Auto-generated method stub
 
@@ -82,12 +82,14 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 
 
 	}
-
+*/
+	/*
 	public Message getCipherMessage() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
+	/*
 	public void setTextMessage(Message message) {
 		// TODO Auto-generated method stub
 		
@@ -144,5 +146,5 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		// TODO Auto-generated method stub
 
 	}
-
+*/
 }
