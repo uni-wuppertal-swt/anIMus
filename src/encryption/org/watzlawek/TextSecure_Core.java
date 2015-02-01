@@ -115,7 +115,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		String key	= "Deine Mudda";
 		String text	= message.getBody();
 		AES256Cipher EncryptObject = null;
-/*
+
 		try {
 			cipher.setBody(EncryptObject.encrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
 		} catch (InvalidKeyException e) {
@@ -140,7 +140,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
+		
 		this.message_encrypt = cipher;
 
 	}
