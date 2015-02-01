@@ -11,7 +11,7 @@ public class NullEncryption_Core implements Secure_Core {
 	protected String seed = "Seed";
 	
 	protected Message message_encrypt;
-	protected Message message_decrpt;
+	protected Message message_decrypt;
 	
 	
 	public NullEncryption_Core() {

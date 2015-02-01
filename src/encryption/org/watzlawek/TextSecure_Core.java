@@ -70,7 +70,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		String iv	= "";
 		String key	= "Deine Mudda";
 		String text	= message.getBody();
-		AES256Cipher DecryptObject = null;
+		AES256Cipher DecryptObject = new AES256Cipher();
 		
 		try {
 			plain.setBody(DecryptObject.decrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
@@ -97,7 +97,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			e.printStackTrace();
 		}
 
-		this.message_decrpt = plain;
+		this.message_decrypt = plain;
 	}
 
 	/*
@@ -114,7 +114,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		String iv	= "";
 		String key	= "Deine Mudda";
 		String text	= message.getBody();
-		AES256Cipher EncryptObject = null;
+		AES256Cipher EncryptObject = new AES256Cipher();
 
 		try {
 			cipher.setBody(EncryptObject.encrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
