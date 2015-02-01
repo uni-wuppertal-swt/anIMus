@@ -11,7 +11,7 @@ public class NullEncryption_Core implements Secure_Core {
 	protected String seed = "Seed";
 	
 	protected Message message_encrypt;
-	protected Message message_decrpt;
+	protected Message message_decrypt;
 	
 	
 	public NullEncryption_Core() {
@@ -51,12 +51,12 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public void setCipherMessage(Message message) {
-		this.message_decrpt = message;
+		this.message_decrypt = message;
 
 	}
 
 	public Message getCipherMessage() {
-		return this.message_decrpt;
+		return this.message_decrypt;
 	}
 
 	public void setTextMessage(Message message) {
@@ -86,7 +86,7 @@ public class NullEncryption_Core implements Secure_Core {
 
 	public void nextMessage() {
 		Message message_encrypt = null;
-		Message message_decrpt = null;
+		Message message_decrypt = null;
 
 	}
 

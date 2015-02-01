@@ -97,7 +97,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			e.printStackTrace();
 		}
 
-		this.message_decrpt = plain;
+		this.message_decrypt = plain;
 	}
 
 	/*
