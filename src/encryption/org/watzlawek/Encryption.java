@@ -130,7 +130,7 @@ public class Encryption {
 		       // Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
 		        
 		        
-		        
+	        Toast.makeText(context.getApplicationContext(), "anzahl Nr 1:" + cores.size() , Toast.LENGTH_LONG).show();  
 		
 	        
 	      Iterator<Secure_Core> iter = cores.iterator();
@@ -172,7 +172,7 @@ public class Encryption {
 		        }
 		     */   
 
-	        Toast.makeText(context.getApplicationContext(), "anzahl:" + cores.size() , Toast.LENGTH_LONG).show();
+	        Toast.makeText(context.getApplicationContext(), "anzahl Nr 2:" + cores.size() , Toast.LENGTH_LONG).show();
 	        //core1 = cores.elementAt(1);
 		        //core2 = cores.elementAt(0);
 		        
