@@ -152,7 +152,7 @@ public class Encryption {
 	        
 	       // Collections.reverse(cores);
 	        
-	       // core2 = core1;
+	        core2 = core1;
 	        /*
 		     iter = cores.iterator();
 		        while (iter.hasNext()) {
@@ -171,8 +171,10 @@ public class Encryption {
 		            
 		        }
 		     */   
-		        core1 = cores.elementAt(1);
-		        core2 = cores.elementAt(0);
+
+	        Toast.makeText(context.getApplicationContext(), "anzahl:" + cores.size() , Toast.LENGTH_LONG).show();
+	        //core1 = cores.elementAt(1);
+		        //core2 = cores.elementAt(0);
 		        
 		        Toast.makeText(context.getApplicationContext(), "Kern 1:" + core1.getid() , Toast.LENGTH_LONG).show();
 		        Toast.makeText(context.getApplicationContext(), "Kern 2:" + core2.getid() , Toast.LENGTH_LONG).show();
