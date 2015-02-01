@@ -278,8 +278,8 @@ public class Encryption {
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
 		//Toast.makeText(context.getApplicationContext(), "Toast test" , Toast.LENGTH_LONG).show();
 		
-
-		if(encryption_on){
+return plain;
+/*		if(encryption_on){
 			core2.setTextMessage(plain);
 			return core2.getCipherMessage();
 		}
@@ -289,7 +289,7 @@ public class Encryption {
 			return core1.getCipherMessage();
 
 		}
-		
+	*/	
 		
 		
 		/*
