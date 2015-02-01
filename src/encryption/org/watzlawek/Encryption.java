@@ -146,7 +146,7 @@ public class Encryption {
 	        		}
 	        				
 	        				
-	            iter.remove();
+	           // iter.remove();
 	            
 	        }
 	        
