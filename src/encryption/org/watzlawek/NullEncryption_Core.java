@@ -56,7 +56,7 @@ public class NullEncryption_Core implements Secure_Core {
 	}
 
 	public Message getCipherMessage() {
-		return this.message_encrypt;
+		return this.message_decrpt;
 	}
 
 	public void setTextMessage(Message message) {
