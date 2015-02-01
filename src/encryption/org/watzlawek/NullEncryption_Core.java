@@ -61,6 +61,7 @@ public class NullEncryption_Core implements Secure_Core {
 
 	public void setTextMessage(Message message) {
 		this.message_decrpt = message;
+		this.message_decrpt.addBody(" ein neuer ", " Body");
 
 	}
 
