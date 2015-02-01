@@ -293,7 +293,7 @@ public class Encryption {
 			core2.setTextMessage(plain);
 			return core2.getCipherMessage();
 
-//		}	
+		}	
 		
 		
 		/*
