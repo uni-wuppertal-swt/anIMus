@@ -23,6 +23,17 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		return "TextSecure-Encryption";
 	}
 	
+	public void setTextMessage(Message message) {
+
+		Message mes = new Message();
+		mes.setBody(message.getBody() + " textsecure");
+
+	
+	this.message_decrpt = mes;
+	
+
+}
+	
 	/*
 	public void init(Context con, Vector<JID> jid) {
 		// TODO Auto-generated method stub
