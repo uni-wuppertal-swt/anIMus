@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/aaa"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     
@@ -7,21 +8,19 @@
         android:id="@+id/groupadmin_contactname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="aaa"
         
     />
     
-	<ToggleButton
-        android:id="@+id/groupadmin_selection_togglebutton"
+    <CheckBox 
+        android:id="@+id/groupadmin_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher"
         android:layout_alignParentRight="true"
-        android:background="@drawable/groupadministration_toggle"
-        android:textOn=""
-        android:textOff=""
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:layout_centerVertical="true"
-        />"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="4dp"
+        />
+    
+
 
 </RelativeLayout>

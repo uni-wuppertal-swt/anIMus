@@ -1,49 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/groupadmin_groupname_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/GroupadministrationGroupnameTextedit" />
-
-
-    <EditText
-        android:id="@+id/groupadmin_groupname_edittext"
+    
+    <EditText 
+        android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
+        android:inputType="text"
+        />
+    
+    <Button 
+        android:id="@+id/btnAdd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Gruppe hinzufügen"
+        android:onClick="safeButtonOnClick"
+        android:layout_alignParentBottom="true"
+        />
+    
     <ListView
-        android:id="@+id/groupadmin_contactlist"
+        android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
-
-
-
-    <Button
-        android:id="@+id/groupadmin_cancel_button"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/GroupadministrationCancelButton" />
+        android:layout_below="@id/txtName"
+        />
 
-    <Button
-        android:id="@+id/groupadmin_safe_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/GroupadministrationOkButton" />
     
-    <Button
-        android:id="@+id/groupadmin_delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/GroupadministrationdeleteButton" />
-    
-</LinearLayout>
+</RelativeLayout>

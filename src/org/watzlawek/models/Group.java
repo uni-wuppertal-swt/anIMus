@@ -1,146 +1,80 @@
 package org.watzlawek.models;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import net.java.otr4j.OtrEngineImpl;
-import net.java.otr4j.OtrPolicy;
-import net.java.otr4j.OtrPolicyImpl;
-
+import org.jivesoftware.smack.PacketListener;
+import org.jivesoftware.smack.XMPPException;
+import org.jivesoftware.smack.packet.Message;
+import org.jivesoftware.smack.packet.Packet;
+import org.jivesoftware.smackx.Form;
 import org.jivesoftware.smackx.muc.MultiUserChat;
-import org.watzlawek.Encryption;
-import org.watzlawek.IMChatMessageListener;
-import org.watzlawek.IMServer;
-import org.watzlawek.IMServer.Status;
-import org.watzlawek.MessageLog;
+import org.watzlawek.IMApp;
+import org.watzlawek.XMPPServer;
 
 import android.content.Context;
-import android.util.Log;
 
 public class Group {
 	
-	private MultiUserChat mChat;
-	private Context mContext;
-	//private Encryption mEncryption;
-	private IMChatMessageListener mMessageListener;
-//	private Grouplist mContacts; 
-	private MessageLog mMessageLog;
-	private String mName;
-	private IMServer mServer;
-	private int mServerId;
-	private Status mServerStatus;
-	private boolean mUnreadMessage;
-	private Context context;
-	protected IMServer.Status status;
+	private String mGroupName; 
 	
+	private MultiUserChat mMultiUserChat;
+	private XMPPServer mServer;
 	
-	
-/*	public Group(Context in_context, IMServer.Status in_status, int in_serverid, IMServer in_server) {
-		context = in_context;
-	//	encryption = new Encryption(context);
-		mServerId = in_serverid;
-		mMessageLog = new MessageLog();
-		mServer = in_server;
-		status = in_status;
-	}   */
-	
-	public Group()
-	{
-		mMessageLog = new MessageLog();
-	}
-	
-	public void setContacts()
-	{
-		
-	}
-	
-	public void setName(String newname)
-	{
-		mName=newname;
-	}
-	
-	public String getName()
-	{
-		return mName;
-	}
-	
-	public String currentTimeStamp() {
-		//Date d = new Date();	
-		//CharSequence timestamp  = DateFormat.format("kk:mm:ss", d.getTime());
-		
-		//anIMus 2.0 BA-Thesis New TimeStamp Format
-		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
-		String timestamp = s.format(new Date());
-		Log.v("format",timestamp);
-		return timestamp.toString();		
-	}
-	
-//	public storeHistory(){
-//		
-//	}
-	
-	public void send(String message){
-	
-	}
-	
-	public void setMessageListener(IMChatMessageListener input) {
-//		unreadMessages = false;
-		mMessageListener = input;
-	}
-	
-	
-	public void flushMessages() {
-		this.mMessageLog.clearMessageRAM();	
-	}
-	
-	public String EscapeHTMLFromMsg(String input) {		
-		String res = input;		
-		res = res.replaceAll("<", "&lt;");
-		res = res.replaceAll(">", "&gt;");				
-		return res;	
+	public Group(){
+		mMultiUserChat = null;
+		mServer = null;
 	}
 
-	public String MessageFormat(String username, String message, String color, int leftside) {
-		/*String output = "<font color='"+ color + "'>" + "(" + currentTimeStamp() + ") "
-				+ "<b>" + username + "</b>"+ ": " + "</font><font color='black'>" + MakeLinksClickAble(EscapeHTMLFromMsg(message)) + "</font>" + "<br>";
-		Log.v("MessageLog", output);
-		return output;*/
-		String tmp_msg ="<font color='black'>" + MakeLinksClickAble(EscapeHTMLFromMsg(message)) + "</font> <br>";
-		String tmp_stamp = "<font color='"+ color + "'>" + "(" + currentTimeStamp() + ") </font>";
-		String tmp_usr = "<font color='"+ color + "'>" + "<b>" + username + "</b>"+ ": </font>";
-				
-		this.mMessageLog.addMessage(tmp_msg, tmp_stamp, tmp_usr, leftside);
-		return "";
+	public Group(Context context){
+		mMultiUserChat = null;
+		mServer = (XMPPServer) ((IMApp) context).getServerManager().getConnectedServer();
 	}
 	
-	private String MakeLinksClickAble(String input) {
-		String res = input;
-		String regex = "\\b(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";	       
-	    
-		//String matches a hyperlink format
-		if (match_expression(input,regex)) {
-			res = "<a href ='" + res + "'>"+ res+ "</a>";
-			return res;
-		}				
+	public void createRoom(String roomname, String nickname) throws XMPPException{
+        String chatroom = roomname+"@conference." + mServer.getDomain();
+		mMultiUserChat = new MultiUserChat(mServer.getConnection(), chatroom);
+		
+		mMultiUserChat.create(roomname);
+		mMultiUserChat.sendConfigurationForm(new Form(Form.TYPE_SUBMIT));
+		joinRoom(nickname);
+	}
+	
+	public void joinRoom(String nickname) throws XMPPException{
+		mMultiUserChat.join(nickname);
+		
+		mMultiUserChat.addMessageListener(
+				new PacketListener() {
 			
-		return res;
+					public void processPacket(Packet packet) {
+						Message message = (Message) packet;
+						receiveMessage();
+					}
+				}
+		);
 	}
 	
-	private static boolean match_expression(String input, String pattern) {
-        try {
-        	Pattern p = Pattern.compile(pattern);
-            Matcher matcher = p.matcher(input);
-            return matcher.matches();
-        } 
-        catch (RuntimeException e) {
-        	return false;
-        } 
+	public void sendMessage(String message) throws XMPPException{
+		mMultiUserChat.sendMessage(message);
 	}
 	
-	public void setContactsInGroup(Vector<String> jids){
-
+	public void receiveMessage(){
+		
+	}
+	
+	public String getGroupName(){
+		return null;
+	}
+	
+	public void setName(String groupName){
+		mGroupName = groupName;
+	}
+	
+	public void setContactsInGroup(Vector<String> contacts){
+		
+	}
+	
+	public void setMember(List<String> member){
+		
 	}
 }
