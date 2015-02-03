@@ -369,7 +369,10 @@ public abstract class IMChat implements Comparable<IMChat>, OtrEngineHost {
 		messageListener = input;
 	}
 	
-	
+	/**
+	 * 
+	 * @param n
+	 */
 	public void setNote(String n) {
 		note = n;
 	}
