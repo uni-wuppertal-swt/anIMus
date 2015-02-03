@@ -158,7 +158,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			public int compare(ContactDatabaseHandler.Contact c1, ContactDatabaseHandler.Contact c2) {
 				return c1.jid.compareTo(c2.jid);
 			}
-		});
+		});  
 		
 		// Now the comparison can start:
 		int ncIndex = 0;
