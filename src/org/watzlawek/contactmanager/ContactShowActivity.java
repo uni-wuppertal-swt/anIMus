@@ -28,7 +28,7 @@ public class ContactShowActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         //IMApp app =(IMApp)getApplicationContext();
-        		
+        	 	
         setContentView(R.layout.contactshow);
         Bundle intentParameter = getIntent().getExtras();
         

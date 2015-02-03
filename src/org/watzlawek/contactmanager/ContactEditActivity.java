@@ -52,7 +52,7 @@ public class ContactEditActivity extends Activity {
         tvJIDUpdate2.setText(" " + jid);
         //else
         //	tvJIDUpdate2.setText("Bullshit");
-        
+         
         etNameUpdate.setText(intentPar.getString("name"));
         etNoteUpdate.setText(intentPar.getString("note"));
         

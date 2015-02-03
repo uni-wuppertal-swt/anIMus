@@ -47,7 +47,7 @@ public class ContactCreateActivity extends Activity {
         btCancelCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	finish();
-            }
+            } 
         });
         
         btSaveCreate.setOnClickListener(new View.OnClickListener() {
