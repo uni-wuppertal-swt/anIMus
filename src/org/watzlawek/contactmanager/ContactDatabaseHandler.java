@@ -152,7 +152,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			serverContacts.add(new Contact(
 					((XMPPChat)c).get_jid(), c.get_username(), c.get_note(), serverID, c.isVisible()));
 		}
-		
+		 
 		// Sort serverContacts
 		Collections.sort(serverContacts, new Comparator<ContactDatabaseHandler.Contact>() {
 			public int compare(ContactDatabaseHandler.Contact c1, ContactDatabaseHandler.Contact c2) {
