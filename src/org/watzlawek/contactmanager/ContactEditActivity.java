@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 public class ContactEditActivity extends Activity {
 	
+	private String jid;
+	
 	private Button btCancelUpdate;
 	private Button btSaveUpdate;
 	
@@ -46,7 +48,8 @@ public class ContactEditActivity extends Activity {
         tvNoteUpdate = (TextView) findViewById(R.id.tvNoteUpdate);
              
         //if (intentPar != null)
-        tvJIDUpdate2.setText(" " + intentPar.getString("jid"));
+        jid = intentPar.getString("jid");
+        tvJIDUpdate2.setText(" " + jid);
         //else
         //	tvJIDUpdate2.setText("Bullshit");
         
@@ -64,19 +67,18 @@ public class ContactEditActivity extends Activity {
             public void onClick(View v) {
                	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
                	ContactDatabaseHandler cdbh = new ContactDatabaseHandler((IMApp)getApplicationContext());
+               	conServer.deleteBuddy(jid);
+               	
                	cdbh.updateContact(
                			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString(), 
                			etNoteUpdate.getText().toString(), conServer.getServerId(),	true);
+               	
                	conServer.addNewBuddyToContact(
                			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString());
-               	
                	//IMApp app =(IMApp)getApplicationContext();
                 //XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
-                conServer.clearRoster();
-				conServer.pullRoster();
-				conServer.pullContacts();
                 finish();	
             }
         });

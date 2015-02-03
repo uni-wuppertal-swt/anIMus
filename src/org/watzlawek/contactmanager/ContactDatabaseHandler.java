@@ -144,6 +144,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			}
 		});
 		
+		
 		// Create a new Vector<Contact>, which extracts all important 
 		// information of IMChat and stores it. 
 		Vector<Contact> serverContacts = new Vector<Contact>();
@@ -152,6 +153,11 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 					((XMPPChat)c).get_jid(), c.get_username(), c.get_note(), serverID, c.isVisible()));
 		}
 		
+		Collections.sort(serverContacts, new Comparator<ContactDatabaseHandler.Contact>() {
+			public int compare(ContactDatabaseHandler.Contact c1, ContactDatabaseHandler.Contact c2) {
+				return c1.jid.compareTo(c2.jid);
+			}
+		});
 		
 		// Now the comparison can start:
 		int ncIndex = 0;
@@ -165,6 +171,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			
 			// A contact on the server is not available in the DB - insert!
 			if (nc.jid.compareTo(sc.jid) > 0) {
+				Log.v("compareTo intern","Insert neuen Kontakt, weil ungleiche JID:" + nc.jid + "/" + sc.jid);
 				insertContact(sc.jid, sc.username, sc.note, sc.serverID, sc.visible);
 				scIndex++;
 			}
@@ -196,6 +203,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		// is only possible, if case 1 did not occur).
 		while (scIndex < serverContacts.size()) {
 			sc = serverContacts.elementAt(scIndex);
+			Log.v("nachtraegliches einfuegen","zu viele Kontakte auf Server, inserte " + sc.jid);
 			insertContact(sc.jid, sc.username, sc.note, sc.serverID, sc.visible);
 			scIndex++;
 		}
@@ -458,7 +466,8 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = '" 
 						+ inUsername + "', " + DB_COLUMN_NOTE + " = '" + inNote + "', " + DB_COLUMN_VISIBLE
 						+ " = " + visible + " WHERE " + DB_COLUMN_JID + " = '" + inJID
-						+ "' AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";			
+						+ "' AND " + DB_COLUMN_SERVERID + " = " + inServerID + ";";		
+				Log.v("Ausgabe-SQL-Update", sqlCommand);
 				db.execSQL(sqlCommand);
 				db.close();
 			}
