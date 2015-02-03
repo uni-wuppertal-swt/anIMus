@@ -77,6 +77,8 @@ public class ContactEditActivity extends Activity {
                	conServer.addNewBuddyToContact(
                			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString());
+               	
+               	conServer.pullContacts();
                	//IMApp app =(IMApp)getApplicationContext();
                 //XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
                 finish();	
