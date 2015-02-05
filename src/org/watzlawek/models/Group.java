@@ -31,6 +31,12 @@ public class Group {
 		mServer = (XMPPServer) ((IMApp) context).getServerManager().getConnectedServer();
 	}
 	
+	public Group(Context context, String name){
+		mMultiUserChat = null;
+		mServer = (XMPPServer) ((IMApp) context).getServerManager().getConnectedServer();
+		mGroupName = name;
+	}
+	
 	public void createRoom(String roomname, String nickname) throws XMPPException{
         String chatroom = roomname+"@conference." + mServer.getDomain();
 		mMultiUserChat = new MultiUserChat(mServer.getConnection(), chatroom);
@@ -63,7 +69,7 @@ public class Group {
 	}
 	
 	public String getGroupName(){
-		return null;
+		return mGroupName;
 	}
 	
 	public void setName(String groupName){

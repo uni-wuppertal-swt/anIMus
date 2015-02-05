@@ -1,14 +1,12 @@
 package org.watzlawek;
 
-import org.watzlawek.R;
-import org.watzlawek.views.activities.ChatlistActivity;
+import org.watzlawek.views.activities.ChatManagerActivity;
 
 import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -112,7 +110,7 @@ public class IMActivity extends TabActivity {
         spec = tabHost.newTabSpec("contactlist").setIndicator(res.getText(R.string.indContactlist),res.getDrawable(R.drawable.ic_tab_contact)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, ChatlistActivity.class);
+        intent = new Intent().setClass(this, ChatManagerActivity.class);
         spec = tabHost.newTabSpec("chatlist").setIndicator(res.getText(R.string.indChatlist),res.getDrawable(R.drawable.ic_tab_chat)).setContent(intent);
 		tabHost.addTab(spec);
 		

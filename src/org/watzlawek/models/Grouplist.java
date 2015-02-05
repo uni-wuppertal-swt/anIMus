@@ -2,6 +2,8 @@ package org.watzlawek.models;
 
 import java.util.Vector;
 
+import android.util.Log;
+
 /**
  * Diese Klasse verwaltet die Gruppen. Es existiert nur ein Objekt zur Gruppenverwaltung (Singleton).
  * 
@@ -11,12 +13,14 @@ import java.util.Vector;
  */
 public class Grouplist {
 	
+	private static final String TAG = "Grouplist";
+	
 	private static Vector<Group> mGrouplist;
 	private static Grouplist mInstance;
 	
-	// Der Konstruktor ist leer, um die irrtümliche Initialisierung eines zweiten Objektes zu verhindern
+	// Der Konstruktor ist leer, um die irrtümliche Initialisierung eines weiteren Objektes zu verhindern
 	private Grouplist() {
-		
+		Log.e(TAG, "Singleton: Es wird versucht ein weiteres Objekt zu instanziieren.");
 	}
 	
 	/**
@@ -28,6 +32,8 @@ public class Grouplist {
 			mGrouplist = new Vector<Group>();
 		}
 		
+		Log.d(TAG, "Instanz wird bereitgestellt");
+		
 		return Grouplist.mInstance;
 	};
 	
@@ -37,6 +43,7 @@ public class Grouplist {
 	 */
 	public void addGroup(Group group) {
 		mGrouplist.add(group);
+		Log.d(TAG, "Gruppe hinzugefügt");
 	}
 	
 	/**
@@ -45,6 +52,7 @@ public class Grouplist {
 	 */
 	public void deleteGRoup(int id) {
 		mGrouplist.remove(id);
+		Log.d(TAG, "Gruppe gelöscht");
 	}
 	
 	/**
@@ -53,6 +61,7 @@ public class Grouplist {
 	 * @return Gruppe
 	 */
 	public Group getGroup(int id) {
+		Log.d(TAG, "Stelle Gruppe bereit: " + mGrouplist.toString());
 		return mGrouplist.get(id);
 	}
 	
@@ -61,6 +70,7 @@ public class Grouplist {
 	 * @return Anzahl der Einträge in der Gruppenliste
 	 */
 	public int size() {
+		Log.d(TAG, "Einträge in Gruppenliste: " + mGrouplist.size());
 		return mGrouplist.size();
 	}
 }
