@@ -5,22 +5,18 @@
     android:layout_height="match_parent">
     
     <TextView 
-        android:id="@+id/groupadmin_contactname"
+        android:id="@+id/groupadministration_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="aaa"
-        
     />
     
     <CheckBox 
-        android:id="@+id/groupadmin_checkbox"
+        android:id="@+id/groupadministration_userselection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="4dp"
-        />
+	/>
     
-
-
 </RelativeLayout>

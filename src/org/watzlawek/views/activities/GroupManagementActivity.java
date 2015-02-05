@@ -3,21 +3,24 @@ package org.watzlawek.views.activities;
 import java.util.ArrayList;
 
 import org.watzlawek.R;
-import org.watzlawek.views.adapters.ChatmanagerAdapter;
+import org.watzlawek.models.Group;
+import org.watzlawek.models.User;
+import org.watzlawek.views.adapters.GroupManagerAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-public class ChatManagerActivity extends Activity{
+public class GroupManagementActivity extends Activity{
 	
-	private ArrayList<String> mItemList;
+	private ArrayList<Group> mItemList;
 	
-	private ChatmanagerAdapter mAdapter;
+	private GroupManagerAdapter mAdapter;
 	private ListView mListView;
 	
 	/**
@@ -26,13 +29,20 @@ public class ChatManagerActivity extends Activity{
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatmanager);
+        setContentView(R.layout.activity_groupmanagement);
         
         getData();
-        mAdapter = new ChatmanagerAdapter(this, mItemList);
+        mAdapter = new GroupManagerAdapter(this, mItemList);
         mListView = (ListView) findViewById(R.id.chatmanager_lv_chatlist);
         
         mListView.setAdapter(mAdapter);
+	}
+	
+	@Override
+	protected void onRestart() {
+	    super.onRestart();  
+	    
+	    mAdapter.notifyDataSetChanged();
 	}
 	
 	/**
@@ -58,7 +68,7 @@ public class ChatManagerActivity extends Activity{
 	    switch (item.getItemId()) {                    
 	        case R.id.chatlistmenuNewGroup:                               
 	        	//start GroupadminActivity
-	        	Intent intent = new Intent(this, GroupadminActivity.class);                    
+	        	Intent intent = new Intent(this, GroupAdministrationActivity.class);                    
 	        	startActivity(intent);
 
 	        	return true;
@@ -69,18 +79,16 @@ public class ChatManagerActivity extends Activity{
 	}
 	
 	public void getData(){
-		mItemList = new ArrayList<String>();
+		Group g;
+		User user = new User("safran.quader@dev-animus.org", "safran");
+		ArrayList<User> userList = new ArrayList<User>();
+		userList.add(user);
 		
-		mItemList.add("Erster Eintrag");
-		mItemList.add("Zweiter Eintrag");
-		mItemList.add("Dritter Eintrag");
-		mItemList.add("Vierter Eintrag");
-		mItemList.add("Fünfter Eintrag");
-		mItemList.add("Sechster Eintrag");
-		mItemList.add("Siebter Eintrag");
-		mItemList.add("Achter Eintrag");
-		mItemList.add("Neunter Eintrag");
-		mItemList.add("Zehnter Eintrag");
+		g = new Group("Gruppe 1", userList);
+		g = new Group("Gruppe 2", userList);
+		g = new Group("Gruppe 3", userList);
+	
+		mItemList = g.getList();
 	}
 	
 }

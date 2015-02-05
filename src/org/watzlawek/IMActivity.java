@@ -1,6 +1,6 @@
 package org.watzlawek;
 
-import org.watzlawek.views.activities.ChatManagerActivity;
+import org.watzlawek.views.activities.GroupManagementActivity;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -110,7 +110,7 @@ public class IMActivity extends TabActivity {
         spec = tabHost.newTabSpec("contactlist").setIndicator(res.getText(R.string.indContactlist),res.getDrawable(R.drawable.ic_tab_contact)).setContent(intent);
         tabHost.addTab(spec);
         
-        intent = new Intent().setClass(this, ChatManagerActivity.class);
+        intent = new Intent().setClass(this, GroupManagementActivity.class);
         spec = tabHost.newTabSpec("chatlist").setIndicator(res.getText(R.string.indChatlist),res.getDrawable(R.drawable.ic_tab_chat)).setContent(intent);
 		tabHost.addTab(spec);
 		

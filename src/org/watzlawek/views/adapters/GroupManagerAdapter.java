@@ -3,7 +3,8 @@ package org.watzlawek.views.adapters;
 import java.util.ArrayList;
 
 import org.watzlawek.R;
-import org.watzlawek.views.activities.MultiUserChatActivity;
+import org.watzlawek.models.Group;
+import org.watzlawek.views.activities.GroupChatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,13 +15,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class ChatmanagerAdapter extends BaseAdapter{
+public class GroupManagerAdapter extends BaseAdapter{
 
 	private Context mContext;
 	private LayoutInflater mInflater;
-	private ArrayList<String> mItemList;
+	private ArrayList<Group> mItemList;
 	
-	public ChatmanagerAdapter(Context context, ArrayList<String> itemList){
+	public GroupManagerAdapter(Context context, ArrayList<Group> itemList){
 		setContext(context);
 		setItemList(itemList);
 		
@@ -41,9 +42,10 @@ public class ChatmanagerAdapter extends BaseAdapter{
 
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final ViewHolder viewHolder;
+		final int pos = position;
 		
 		if(convertView==null){
-			convertView = mInflater.inflate(R.layout.item_chatmanager, parent, false);
+			convertView = mInflater.inflate(R.layout.item_chatmanagement, parent, false);
 			
 			viewHolder = new ViewHolder();
 			viewHolder.tvItemName = (TextView) convertView.findViewById(R.id.chatmanager_tv_itemname);
@@ -53,18 +55,21 @@ public class ChatmanagerAdapter extends BaseAdapter{
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		viewHolder.tvItemName.setText(mItemList.get(position));
+		viewHolder.tvItemName.setText(mItemList.get(position).getTitle());
+		
 		convertView.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
-				itemClicked(mContext);
+				itemClicked(mContext, pos);
 			}
 		});
 		
 		return convertView;
 	}
 	
-	public void itemClicked(Context context){
-		Intent intent = new Intent(context, MultiUserChatActivity.class);
+	public void itemClicked(Context context, int position){
+		Intent intent = new Intent(context, GroupChatActivity.class);
+		intent.putExtra("id", position);
+		
 		context.startActivity(intent);
 	}
 
@@ -76,11 +81,11 @@ public class ChatmanagerAdapter extends BaseAdapter{
 		mContext = context;
 	}
 	
-	public ArrayList<String> getItemList(){
+	public ArrayList<Group> getItemList(){
 		return mItemList;
 	}
 	
-	public void setItemList(ArrayList<String> itemList){
+	public void setItemList(ArrayList<Group> itemList){
 		mItemList = itemList;
 	}
 	
