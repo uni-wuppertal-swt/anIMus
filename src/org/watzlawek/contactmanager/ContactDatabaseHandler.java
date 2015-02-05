@@ -461,7 +461,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		Log.v("Update_DB","Was ist hier los??");
 		try {
 			SQLiteDatabase db = getWritableDatabase();		
-
+			Log.v("Update_DB","Nach öffnen der db.");
 			if (db != null) {
 				int visible = (inVisible ? 1 : 0);
 				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = '" 

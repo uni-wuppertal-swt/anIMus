@@ -62,9 +62,11 @@ public class ContactCreateActivity extends Activity {
             		cdbh.updateContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString(), 
             				etNoteCreate.getText().toString(), conServer.getServerId(),	true);
             	}
+            	
             	conServer.addNewBuddyToContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString());
             	
             	conServer.pullContacts();
+            	
             	finish();
             }
         });

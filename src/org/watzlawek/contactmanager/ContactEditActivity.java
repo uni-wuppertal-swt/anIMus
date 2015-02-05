@@ -81,6 +81,7 @@ public class ContactEditActivity extends Activity {
                	conServer.pullContacts();
                	//IMApp app =(IMApp)getApplicationContext();
                 //XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
+               	cdbh.close();
                 finish();	
             }
         });
