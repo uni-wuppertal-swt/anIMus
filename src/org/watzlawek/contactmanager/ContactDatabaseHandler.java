@@ -218,7 +218,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 			if (db != null) {
 				String sqlCommand = "DELETE FROM " + DB_TABLE_NAME + " WHERE " 
 						+ DB_COLUMN_JID + " = '" + delJID + "' AND " 
-						+ DB_COLUMN_SERVERID + " = '" + delServerID + "';";			
+						+ DB_COLUMN_SERVERID + " = " + delServerID + ";";			
 				db.execSQL(sqlCommand);
 				db.close();
 			}
@@ -458,7 +458,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 */
 	public void updateContact(String inJID, String inUsername, String inNote, 
 			int inServerID, boolean inVisible) {
-		
+		Log.v("Update_DB","Was ist hier los??");
 		try {
 			SQLiteDatabase db = getWritableDatabase();		
 
