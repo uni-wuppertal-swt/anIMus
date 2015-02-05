@@ -12,6 +12,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.view.View;
 
+/**
+ * Class of the activity which lets the user create a new contact by typing in the username,
+ * the jid and the note (optional).
+ * 
+ * @author Christoph Schlueter 
+ * @author Svenja Clemens
+ *
+ *@version 2015-24-01
+ */
+
 public class ContactCreateActivity extends Activity {
 	
 	private Button btCancelCreate;

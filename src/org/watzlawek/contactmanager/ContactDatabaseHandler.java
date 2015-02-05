@@ -1,5 +1,19 @@
 package org.watzlawek.contactmanager;
 
+/**
+ * This class manages the database for the contacts received by different servers. 
+ * It stores all relevant data plus the corresponding server ID (which is in combination with the
+ * jid the primary key) and visibility of the contact. 
+ * If a user deletes a contact, it will be updated to invisible (visible = false). 
+ * This class contains the usual database-management functionality such as deleting, updating and 
+ * creating entries in the contact-table.
+ * 
+ * @author Christoph Schlueter 
+ * @author Svenja Clemens
+ *
+ *@version 2015-03-02
+ */
+
 
 import java.util.*;
 
@@ -61,6 +75,10 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	private static final String DB_COLUMN_VISIBLE = "visible";
 	
 
+	/**
+	 * The class Contact provides a compact object of a contact which can be
+	 * passed between different methods. It contains all contact-data.
+	 */
 	private class Contact{
 		public String jid;
 		public String username;
@@ -89,10 +107,18 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		}
 	}
 
+	/**
+	 * Constructor
+	 * @param context
+	 */
 	public ContactDatabaseHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 
+	
+	/**
+	 * Called on creating an object.
+	 */
 	public void onCreate(SQLiteDatabase db) {
 		String createDB = "CREATE TABLE " +DB_TABLE_NAME +"(" +
 				DB_COLUMN_JID +" VARCHAR(30),"+
@@ -105,7 +131,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * 
+	 * -
 	 * @param db
 	 * @param oldVersion
 	 * @param newVersion
@@ -211,6 +237,11 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 
 	
+	/**
+	 * Deletes a given contact from the table.
+	 * @param delJID
+	 * @param delServerID
+	 */
 	private void deleteContact(String delJID, int delServerID) {
 		try {
 			SQLiteDatabase db = getWritableDatabase();		
@@ -238,6 +269,10 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
+	/**
+	 * Returns all contacts of the database as a vector of contacts (private method)
+	 * @return
+	 */
 	private Vector<Contact> getDBContacts() {
 		Vector<Contact> contactList = new Vector<Contact>();
 		SQLiteDatabase db = null;
@@ -272,6 +307,11 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
+	/**
+	 * Returns a vector of all jids corresponding to the given server ID.
+	 * @param serverID
+	 * @return
+	 */
 	private Vector<String> getJIDs(int serverID) {
 		Vector<String> jidVector = new Vector<String>();
 		Vector<Contact> dbContacts = getDBContacts();
@@ -284,7 +324,15 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		return jidVector;
 	}
 	
-	
+	/**
+	 * Provides a vector of JIDs and usernames of all contacts of a specified server
+	 * (identified by its ID). The vector contains this information by the design described below:
+	 * 
+	 * (jid1, username1, jid2, username2, ... , jidN, usernameN)
+	 * 
+	 * @param serverID
+	 * @return
+	 */
 	public Vector<String> getJIDsUsernames(int serverID) {
 		Vector<Contact> dbContacts = getDBContacts();
 		/* 
@@ -304,6 +352,12 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
+	/**
+	 * Gets the note to a given contact.
+	 * @param inJID
+	 * @param inServerID
+	 * @return
+	 */
 	private String getNote(String inJID, int inServerID) {
 		String note = "";
 		try {
@@ -330,7 +384,12 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		return note;
 	}
 
-	
+	/**
+	 * Returns the visibility-state of a given contact.
+	 * @param inJID
+	 * @param inServerID
+	 * @return
+	 */
 	private boolean getState(String inJID, int inServerID) {
 		Boolean b = false;
 		try {
@@ -358,6 +417,12 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	}
 	
 	
+	/**
+	 * Provides a Vector of all visible contacts on a specified server (identified by its ID).
+	 * @param contacts
+	 * @param serverID
+	 * @return
+	 */
 	public Vector<IMChat> getVisibleContacts(Vector<IMChat> contacts, int serverID) {
 		Vector<IMChat> vContacts = new Vector<IMChat>();
 		
@@ -422,7 +487,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 
 	
 	/**
-	 * 
+	 * Updates a contact.
 	 * @param inJID
 	 * @param inUsername
 	 * @param inNote
@@ -449,7 +514,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	
 	
 	/**
-	 * 
+	 * Updates a contact.
 	 * @param inJID
 	 * @param inUsername
 	 * @param inNote

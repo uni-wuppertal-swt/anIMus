@@ -12,6 +12,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
+
+/**
+ * Class of the activity displaying the selected contact and allows the user to 
+ * modify the username and the contact's corresponding note.
+ * 
+ * @author Christoph Schlueter 
+ * @author Svenja Clemens
+ *
+ *@version 2015-24-01
+ */
+
+
 public class ContactEditActivity extends Activity {
 	
 	private String jid;
