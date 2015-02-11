@@ -4,13 +4,11 @@ import java.util.ArrayList;
 
 import org.watzlawek.R;
 import org.watzlawek.models.Group;
-import org.watzlawek.models.User;
 import org.watzlawek.views.adapters.GroupManagerAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +17,7 @@ import android.widget.ListView;
 public class GroupManagementActivity extends Activity{
 	
 	private ArrayList<Group> mItemList;
-	
+	 
 	private GroupManagerAdapter mAdapter;
 	private ListView mListView;
 	
@@ -79,16 +77,7 @@ public class GroupManagementActivity extends Activity{
 	}
 	
 	public void getData(){
-		Group g;
-		User user = new User("safran.quader@dev-animus.org", "safran");
-		ArrayList<User> userList = new ArrayList<User>();
-		userList.add(user);
-		
-		g = new Group("Gruppe 1", userList);
-		g = new Group("Gruppe 2", userList);
-		g = new Group("Gruppe 3", userList);
-	
-		mItemList = g.getList();
+		mItemList = Group.getList();
 	}
 	
 }

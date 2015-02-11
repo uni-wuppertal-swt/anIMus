@@ -72,7 +72,7 @@ public class GroupManagerAdapter extends BaseAdapter{
 		
 		context.startActivity(intent);
 	}
-
+	
 	public Context getContext() {
 		return mContext;
 	}

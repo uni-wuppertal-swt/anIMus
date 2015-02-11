@@ -36,6 +36,10 @@ public class Group {
 	}
 	
 	public static ArrayList<Group> getList(){
+		if(sList == null){
+			sList = new ArrayList<Group>();
+		}
+		
 		return sList;
 	}
 

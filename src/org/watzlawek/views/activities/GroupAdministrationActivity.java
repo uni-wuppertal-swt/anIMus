@@ -9,8 +9,8 @@ import org.watzlawek.views.adapters.GroupAdministrationAdapter;
 
 import android.app.ListActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 
 /**
  * GUI der Gruppenadministration.
@@ -22,8 +22,7 @@ import android.view.View;
  */ 
 
 public class GroupAdministrationActivity extends ListActivity {
-	GroupAdministrationAdapter mAdapter; 
-	
+	GroupAdministrationAdapter mAdapter; 	
 	ArrayList<User> mUserList;
 	
 	@Override
@@ -48,15 +47,13 @@ public class GroupAdministrationActivity extends ListActivity {
 	
 	//TODO Hier beginnt der Spaß
 	public void safeButtonOnClick(View v) {
-		Log.d("TAG", "click!");
+		View root = v.getRootView();
+		EditText tv = (EditText) root.findViewById(R.id.txtName);
+		String groupTitle = tv.getText().toString();
 		
-		User user = new User("aa", "aa");
-		ArrayList<User> userList = new ArrayList<User>();
-		userList.add(user);
-		
-		Group group = new Group("Testgruppe", userList);
+		Group group = new Group(groupTitle, mAdapter.getUserSelection());
 		Group.getList().add(group);
-		
+	
 		finish();
 	}
 	

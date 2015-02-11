@@ -1,49 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
     <TextView
-        android:id="@+id/Groupchatnametextview"
+        android:id="@+id/groupchat_tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="hier steht dann der Gruppenname" />
-
-    <ListView
-        android:id="@+id/groupchat_listview"
-        android:layout_width="match_parent"
-        android:layout_height="244dp" >
-
-    </ListView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-		<EditText
-        	android:id="@+id/groupchat_message_edittext"
-        	android:layout_width="match_parent"
-        	android:layout_height="wrap_content"
-        	android:ems="10" >
-        	<requestFocus />
-    	</EditText>
+        android:layout_toLeftOf="@+id/groupchat_bt_edit"
+        android:layout_alignParentLeft="true" />
     
+	<Button 
+	    android:id="@+id/groupchat_bt_edit"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:text="bearbeiten"
+	    android:onClick="editButtonOnClick" />
+	
+	<ListView 
+	    android:id="@+id/groupchat_lv_conversation"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_below="@+id/groupchat_bt_edit"
+	    android:layout_above="@+id/groupchat_bt_send"
+	    android:background="#FFFFFF" />
+	
+	<EditText 
+	    android:id="@+id/groupchat_et_message"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentBottom="true"
+	    android:layout_toLeftOf="@+id/groupchat_bt_send" />
 
-
-    </LinearLayout>
-    
-            <Button
-                android:id="@+id/groupchat_send_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Groupchatsendbutton" />
-
-            <Button
-                android:id="@+id/groupchat_edit_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Groupchateditbutton" />
-            
-</LinearLayout>
+	<Button 
+	    android:id="@+id/groupchat_bt_send"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_alignParentBottom="true"
+	    android:text="senden"
+	    android:onClick="sendButtonOnClick" />
+	
+</RelativeLayout>
