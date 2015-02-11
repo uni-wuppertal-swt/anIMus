@@ -6,7 +6,7 @@
     android:background="#FFFFFF" >
     
     <ListView 
-        android:id="@+id/chatmanager_lv_chatlist"
+        android:id="@+id/groupmanagement_lv_chatlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"

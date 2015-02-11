@@ -18,7 +18,7 @@ import android.widget.EditText;
  * @author Karsten Klaus
  * @author Safran Quader
  * 
- * @version 2015-02-02
+ * @version 2015-02-11
  */ 
 
 public class GroupAdministrationActivity extends ListActivity {
@@ -45,16 +45,17 @@ public class GroupAdministrationActivity extends ListActivity {
 		mUserList.add(user);
   	}
 	
-	//TODO Hier beginnt der Spaß
 	public void safeButtonOnClick(View v) {
-		View root = v.getRootView();
-		EditText tv = (EditText) root.findViewById(R.id.txtName);
-		String groupTitle = tv.getText().toString();
+		switch(v.getId()){
+		case R.id.groupadministration_bt_add:
+			View root = v.getRootView();
+			EditText tv = (EditText) root.findViewById(R.id.txtName);
+			String groupTitle = tv.getText().toString();
 		
-		Group group = new Group(groupTitle, mAdapter.getUserSelection());
-		Group.getList().add(group);
-	
-		finish();
+			Group group = new Group(groupTitle, mAdapter.getUserSelection());
+			
+			finish();
+		}
 	}
 	
 }

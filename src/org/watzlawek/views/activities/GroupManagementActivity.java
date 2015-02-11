@@ -22,7 +22,7 @@ public class GroupManagementActivity extends Activity{
 	private ListView mListView;
 	
 	/**
-	 * Initilize the activity at first start or resume
+	 * Initialize the activity at first start or resume
 	 */
 	@Override
     protected void onCreate(Bundle savedInstanceState){
@@ -31,7 +31,7 @@ public class GroupManagementActivity extends Activity{
         
         getData();
         mAdapter = new GroupManagerAdapter(this, mItemList);
-        mListView = (ListView) findViewById(R.id.chatmanager_lv_chatlist);
+        mListView = (ListView) findViewById(R.id.groupmanagement_lv_chatlist);
         
         mListView.setAdapter(mAdapter);
 	}
