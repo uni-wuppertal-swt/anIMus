@@ -184,7 +184,9 @@ public class OTR_Core extends NullEncryption_Core implements Secure_Core {
 
 
  	public void startOTRSession(){
-		if (!otrEnabled) { 			
+/**
+ 		
+ 		if (!otrEnabled) { 			
 			IMApp app = (IMApp)context.getApplicationContext();
 			String ownJID = ((XMPPServer)app.getServerManager().getConnectedServer()).getConnection().getUser();	
 			sessionID = new SessionID(ownJID, jid, "Scytale");			
@@ -209,6 +211,7 @@ public class OTR_Core extends NullEncryption_Core implements Secure_Core {
 				securedchatmessage = false;			
 			}
 		}
+		**/
 	}
 
 	/**
@@ -382,6 +385,7 @@ public class OTR_Core extends NullEncryption_Core implements Secure_Core {
 
 	
 	public void stopOTRSession() {		
+/**
 		if (otrEnabled) { 
 			otrEnabled = false;	
 			auto_otr = false;
@@ -394,6 +398,7 @@ public class OTR_Core extends NullEncryption_Core implements Secure_Core {
 			otrRequestState = 0;
 			}
 		}
+**/
 	}
 
 }
