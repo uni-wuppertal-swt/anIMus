@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 
 public class ContactCreateActivity extends Activity {
@@ -25,6 +27,7 @@ public class ContactCreateActivity extends Activity {
 	private TextView tvJIDCreate;
 	private TextView tvNoteCreate;
 	
+    private TextView tvZaehlen;
 	
 	
 	@Override
@@ -43,6 +46,9 @@ public class ContactCreateActivity extends Activity {
         tvNameCreate = (TextView) findViewById(R.id.tvNameCreate);
         tvJIDCreate = (TextView) findViewById(R.id.tvJIDCreate);
         tvNoteCreate = (TextView) findViewById(R.id.tvNoteCreate);
+        tvZaehlen = (TextView)findViewById(R.id.tvZaehlen);
+         
+        tvNoteCreate.addTextChangedListener(teWatcher);
         
         btCancelCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -72,4 +78,17 @@ public class ContactCreateActivity extends Activity {
         });
         
 	}
+	
+    private final TextWatcher teWatcher = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+           //This sets a textview to the current length
+           tvZaehlen.setText(String.valueOf(150 - s.length()));
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+};
 }

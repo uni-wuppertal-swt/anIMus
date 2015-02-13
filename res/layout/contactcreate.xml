@@ -51,12 +51,24 @@
         android:layout_width="wrap_content"
         android:layout_height="20dp" />
     
+  <LinearLayout>
+      
     <TextView
         android:id="@+id/tvNoteCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvNoteContact"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView
+        android:id="@+id/tvZaehlen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+     
+     </LinearLayout>
+    
 
     <EditText
         android:id="@+id/etNoteCreate"
