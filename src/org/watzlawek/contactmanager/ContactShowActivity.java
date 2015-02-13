@@ -10,6 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Class of the activity displaying the selected contact and its content.
+ * 
+ * @author Christoph Schlueter 
+ * @author Svenja Clemens
+ *
+ *@version 2015-24-01
+ */
+
+
 public class ContactShowActivity extends Activity {
 
 	

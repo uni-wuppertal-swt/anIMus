@@ -159,7 +159,7 @@ public class ContactlistActivity extends ListActivity {
 			//Deleted	
 			case 2:				
 				sv.deleteBuddy(ic.get_jid());
-				// set visible false in DB (need server_id)
+				// set visible false in DB
 				ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
 				cdbh.updateContact(ic.get_jid(), ic.get_username(), ic.get_note(), ic.get_serverId(), false);
 				cdbh.close();
