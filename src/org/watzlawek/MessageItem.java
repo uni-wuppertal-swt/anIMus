@@ -88,7 +88,7 @@ public class MessageItem {
 	 * Gets for Message.
 	 * @return the message.
 	 */
-	String getMessage() {
+	public String getMessage() {
 		return this.message;
 	}
 	/**
@@ -107,7 +107,7 @@ public class MessageItem {
 		return this.username;		
 	}	
 	
-	int getLeftside() {
+	public int getLeftside() {
 		return this.leftside;
 	}
 	

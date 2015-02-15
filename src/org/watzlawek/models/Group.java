@@ -2,9 +2,23 @@ package org.watzlawek.models;
 
 import java.util.ArrayList;
 
+import org.watzlawek.IMChatMessageListener;
+import org.watzlawek.MessageLog;
+
 public class Group {
 	private static ArrayList<Group> sList;
-	
+	/**
+	 * Holds the complete messages.
+	 */
+	private MessageLog messagelog;
+	/**
+	 * Flag for determination that there are unread messages pending.
+	 */
+	private boolean unreadMessages;
+	/**
+	 * IMChatMessageListener object which is called when new messages arrive.
+	 */
+	private IMChatMessageListener messageListener;
 	private String mTitle;
 	private ArrayList<User> mMember;
 	
@@ -42,5 +56,16 @@ public class Group {
 		
 		return sList;
 	}
+
+	public MessageLog getMessagelog() {
+		return messagelog;
+	}
+
+	public void setMessageListener(IMChatMessageListener input) {
+		unreadMessages = false;
+		messageListener = input;
+	}
+
+
 
 }
