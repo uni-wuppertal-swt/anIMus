@@ -11,13 +11,14 @@ package org.watzlawek.contactmanager;
  * @author Christoph Schlueter 
  * @author Svenja Clemens
  *
- *@version 2015-03-02
+ *@version 2015-02-03
  */
 
 
 import java.util.*;
 
-import net.sqlcipher.database.SQLiteException;
+//import net.sqlcipher.database.SQLiteException;
+import android.database.sqlite.SQLiteException;
 
 import org.watzlawek.*;
 

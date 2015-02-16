@@ -21,7 +21,7 @@ import android.widget.TextView;
  * @author Christoph Schlueter 
  * @author Svenja Clemens
  *
- *@version 2015-24-01
+ *@version 2015-01-24
  */
 
 
@@ -79,9 +79,8 @@ public class ContactEditActivity extends Activity {
         btSaveUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
-               	ContactDatabaseHandler cdbh = new ContactDatabaseHandler((IMApp)getApplicationContext());
-               	conServer.deleteBuddy(jid);
-               	
+               	ContactDatabaseHandler cdbh = ((ContactDatabaseHandler)((IMApp)getApplicationContext()).getContactDatabasehandler());
+         	              	
                	cdbh.updateContact(
                			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString(), 
@@ -90,11 +89,15 @@ public class ContactEditActivity extends Activity {
                	conServer.addNewBuddyToContact(
                			tvJIDUpdate2.getText().toString().substring(1), 
                			etNameUpdate.getText().toString());
+               
+               	conServer.updateBuddyNick(
+               			tvJIDUpdate2.getText().toString().substring(1), 
+               			etNameUpdate.getText().toString());
                	
                	conServer.pullContacts();
                	//IMApp app =(IMApp)getApplicationContext();
                 //XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
-               	cdbh.close();
+               	//cdbh.close();
                 finish();	
             }
         });
