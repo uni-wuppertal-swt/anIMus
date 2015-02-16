@@ -24,7 +24,7 @@ public class JID {
 		this(enc, jid);
 		this.createChat(con);
 		
-		this.sendMessagetoEncryption(jid);
+		//this.sendMessagetoEncryption(jid);
 		
 		
 	}

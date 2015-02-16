@@ -5,14 +5,23 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.Formatter;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.KeyGenerator;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+
+
 
 import org.jivesoftware.smack.Connection;
 import org.jivesoftware.smack.ConnectionConfiguration;
@@ -20,6 +29,8 @@ import org.jivesoftware.smack.XMPPConnection;
 import org.jivesoftware.smack.packet.Message;
 
 import android.content.Context;
+import android.os.Build.VERSION;
+import android.util.Log;
 import android.widget.Toast;
 //import org.jivesoftware.smack.packet.Presence;
 import encryption.org.watzlawek.AES256Cipher;
@@ -59,6 +70,8 @@ public class Encryption {
 		this.connection = connection;
 		this.context = context;
 		
+		
+		
 		//if(this.connection==null)Toast.makeText(context.getApplicationContext(), "Wir haben kein Objekt, von dem wir wuesten!", Toast.LENGTH_LONG).show();
 		//if(this.connection.isConnected())Toast.makeText(context.getApplicationContext(), "Verbindung steht!", Toast.LENGTH_LONG).show();
 		
@@ -79,20 +92,99 @@ public class Encryption {
 		//if(this.cores==null)Toast.makeText(context.getApplicationContext(), "Oh no,leaf the core alone!" , Toast.LENGTH_LONG).show();
 		//int seclevel = cores.elementAt(0).security_level();
 		//Toast.makeText(context.getApplicationContext(), "Der erste Kern hat den Sicherheitswert" + Integer.toString(seclevel) +  "!" , Toast.LENGTH_LONG).show();
+		StringBuffer strbuff = new StringBuffer(); 
+		byte[] bites;
+		byte salt = 0x34;
+		SecretKey key;
+		KeyGenerator keygenerator = null;
 		
+		try{
+		String seed = "seed";
+		keygenerator = KeyGenerator.getInstance("AES");
+		
+		SecureRandom securerandom = null;
+		// Jelly Bean workaround
+		if (VERSION.SDK_INT >= 16) {
+			securerandom = SecureRandom.getInstance("SHA1PRNG", "Crypto");
+		}
+		else {
+			securerandom = SecureRandom.getInstance("SHA1PRNG");
+		}
+		
+		securerandom.setSeed(seed.getBytes());
+		keygenerator.init(128, securerandom);
 
 		
-	        
+//		secretkeyspec = new SecretKeySpec(key.getEncoded(), "AES");
+//		cipher = Cipher.getInstance("AES");
+	} catch (Exception e) {
+		Log.v("Encryption", e.getMessage());
+	}
+		
+		key = keygenerator.generateKey();
+		bites = key.getEncoded();
+		
+		
+		for (byte theByte : bites)
+		{
+		  strbuff.append(Integer.toHexString(theByte) + ",");
+		}
+		
+		strbuff.append(key.getFormat() + ", " + key.getAlgorithm());
+		
+		 byte[] sha = new byte[bites.length + 1];
+		 int i = 0;
+			for (byte theByte : bites)
+			{
+			  sha[i++] = theByte;
+			}
+
+			sha[i] = salt;
+			
+		 
+		   String sha1 = "";
+		   MessageDigest crypt = null;
+		    try
+		    {
+		        crypt = MessageDigest.getInstance("SHA-1");
+		        crypt.reset();
+		        crypt.update(sha);
+		        sha1 = byteToHex(crypt.digest());
+		    }
+		    catch(NoSuchAlgorithmException e)
+		    {
+		        e.printStackTrace();
+		    }
+		
+		
+		Toast.makeText(context.getApplicationContext(), strbuff.toString(), Toast.LENGTH_LONG).show();
+		Toast.makeText(context.getApplicationContext(), sha1 + " mit " + sha1.length() + " mit " + crypt.digest().length, Toast.LENGTH_LONG).show();
 		//Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
 		// ref in XMPPChat:122
 	}
+	
+	private static String byteToHex(final byte[] hash)
+	{
+	    Formatter formatter = new Formatter();
+	    for (byte b : hash)
+	    {
+	        formatter.format("%02x", b);
+	    }
+	    String result = formatter.toString();
+	    formatter.close();
+	    return result;
+	}
+	
 	
 	public void setEncryption(boolean on){
 		encryption_on = on;
 	}
 	
 	public void receiveMessage(String str)
-	{Toast.makeText(this.context.getApplicationContext(), str, Toast.LENGTH_LONG).show();}
+	{
+		Toast.makeText(this.context.getApplicationContext(), str, Toast.LENGTH_LONG).show();
+		
+	}
 	
 	
 	public void setMemberList(Vector<String> mMemberList){

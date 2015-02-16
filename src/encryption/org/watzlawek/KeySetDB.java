@@ -77,9 +77,9 @@ private static final String DB_COLUMN_VISIBLE = "visible";
 	 * @param newVersion
 	 */
 	public void onUpgrade(android.database.sqlite.SQLiteDatabase db, int oldVersion, int newVersion) {
-		//String command = "DROP TABLE IF EXISTS " + DATABASE_NAME +";";
-		//db.execSQL(command);
-		//onCreate(db);
+		String command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME +";";
+		db.execSQL(command);
+		onCreate(db);
 	}
 	
 }
