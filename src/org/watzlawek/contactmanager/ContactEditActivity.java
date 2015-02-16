@@ -21,7 +21,7 @@ import android.widget.TextView;
  * @author Christoph Schlueter 
  * @author Svenja Clemens
  *
- *@version 2015-24-01
+ *@version 2015-01-24
  */
 
 

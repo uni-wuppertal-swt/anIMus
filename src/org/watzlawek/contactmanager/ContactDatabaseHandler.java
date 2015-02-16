@@ -11,7 +11,7 @@ package org.watzlawek.contactmanager;
  * @author Christoph Schlueter 
  * @author Svenja Clemens
  *
- *@version 2015-03-02
+ *@version 2015-02-03
  */
 
 
