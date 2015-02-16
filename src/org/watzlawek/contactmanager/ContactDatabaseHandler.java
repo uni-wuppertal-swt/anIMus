@@ -451,7 +451,7 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 		
 		try {
 			SQLiteDatabase db = getWritableDatabase();
-			if (db != null) {// TO DO; SQL Syntax Fehler Fixen
+			if (db != null) {
 				int visible = (inVisible ? 1 : 0);
 				String sqlCommand = "INSERT INTO " + DB_TABLE_NAME + " VALUES ('" + inJID +  "', '"
 						+inUsername + "', '"+ inNote + "', " + inSID + ", " + visible + ");";
@@ -524,10 +524,8 @@ public class ContactDatabaseHandler extends SQLiteOpenHelper{
 	 */
 	public void updateContact(String inJID, String inUsername, String inNote, 
 			int inServerID, boolean inVisible) {
-		Log.v("Update_DB","Was ist hier los??");
 		try {
 			SQLiteDatabase db = getWritableDatabase();		
-			Log.v("Update_DB","Nach öffnen der db.");
 			if (db != null) {
 				int visible = (inVisible ? 1 : 0);
 				String sqlCommand = "UPDATE " + DB_TABLE_NAME + " SET " + DB_COLUMN_USERNAME + " = '" 
