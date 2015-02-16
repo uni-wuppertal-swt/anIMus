@@ -207,7 +207,7 @@
 	<string name="AnimaServiceAddress">anIMa Service Address</string>
 	<string name="contactlistisEmpty">No contacts available</string>
 	<string name="conactlistContextmenuShow">Show</string>
-	<string name="conactlistContextmenuedit">Edit</string>
+	<string name="conactlistContextmenuEdit">Edit</string>
 	<string name="conactlistContextmenuDelete">Delete</string>
 	<string name="conactlistContextmenuValidate">Validate</string>
 	<string name="conactlistContextmenuHeader">Contact menu</string>

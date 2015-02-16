@@ -1,5 +1,7 @@
 package org.watzlawek;
 
+import org.watzlawek.contactmanager.ContactDatabaseHandler;
+
 import net.sqlcipher.database.SQLiteDatabase;
 import android.app.Application;
 import android.content.Context;
@@ -17,7 +19,7 @@ import android.util.Log;
  * @author Klaus-Peter Watzlawek
  * @author Moritz Lipfert
  * 
- * @version 2013-09-10
+ * @version 2014-02-16
  */
 public class IMApp extends Application {
 	/**
@@ -40,6 +42,11 @@ public class IMApp extends Application {
 	 * Holds a reference to the databackup handler class object.
 	 */
 	private DataBackupHandler databackuphandler;
+	
+	/**
+	 * Holds a reference to the Contact Database handler class object.
+	 */
+	private ContactDatabaseHandler contactdatabasehandler;
 	
 	/**
 	 * Getter for the servermanager object.
@@ -70,6 +77,15 @@ public class IMApp extends Application {
 	}
 	
 	/**
+	 * Getter for contactdatabasehandler
+	 * @return contactdatabasehanlder object of Type ContactDatabaseHandler.
+	 */
+	public ContactDatabaseHandler getContactDatabasehandler() {
+		return contactdatabasehandler;
+	}
+	
+	
+	/**
 	 * Getter for the appprefhandler object.
 	 * 
 	 * @return appprefhandler object of type AppPrefHandler.
@@ -97,6 +113,8 @@ public class IMApp extends Application {
 		autodiscover = new AutoDiscover(this);
 		
 		databackuphandler = new DataBackupHandler(this,"org.watzlawek.animus", servermanager.getServerDatabaseName(), "org.watzlawek_preferences.xml");
+		
+		contactdatabasehandler = new ContactDatabaseHandler(this);
 	}
 	
 	/**

@@ -355,7 +355,9 @@ public class XMPPServer extends IMServer {
 		Roster.setDefaultSubscriptionMode(Roster.SubscriptionMode.accept_all);
 		Roster roster = connection.getRoster();
 		try {
-			roster.createEntry(in_nameid,nickname,null);
+			String[] str_groupname = new String[1]; //workaround for updateBuddyNick Roster Bug
+			str_groupname[0] = "animus"; 
+			roster.createEntry(in_nameid,nickname,str_groupname);
 			Log.v(in_nameid, nickname);
 			//Make subscribtion
 			Presence subscribe = new Presence(Presence.Type.subscribe);
@@ -376,7 +378,23 @@ public class XMPPServer extends IMServer {
 		item.setItemType(RosterPacket.ItemType.remove);
 		packet.addRosterItem(item);
 		connection.sendPacket(packet);	
-		connection.sendPacket(packet);	
+	}
+	
+	//Roster Bug... https://community.igniterealtime.org/thread/52429
+	//Anzeige der aktualisierten Nicknames erst bei Relogin moeglich
+	//Loesung fuer die Zukunft: aSmack updaten oder Buddys Gruppennamen zuweisen
+	public void updateBuddyNick(String in_jid, String nickname) {
+		try {
+	        RosterPacket packet = new RosterPacket();
+	        packet.setType(IQ.Type.SET);
+	        RosterPacket.Item item = new RosterPacket.Item(in_jid, nickname);
+	        packet.addRosterItem(item);	  
+	        connection.sendPacket(packet);	        
+	    } catch(Exception e) {
+	        e.printStackTrace();
+	        
+	    }
+		
 	}
 
 	@Override

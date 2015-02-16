@@ -99,6 +99,9 @@ public class ContactlistActivity extends ListActivity {
 	
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+    	
+    	IMApp app = (IMApp)getApplicationContext();
+    	
     	switch(item.getItemId()) {
 			case R.id.contactlistmenuStatus:
     			Intent intent = new Intent(this, StatusActivity.class);
@@ -108,13 +111,18 @@ public class ContactlistActivity extends ListActivity {
     			//finish();
     			//return true;
     		case R.id.contactlistmenuFriends:
-    			IMApp app = (IMApp)getApplicationContext();
+    			
     			app.getAutoDiscover().progressbar = this.progessbar;
     			app.getAutoDiscover().findFriends();
     			return true;
     		case R.id.contactlistmenuCreate:
     			Intent intent2 = new Intent(this, org.watzlawek.contactmanager.ContactCreateActivity.class);   	    	
-    	    	startActivityForResult(intent2, 0);
+    	    	startActivityForResult(intent2, 0);  //
+    	    	XMPPServer sv = (XMPPServer) app.getServerManager().getConnectedServer();
+    	    	sv.clearRoster();
+				sv.pullRoster();
+				sv.pullContacts();
+				refreshContactlist();
     			return true;
     		default:
     			return super.onOptionsItemSelected(item);
@@ -160,14 +168,11 @@ public class ContactlistActivity extends ListActivity {
 			case 2:				
 				sv.deleteBuddy(ic.get_jid());
 				// set visible false in DB
-				ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
-				cdbh.updateContact(ic.get_jid(), ic.get_username(), ic.get_note(), ic.get_serverId(), false);
-				cdbh.close();
-				refreshContactlist();
+				app.getContactDatabasehandler().updateContact(ic.get_jid(), ic.get_username(), ic.get_note(), ic.get_serverId(), false);	
 				sv.clearRoster();
 				sv.pullRoster();
 				sv.pullContacts();
-				//this.listadapter.notify();
+				refreshContactlist();
 				return true;
 			// Edit
 			case 3:
@@ -178,6 +183,10 @@ public class ContactlistActivity extends ListActivity {
 				Intent intent3 = new Intent(this, org.watzlawek.contactmanager.ContactEditActivity.class); 
 				intent3.putExtras(intentPar);
     	    	startActivityForResult(intent3, 0);
+    	    	sv.clearRoster();
+				sv.pullRoster();
+				sv.pullContacts();
+				refreshContactlist();
 				return true;
 			// Show
 			case 4:
