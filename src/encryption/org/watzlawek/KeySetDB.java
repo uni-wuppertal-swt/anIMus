@@ -23,11 +23,24 @@ private static final int DATABASE_VERSION = 1;
 /**
 * Name of the table which holds the keysets.
 */
-private static final String DB_TABLE_NAME = "tblkeyset";
+private static final String DB_TABLE_NAME1 = "tblkeyset";
+private static final String DB_TABLE_NAME2 = "tbljidset";
 /**
 * Primary key column of the table "contacts".
 */
-private static final String DB_COLUMN_JID = "jid";
+private static final String DB_COLUMN_HASH = "hash";
+private static final String DB_COLUMN_JIDGROUP = "id";
+private static final String DB_COLUMN_COREID = "coreid";
+private static final String DB_COLUMN_ALLREADYSEND = "allreadysend";
+private static final String DB_COLUMN_KEYDATATYPE = "keydatatype";
+private static final String DB_COLUMN_ALGORITHM = "algorithm";
+private static final String DB_COLUMN_KEYLENGTH = "keylength";
+private static final String DB_COLUMN_SALTEDKEY = "saltedkey";
+
+private static final String DB_COLUMN_ID = "id INT";
+private static final String DB_COLUMN_JIDLIST = "jidlist TEXT";
+
+
 /**
 * Column of the table "contacts".
 * It includes the usernames.
@@ -60,14 +73,25 @@ private static final String DB_COLUMN_VISIBLE = "visible";
 	* Called on creating an object.
 	*/
 	public void onCreate(SQLiteDatabase db) {
-	String createDB = "CREATE TABLE " +DB_TABLE_NAME +"(" +
-	DB_COLUMN_JID +" VARCHAR(30),"+
-	DB_COLUMN_USERNAME +" VARCHAR(30)," +
-	DB_COLUMN_NOTE +" VARCHAR(140),"+
-	DB_COLUMN_SERVERID + " INTEGER,"+
-	DB_COLUMN_VISIBLE +" INTEGER, PRIMARY KEY(" +
-	DB_COLUMN_JID + ", " + DB_COLUMN_SERVERID + "));";
-	db.execSQL(createDB);
+	String createDB1 = "CREATE TABLE " +DB_TABLE_NAME1 +"(" +
+			DB_COLUMN_HASH + " CHAR(40)" +
+			DB_COLUMN_JIDGROUP + " INT" +
+			DB_COLUMN_COREID + " VARCHAR(10)" +
+			DB_COLUMN_ALLREADYSEND + " SMALLINT" +
+			DB_COLUMN_KEYDATATYPE + " VARCHAR(5)" +
+			DB_COLUMN_ALGORITHM + " VARCHAR(10)" +
+			DB_COLUMN_KEYLENGTH + " SMALLINT" +
+			DB_COLUMN_SALTEDKEY + " BLOB NULL" +
+			", PRIMARY KEY (" + DB_COLUMN_HASH + "));";
+	db.execSQL(createDB1);
+	
+	String createDB2 = "CREATE TABLE " +DB_TABLE_NAME2 +"(" +
+			DB_COLUMN_ID + " CHAR(40)" +
+			DB_COLUMN_JIDLIST + " VARCHAR(10)" +
+			", PRIMARY KEY (" + DB_COLUMN_ID + "));";
+	db.execSQL(createDB2);
+
+	
 	}
 	
 	/**
@@ -77,9 +101,15 @@ private static final String DB_COLUMN_VISIBLE = "visible";
 	 * @param newVersion
 	 */
 	public void onUpgrade(android.database.sqlite.SQLiteDatabase db, int oldVersion, int newVersion) {
-		String command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME +";";
+		String command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME1 +";";
+		db.execSQL(command);
+		command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME2 +";";
 		db.execSQL(command);
 		onCreate(db);
 	}
+	
+	
+	
+	
 	
 }
