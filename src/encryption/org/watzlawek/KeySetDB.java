@@ -8,6 +8,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 public class KeySetDB extends SQLiteOpenHelper{
 
@@ -37,8 +38,8 @@ private static final String DB_COLUMN_ALGORITHM = "algorithm";
 private static final String DB_COLUMN_KEYLENGTH = "keylength";
 private static final String DB_COLUMN_SALTEDKEY = "saltedkey";
 
-private static final String DB_COLUMN_ID = "id INT";
-private static final String DB_COLUMN_JIDLIST = "jidlist TEXT";
+private static final String DB_COLUMN_ID = "_id";
+private static final String DB_COLUMN_JIDLIST = "jidlist";
 
 
 /**
@@ -67,6 +68,7 @@ private int id_JID;
 	
 	public KeySetDB(Context context, String jidIdent ) throws EncryptionFaultException, SQLiteException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		Toast.makeText(context.getApplicationContext(), jidIdent , Toast.LENGTH_LONG).show();
 		//SQLiteDatabase db = this.getWritableDatabase();
 /*
 		if (db == null) throw new EncryptionFaultException();
@@ -120,7 +122,8 @@ private int id_JID;
 	* Called on creating an object.
 	*/
 	public void onCreate(SQLiteDatabase db) {
-	String createDB1 = "CREATE TABLE " +DB_TABLE_NAME1 +"(" +
+	/*
+		String createDB1 = "CREATE TABLE " +DB_TABLE_NAME1 +"(" +
 			DB_COLUMN_HASH + " CHAR(40)" +
 			DB_COLUMN_JIDGROUP + " INT" +
 			DB_COLUMN_COREID + " VARCHAR(10)" +
@@ -131,10 +134,10 @@ private int id_JID;
 			DB_COLUMN_SALTEDKEY + " BLOB NULL" +
 			", PRIMARY KEY (" + DB_COLUMN_HASH + "));";
 	db.execSQL(createDB1);
-	
+	*/
 	String createDB2 = "CREATE TABLE " +DB_TABLE_NAME2 +"(" +
 			DB_COLUMN_ID + " CHAR(40)" +
-			DB_COLUMN_JIDLIST + " VARCHAR(10)" +
+			DB_COLUMN_JIDLIST + " VARCHAR(160)" +
 			", PRIMARY KEY (" + DB_COLUMN_ID + "));";
 	db.execSQL(createDB2);
 
@@ -148,15 +151,59 @@ private int id_JID;
 	 * @param newVersion
 	 */
 	public void onUpgrade(android.database.sqlite.SQLiteDatabase db, int oldVersion, int newVersion) {
-		String command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME1 +";";
-		db.execSQL(command);
+		String command;
+		//command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME1 +";";
+		//db.execSQL(command);
 		command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME2 +";";
 		db.execSQL(command);
 		onCreate(db);
 	}
 	
 	
+	public Vector<SaltedAndPepperedKey> requestKeys( String coreid, int many ){
+		Vector<SaltedAndPepperedKey> res = new Vector<SaltedAndPepperedKey>();
+		
+		byte[] key = new byte[22];
+		
+		
+		
+		for(int i = 0; i < key.length;i++)
+		{
+			key[i] = 0x34;
+		}		
+		
+		
+		for(int j = 0; j < many;j++)
+		{
+			res.add(new SaltedAndPepperedKey(key, 20, "AES", "RAW", "TextSecureCore"));
+		}
+		
+		
+		return res;
+	}
+	
+	void setKey(Vector<SaltedAndPepperedKey> keys){
+		
+	}
 	
 	
+	
+	SaltedAndPepperedKey getKey(String hash){
+		
+		byte[] key = new byte[22];
+		
+		
+		
+		for(int i = 0; i < key.length;i++)
+		{
+			key[i] = 0x34;
+		}
+		
+		return new SaltedAndPepperedKey(key, 20, "AES", "RAW", "TextSecureCore");
+	}
+	
+	public int getManyOfKeys(){
+		return 5;
+	}
 	
 }

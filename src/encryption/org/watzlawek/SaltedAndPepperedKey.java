@@ -10,6 +10,13 @@ public class SaltedAndPepperedKey implements Key {
 	private byte[] saltedKey;
 	private int keylength;
 	
+	SaltedAndPepperedKey (byte[] saltedKey, int keylength, String algorithm, String format, String pepper){
+		this.algorithm = algorithm;
+		this.format = format;
+		this.pepper = pepper;
+		this.saltedKey = saltedKey;
+		this.keylength = keylength;
+	}
 
 	/**
 	 * 

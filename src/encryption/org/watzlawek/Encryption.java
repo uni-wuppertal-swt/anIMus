@@ -46,6 +46,7 @@ public class Encryption {
 	private Connection connection;
 	private Context context;
 	private boolean encryption_on = false;
+	private KeySetDB keyset = null;
 	
 	
 	/**
@@ -73,14 +74,7 @@ public class Encryption {
 		this.connection = connection;
 		this.context = context;
 		
-		try{
-		KeySetDB test1 = new KeySetDB(context, "Blub" );
-		SQLiteDatabase db = test1.getWritableDatabase();
-		Toast.makeText(context.getApplicationContext(), "id ist " + test1.getid(), Toast.LENGTH_LONG).show();
-		db.close();
-		}
-		catch(EncryptionFaultException e){}
-		catch(SQLiteException e){}
+
 		//if(this.connection==null)Toast.makeText(context.getApplicationContext(), "Wir haben kein Objekt, von dem wir wuesten!", Toast.LENGTH_LONG).show();
 		//if(this.connection.isConnected())Toast.makeText(context.getApplicationContext(), "Verbindung steht!", Toast.LENGTH_LONG).show();
 		
@@ -199,15 +193,27 @@ public class Encryption {
 	public void setMemberList(Vector<String> mMemberList){
 
 		
+		Collections.sort(mMemberList, new Comparator<String>() {
+			   public int compare(String s1, String s2){
+			      return s1.compareTo(s2);
+			   }
+			});
+		
 
 		this.mMemberList = new Vector<JID>();
-
+	    StringBuffer stbu = new StringBuffer("");
+		
 	        if(this.connection.isConnected())
 	        {
 
 	  	      Iterator<String> iter = mMemberList.iterator();
+
+		      String tmp = null;
+		      
 		        while (iter.hasNext()) {
-		        	this.mMemberList.add(new JID( this, iter.next(), this.connection ));
+		        	tmp=iter.next();
+		        	this.mMemberList.add(new JID( this, tmp , this.connection ));
+		        	stbu.append(tmp);
 		        	iter.remove();
 		            
 		        }
@@ -215,18 +221,18 @@ public class Encryption {
 	        	 //chat.sendMessage("Howdy!");
 	        	
 	        }
-		
-//test
-	        /*
-	         StringBuffer stbu = new StringBuffer("Es existieren folgende JIDs :");
-		      Iterator<JID> iter2 = this.mMemberList.iterator();
-		        while (iter2.hasNext()) {
-		        	stbu.append(iter2.next().getJID() + ", ");
-		        	 
-		            iter2.remove();
-		            
-		        } 
-*/
+
+			try{
+				keyset = new KeySetDB(this.context, stbu.toString() );
+				//SQLiteDatabase db = test1.getWritableDatabase();
+
+				//db.close();
+				}
+				catch(EncryptionFaultException e){}
+				catch(SQLiteException e){}
+	        
+
+	        
 	        
 		       // Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
 		        

@@ -4,7 +4,7 @@ import org.jivesoftware.smack.packet.Message;
 
 public class Header {
 
-	private byte[] hash;
+	private String hash;
 	private SaltedAndPepperedKey key;
 	private short manyOfKeysLeft;
 	private short manyOfKeysToSend;
@@ -13,12 +13,20 @@ public class Header {
 	
 	
 	
-	public Header(KeySetDB keyset, Message msg) {
+	Header(KeySetDB keyset, Message msg) {
+		String str = msg.getBody();
+		this.hash = str.substring(0, 40);
+		this.key = keyset.getKey(this.hash);
+		
+		
+		
 		
 	}
 
-	public Header(KeySetDB keyset){
+	Header(KeySetDB keyset){
 		
 	}
+	
+	
 	
 }
