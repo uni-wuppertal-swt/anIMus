@@ -2,6 +2,7 @@ package encryption.org.watzlawek;
 
 
 import net.sqlcipher.database.SQLiteException;
+import android.database.sqlite.SQLiteDatabase;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
@@ -74,9 +75,9 @@ public class Encryption {
 		
 		try{
 		KeySetDB test1 = new KeySetDB(context, "Blub" );
-		
+		SQLiteDatabase db = test1.getWritableDatabase();
 		Toast.makeText(context.getApplicationContext(), "id ist " + test1.getid(), Toast.LENGTH_LONG).show();
-		
+		db.close();
 		}
 		catch(EncryptionFaultException e){}
 		catch(SQLiteException e){}

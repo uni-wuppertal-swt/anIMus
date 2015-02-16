@@ -67,7 +67,7 @@ private int id_JID;
 	
 	public KeySetDB(Context context, String jidIdent ) throws EncryptionFaultException, SQLiteException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		SQLiteDatabase db = this.getWritableDatabase();
+		//SQLiteDatabase db = this.getWritableDatabase();
 /*
 		if (db == null) throw new EncryptionFaultException();
 		
@@ -97,7 +97,7 @@ private int id_JID;
 		}	
 			
 			*/
-			db.close();
+			//db.close();
 			
 	}
 
