@@ -17,7 +17,8 @@ package org.watzlawek.contactmanager;
 
 import java.util.*;
 
-import net.sqlcipher.database.SQLiteException;
+//import net.sqlcipher.database.SQLiteException;
+import android.database.sqlite.SQLiteException;
 
 import org.watzlawek.*;
 
