@@ -58,7 +58,7 @@ public class ContactCreateActivity extends Activity {
         tvNoteCreate = (TextView) findViewById(R.id.tvNoteCreate);
         tvZaehlen = (TextView)findViewById(R.id.tvZaehlen);
          
-        tvNoteCreate.addTextChangedListener(teWatcher);
+       // tvNoteCreate.addTextChangedListener(teWatcher);
         
         btCancelCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -88,7 +88,7 @@ public class ContactCreateActivity extends Activity {
         });
         
 	}
-	
+	/*
     private final TextWatcher teWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
@@ -100,5 +100,7 @@ public class ContactCreateActivity extends Activity {
 
         public void afterTextChanged(Editable s) {
         }
+        
 };
+*/
 }
