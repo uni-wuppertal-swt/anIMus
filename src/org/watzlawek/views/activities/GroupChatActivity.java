@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class GroupChatActivity extends Activity {
@@ -115,6 +116,9 @@ public class GroupChatActivity extends Activity {
 	private void init(){
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
+        
+        Button bt = (Button) findViewById(R.id.groupchat_bt_edit);
+        bt.setTag(id);
 	}
 	
 	private void setTitle(){
@@ -123,11 +127,13 @@ public class GroupChatActivity extends Activity {
 	}
 	
 	public void editButtonOnClick(View v){
+		int groupID = (Integer) v.getTag();
+
 		switch(v.getId()){
 		case R.id.groupchat_bt_edit:
 			Intent intent = new Intent(this, GroupAdministrationActivity.class);
 			intent.putExtra(GroupAdministrationActivity.MODE, GroupAdministrationActivity.MODE_EDIT);
-			intent.putExtra(GroupAdministrationActivity.GROUP_ID, 0);
+			intent.putExtra(GroupAdministrationActivity.GROUP_ID, groupID);
 			startActivity(intent);
 			break;
 		default:
