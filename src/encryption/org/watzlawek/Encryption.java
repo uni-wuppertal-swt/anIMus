@@ -1,6 +1,8 @@
 package encryption.org.watzlawek;
 
 
+import net.sqlcipher.database.SQLiteException;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -70,8 +72,14 @@ public class Encryption {
 		this.connection = connection;
 		this.context = context;
 		
+		try{
+		KeySetDB test1 = new KeySetDB(context, "Blub" );
 		
+		Toast.makeText(context.getApplicationContext(), "id ist " + test1.getid(), Toast.LENGTH_LONG).show();
 		
+		}
+		catch(EncryptionFaultException e){}
+		catch(SQLiteException e){}
 		//if(this.connection==null)Toast.makeText(context.getApplicationContext(), "Wir haben kein Objekt, von dem wir wuesten!", Toast.LENGTH_LONG).show();
 		//if(this.connection.isConnected())Toast.makeText(context.getApplicationContext(), "Verbindung steht!", Toast.LENGTH_LONG).show();
 		

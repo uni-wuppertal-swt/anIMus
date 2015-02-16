@@ -15,7 +15,7 @@ public class KeySetDB extends SQLiteOpenHelper{
 /**
 * Name of the database.
 */
-private static final String DATABASE_NAME = "ContactDB";
+private static final String DATABASE_NAME = "EncryptionDB";
 /**
 * Version of the database.
 */
@@ -65,12 +65,12 @@ private static final String DB_COLUMN_VISIBLE = "visible";
 private int id_JID;
 
 	
-	public KeySetDB(Context context, String jidIdent ) throws EncryptionFaultException {
+	public KeySetDB(Context context, String jidIdent ) throws EncryptionFaultException, SQLiteException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
-		
 		SQLiteDatabase db = this.getWritableDatabase();
-
+/*
 		if (db == null) throw new EncryptionFaultException();
+		
 		
 		String sqlCommand = 
 				"SELECT " + DB_COLUMN_ID + 
@@ -96,8 +96,9 @@ private int id_JID;
 
 		}	
 			
-			
+			*/
 			db.close();
+			
 	}
 
 	private int findNextID(SQLiteDatabase db){
