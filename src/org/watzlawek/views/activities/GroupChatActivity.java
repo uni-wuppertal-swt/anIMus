@@ -1,18 +1,12 @@
 package org.watzlawek.views.activities;
 
-import org.watzlawek.BubbleChatListAdapter;
 import org.watzlawek.IMApp;
-import org.watzlawek.IMChat;
-import org.watzlawek.IMChatMessageEvent;
-import org.watzlawek.IMChatMessageListener;
 import org.watzlawek.MessageItem;
 import org.watzlawek.R;
 import org.watzlawek.models.Group;
 import org.watzlawek.views.adapters.GroupChatAdapter;
 
 import android.app.Activity;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 public class GroupChatActivity extends Activity {
+	
 	/**
 	 * Handler object which is called by IMChat when a new message arrives.
 	 * It is used to call the method updateMessages() which will show the new message inside the respective EditText object.
@@ -130,7 +125,10 @@ public class GroupChatActivity extends Activity {
 	public void editButtonOnClick(View v){
 		switch(v.getId()){
 		case R.id.groupchat_bt_edit:
-			Log.d("", "editButtonOnClick()");
+			Intent intent = new Intent(this, GroupAdministrationActivity.class);
+			intent.putExtra(GroupAdministrationActivity.MODE, GroupAdministrationActivity.MODE_EDIT);
+			intent.putExtra(GroupAdministrationActivity.GROUP_ID, 0);
+			startActivity(intent);
 			break;
 		default:
 			break;
