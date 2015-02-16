@@ -63,7 +63,7 @@ public class Group {
 	}
 
 	public void setMessageListener(IMChatMessageListener input) {
-		unreadMessages = false;
+	//	unreadMessages = false;
 		messageListener = input;
 	}
 

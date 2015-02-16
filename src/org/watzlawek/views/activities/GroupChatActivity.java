@@ -43,14 +43,14 @@ public class GroupChatActivity extends Activity {
 	
 	
 	public void updateMessages() {				
-		if (messageitem_same != currentGroupChat.getMessagelog().getLastMessageItem() ) 
-		{
-				if (currentGroupChat.getMessagelog().getLastMessageItem() != null)
-				{					
-					this.GAdapter.add(currentGroupChat.getMessagelog().getLastMessageItem());					
-				}
-			messageitem_same = currentGroupChat.getMessagelog().getLastMessageItem();	
-		}
+//		if (messageitem_same != currentGroupChat.getMessagelog().getLastMessageItem() ) 
+//		{
+	//			if (currentGroupChat.getMessagelog().getLastMessageItem() != null)
+		//		{					
+			//		this.GAdapter.add(currentGroupChat.getMessagelog().getLastMessageItem());					
+				//}
+		//	messageitem_same = currentGroupChat.getMessagelog().getLastMessageItem();	
+	//	}
 			
 	}
 	
@@ -62,7 +62,7 @@ public class GroupChatActivity extends Activity {
 	@Override
 	protected void onPause() 
 	{
-		currentGroupChat.setMessageListener(null);		
+	//	currentGroupChat.setMessageListener(null);		
 		super.onPause();
 	}
 	
@@ -78,19 +78,19 @@ public class GroupChatActivity extends Activity {
 		IMApp app = (IMApp)getApplicationContext();
 		if (app.getServerManager().getConnectedServer() != null && app.haveNetworkConnection()) 
 		{
-		currentGroupChat.setMessageListener(new IMChatMessageListener() {
-			public void newMessage(IMChatMessageEvent message) {
-				updateMessageHandler.post(new Runnable() {
-					public void run() {
-						updateMessages();
-					}
-				});
-			}
-		});
-updateMessages();
+	//	currentGroupChat.setMessageListener(new IMChatMessageListener() {
+	//		public void newMessage(IMChatMessageEvent message) {
+	//			updateMessageHandler.post(new Runnable() {
+	//				public void run() {
+	//					updateMessages();
+	//				}
+	//			});
+	//		}
+	//	});
+		updateMessages();
 		/* Removes notification from notification list. */
-		NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-		notificationManager.cancel(3133788);
+//		NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//		notificationManager.cancel(3133788);
 		}
 		this.onCreate(null);
 	}
@@ -104,15 +104,17 @@ updateMessages();
         setContentView(R.layout.activity_groupchat);
         init();
         setTitle();
-        currentGroupChat.setMessageListener(new IMChatMessageListener() {
-			public void newMessage(IMChatMessageEvent message) {
-				updateMessageHandler.post(new Runnable() {
-					public void run() {
-						updateMessages();
-					}
-				});
-			}
-		});
+        updateMessageHandler = new Handler();
+        // hier entsteht eine NullPointerException
+    //    currentGroupChat.setMessageListener(new IMChatMessageListener() {
+	//		public void newMessage(IMChatMessageEvent message) {
+	//			updateMessageHandler.post(new Runnable() {
+	//				public void run() {
+	//					updateMessages();
+	//				}
+	//			});
+	//		}
+	//	});
 	}
 	
 	private void init(){

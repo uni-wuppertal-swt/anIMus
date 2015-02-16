@@ -100,7 +100,7 @@ public class GroupChatAdapter extends ArrayAdapter<MessageItem> implements OnCre
 		this.timestampTextView = (TextView) row.findViewById(R.id.ChatListItemDarkTimestamp);		
 		this.bubblecompleteLinearLayout = (LinearLayout) row.findViewById(R.id.ChatListItemDarkBubbleLinearLayout);		
 		
-		final MessageItem messageitem = this.getItem(position);
+		final MessageItem messageitem = this.getMessageItem(position);
 	
 		//Open hyperlinks in messages bubbles
 		row.setOnClickListener(new View.OnClickListener() {
