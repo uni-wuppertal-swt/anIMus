@@ -168,16 +168,11 @@ public class ContactlistActivity extends ListActivity {
 			case 2:				
 				sv.deleteBuddy(ic.get_jid());
 				// set visible false in DB
-				//ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context); 
-				//cdbh.updateContact(ic.get_jid(), ic.get_username(), ic.get_note(), ic.get_serverId(), false);				
-				//cdbh.close();
 				app.getContactDatabasehandler().updateContact(ic.get_jid(), ic.get_username(), ic.get_note(), ic.get_serverId(), false);	
-				//refreshContactlist();
 				sv.clearRoster();
 				sv.pullRoster();
 				sv.pullContacts();
 				refreshContactlist();
-				//this.listadapter.notify();
 				return true;
 			// Edit
 			case 3:

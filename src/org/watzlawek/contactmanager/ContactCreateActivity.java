@@ -64,7 +64,6 @@ public class ContactCreateActivity extends Activity {
             public void onClick(View v) {
             	XMPPServer conServer = ((XMPPServer)((IMApp)getApplicationContext()).getServerManager().getConnectedServer());
             	ContactDatabaseHandler cdbh = ((ContactDatabaseHandler)((IMApp)getApplicationContext()).getContactDatabasehandler());
-            			//new ContactDatabaseHandler((IMApp)getApplicationContext());
             	if (!cdbh.exists(etJIDCreate.getText().toString(), conServer.getServerId())){
             		cdbh.insertContact(etJIDCreate.getText().toString(), etNameCreate.getText().toString(), 
             				etNoteCreate.getText().toString(), conServer.getServerId(),	true);
