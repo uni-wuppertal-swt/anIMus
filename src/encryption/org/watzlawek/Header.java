@@ -5,7 +5,7 @@ import org.jivesoftware.smack.packet.Message;
 public class Header {
 
 	private byte[] hash;
-	private Key key;
+	private SaltedAndPepperedKey key;
 	private short manyOfKeysLeft;
 	private short manyOfKeysToSend;
 	private String coreID;

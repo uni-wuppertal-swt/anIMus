@@ -62,13 +62,59 @@ private static final String DB_COLUMN_SERVERID = "serverid";
 */
 private static final String DB_COLUMN_VISIBLE = "visible";
 
+private int id_JID;
+
 	
-	public KeySetDB(Context context) {
+	public KeySetDB(Context context, String jidIdent ) throws EncryptionFaultException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		
-	
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		if (db == null) throw new EncryptionFaultException();
+		
+		String sqlCommand = 
+				"SELECT " + DB_COLUMN_ID + 
+				" FROM " + DB_TABLE_NAME2 + 
+				" WHERE " + DB_COLUMN_JIDLIST + "=='" + jidIdent + "';";
+		
+		android.database.Cursor queryCursor = db.rawQuery(sqlCommand, null);
+		
+		if(queryCursor.moveToFirst()) {
+			this.id_JID = Integer.parseInt(queryCursor.getString(0));
+			queryCursor.close();
+			}
+		else {
+			queryCursor.close();
+			
+			this.id_JID = findNextID(db);
+		
+			sqlCommand = "INSERT INTO " + DB_TABLE_NAME2 + " VALUES (" + this.id_JID + ", '"
+					+ jidIdent + "');";
+
+					db.execSQL(sqlCommand);
+		
+
+		}	
+			
+			
+			db.close();
 	}
 
+	private int findNextID(SQLiteDatabase db){
+		int res = 0;
+		String sqlCommand = 
+				"SELECT " + DB_COLUMN_ID + 
+				" FROM " + DB_TABLE_NAME2 + 
+				" ORDER BY " + DB_COLUMN_ID + " DESC ;";
+
+		android.database.Cursor queryCursor = db.rawQuery(sqlCommand, null);
+		if(queryCursor.moveToFirst())res = Integer.parseInt(queryCursor.getString(0)); 
+		queryCursor.close();
+		return res + 1;
+	}
+	
+	public int getid(){return id_JID;}
+	
 	/**
 	* Called on creating an object.
 	*/
