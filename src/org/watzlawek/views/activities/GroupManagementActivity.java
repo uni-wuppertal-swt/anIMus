@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.watzlawek.R;
 import org.watzlawek.models.Group;
-import org.watzlawek.views.adapters.GroupManagerAdapter;
+import org.watzlawek.views.adapters.GroupManagementAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -18,7 +18,7 @@ public class GroupManagementActivity extends Activity{
 	
 	private ArrayList<Group> mItemList;
 	 
-	private GroupManagerAdapter mAdapter;
+	private GroupManagementAdapter mAdapter;
 	private ListView mListView;
 	
 	/**
@@ -30,7 +30,7 @@ public class GroupManagementActivity extends Activity{
         setContentView(R.layout.activity_groupmanagement);
         
         getData();
-        mAdapter = new GroupManagerAdapter(this, mItemList);
+        mAdapter = new GroupManagementAdapter(this, mItemList);
         mListView = (ListView) findViewById(R.id.groupmanagement_lv_chatlist);
         
         mListView.setAdapter(mAdapter);

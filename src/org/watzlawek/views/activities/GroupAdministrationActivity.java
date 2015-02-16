@@ -10,7 +10,6 @@ import org.watzlawek.views.adapters.GroupAdministrationAdapter;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -20,7 +19,7 @@ import android.widget.EditText;
  * @author Karsten Klaus
  * @author Safran Quader
  * 
- * @version 2015-02-11
+ * @version 2015-02-16
  */ 
 
 public class GroupAdministrationActivity extends ListActivity {
@@ -46,10 +45,7 @@ public class GroupAdministrationActivity extends ListActivity {
         
         mAdapter = new GroupAdministrationAdapter(this, mUserList);
         setListAdapter(mAdapter);
-        
-        Log.d("", "Modus: " + modus);
-        Log.d("", "ID: " + groupID);
-	}	
+	}
 	
 	private void initGroupAdministrationActivity(){
 		Intent intent = getIntent();
@@ -62,17 +58,41 @@ public class GroupAdministrationActivity extends ListActivity {
         		break;
         	case MODE_EDIT:
         		setContentView(R.layout.activity_groupadministration_edit);
+        		EditText et = (EditText) findViewById(R.id.groupadministration_et_title); 
+        		
+        		et.setText(Group.getList().get(groupID).getTitle());
+        		
         		break;
         }
 	}
 
 	//TODO Hier Schnittstelle zu Kontaktverwaltung implementieren! noch �brig: aktuelle serverid ermitteln
 	private void getContact() {
-		User user;
-		user = new User("safran.quader@dev.animus-im.org", "Safran Quader");
 		
+		if(mUserList == null){
+		User user;
 		mUserList = new ArrayList<User>();
+		
+		user = new User("svenja.clemens@dev.animus-im.org", "Svenja Clemens");
 		mUserList.add(user);
+		
+		user = new User("frederick.bettray@dev.animus-im.org", "Frederick Bettray");
+		mUserList.add(user);
+		
+		user = new User("safran.quader@dev.animus-im.org", "Safran Quader");
+		mUserList.add(user);
+		
+		user = new User("victurus@dev.animus-im.org", "Karsten Klaus");
+		mUserList.add(user);
+		
+		user = new User("cschluet@dev.animus-im.org", "Cristoph Schlüter");
+		mUserList.add(user);
+		
+		user = new User("stefan.wegehoff@dev.animus-im.org", "Stefan Wegehoff");
+		mUserList.add(user);
+		} else{
+			mUserList = Group.getList().get(groupID).getMember();
+		}
 		
 //		ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
 //		Vector<String> jidsUsernames = cdbh.getJIDsUsernames(serverID);
@@ -94,7 +114,30 @@ public class GroupAdministrationActivity extends ListActivity {
 			EditText tv = (EditText) root.findViewById(R.id.txtName);
 			String groupTitle = tv.getText().toString();
 		
-			Group group = new Group(groupTitle, mAdapter.getUserSelection());
+			Group group = new Group(groupTitle, mAdapter.getUserList());
+			
+			finish();
+		}
+	}
+	
+	public void deleteButtonOnClick(View v){
+		switch(v.getId()){
+		case R.id.groupadministration_bt_delete:
+			Group.getList().remove(groupID);
+			
+			Intent intent = new Intent(this, GroupManagementActivity.class);
+			startActivity(intent);
+		}
+	}
+	
+	public void changeButtonOnClick(View v){
+		switch(v.getId()){
+		case R.id.groupadministration_bt_change:
+			//Titel
+			String title = ((EditText) findViewById(R.id.groupadministration_et_title)).getText().toString();
+			Group.getList().get(groupID).setTitle(title);
+			
+			//TODO Gruppenmitglieder
 			
 			finish();
 		}

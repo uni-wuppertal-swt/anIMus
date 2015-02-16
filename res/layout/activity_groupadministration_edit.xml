@@ -4,31 +4,41 @@
     android:layout_height="match_parent" >
     
     <EditText 
-        android:id="@+id/txtName"
+        android:id="@+id/groupadministration_et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text" />
+        android:inputType="text"
+        android:layout_alignParentTop="true" />
     
-    <Button 
-        android:id="@+id/groupadministration_bt_add"
-        android:layout_width="fill_parent"
+    <LinearLayout 
+        android:id="@+id/groupadministration_ll_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Gruppe hinzufügen"
-        android:onClick="safeButtonOnClick"
-        android:layout_alignParentBottom="true" />
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        
+		<Button 
+        	android:id="@+id/groupadministration_bt_delete"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="Gruppe löschen"
+        	android:onClick="deleteButtonOnClick" 
+        	android:layout_weight="1" />
     
-    <Button 
-        android:id="@+id/groupadministration_bt_delete"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Gruppe löschen"
-        android:onClick="deleteButtonOnClick"
-        android:layout_alignParentBottom="true" />    
+		<Button 
+        	android:id="@+id/groupadministration_bt_change"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:text="Änderungen speichern"
+        	android:onClick="changeButtonOnClick" 
+        	android:layout_weight="1" />        
+    </LinearLayout> 
     
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtName" />
+        android:layout_below="@+id/groupadministration_et_title"
+        android:layout_above="@+id/groupadministration_ll_button" />
     
 </RelativeLayout>

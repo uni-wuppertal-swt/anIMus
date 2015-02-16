@@ -3,10 +3,12 @@ package org.watzlawek.models;
 public class User {
 	private String mJid;
 	private String mNickname;
+	private boolean mSelected;
 	
 	public User(String jid, String nickname){
 		setJid(jid);
 		setNickname(nickname);
+		setSelected(false);
 	}
 
 	public String getJid() {
@@ -23,5 +25,13 @@ public class User {
 
 	public void setNickname(String nickname) {
 		mNickname = nickname;
+	}
+
+	public boolean isSelected() {
+		return mSelected;
+	}
+
+	public void setSelected(boolean selected) {
+		mSelected = selected;
 	}
 }
