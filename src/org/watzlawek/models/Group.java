@@ -25,6 +25,7 @@ public class Group {
 	public Group(String title, ArrayList<User> member){
 		mTitle = title;
 		mMember = member;
+		messagelog = new MessageLog();
 		
 		if(sList == null){
 			sList = new ArrayList<Group>();
