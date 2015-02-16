@@ -28,7 +28,7 @@ public class ContactCreateActivity extends Activity {
 	
 	private Button btCancelCreate;
 	private Button btSaveCreate;
-	
+	 
 	private EditText etNameCreate;
 	private EditText etJIDCreate;
 	private EditText etNoteCreate;
