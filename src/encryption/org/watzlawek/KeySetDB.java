@@ -1,6 +1,7 @@
 package encryption.org.watzlawek;
 
 import java.util.*;
+
 import net.sqlcipher.database.SQLiteException;
 import org.watzlawek.*;
 import android.content.ContentValues;
@@ -159,8 +160,43 @@ private int id_JID;
 		return res;
 	}
 	
-	void setKey(Vector<SaltedAndPepperedKey> keys){
+	void setKey(Vector<SaltedAndPepperedKey> keys, boolean received){
+		SQLiteDatabase db = this.getWritableDatabase();		
+		String createDB = "";
+		int allreadySend = (received ? 1 : 0);
+	      Iterator<SaltedAndPepperedKey> iter = keys.iterator();
+
+	      SaltedAndPepperedKey key = null;
+	      
+	        while (iter.hasNext()) {
+	        	key=iter.next();
+	        	
+	    		createDB = "INSERT INTO " +DB_TABLE_NAME1 +"(" +
+	    				DB_COLUMN_HASH + "," +
+	    				DB_COLUMN_JIDGROUP + "," +
+	    				DB_COLUMN_COREID + "," +
+	    				DB_COLUMN_ALLREADYSEND + "," +
+	    				DB_COLUMN_KEYDATATYPE + "," +
+	    				DB_COLUMN_ALGORITHM + "," +
+	    				DB_COLUMN_KEYLENGTH + "," +
+	    				DB_COLUMN_SALTEDKEY + 
+	    				") VALUES ('" + Encryption.byteToHex( Encryption.hashByte(key.getSaltedEncoded())) +
+	    				"', " + id_JID + 
+	    				",'" + key.getPepper() + 
+	    				"'," + allreadySend + 
+	    				", '" + key.getFormat() + 
+	    				", '" + key.getAlgorithm() + 
+	    				"', " + key.getKeyLength() + 
+	    				", '" + Encryption.byteToHex(key.getSaltedEncoded()) +
+	    				"');";
+	    		
+
+	    		db.execSQL(createDB);	        	
+	        	iter.remove();
+	            
+	        }
 		
+
 	}
 	
 	SaltedAndPepperedKey getKey(String core){

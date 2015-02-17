@@ -2,7 +2,15 @@ package encryption.org.watzlawek;
 
 import org.jivesoftware.smack.packet.Message;
 import android.content.Context;
+import android.os.Build.VERSION;
+import android.util.Log;
+
+import java.security.SecureRandom;
 import java.util.Vector;
+import java.util.Random;
+
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
 
 public class AESEncryptionCore extends NullEncryption_Core implements Secure_Core  {
 
@@ -19,7 +27,38 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 	}
 
 	
-	private SaltedAndPepperedKey createKey(){return null;} 
+	private SaltedAndPepperedKey createKey(String seed){
+		
+		byte[] justSalt = new byte[(this.encryption.config.getSaltLength() / 8)];
+		new Random().nextBytes(justSalt);
+
+		KeyGenerator keygenerator = null;
+		
+		try{
+
+		keygenerator = KeyGenerator.getInstance("AES");
+		
+		SecureRandom securerandom = null;
+		// Jelly Bean workaround
+		if (VERSION.SDK_INT >= 16) {
+			securerandom = SecureRandom.getInstance("SHA1PRNG", "Crypto");
+		}
+		else {
+			securerandom = SecureRandom.getInstance("SHA1PRNG");
+		}
+		
+		securerandom.setSeed(seed.getBytes());
+		keygenerator.init(this.encryption.config.getKeyLength(), securerandom);
+
+		
+	} catch (Exception e) {
+		Log.v("Encryption", e.getMessage());
+	}
+
+		return new SaltedAndPepperedKey(keygenerator.generateKey(),justSalt,this.getid());
+		} 
+	
+	
 	
 	public void init(Context con, Vector<JID> jid, Encryption encryption) {
 		super.init(con,jid,encryption);
@@ -30,8 +69,9 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 			
 			
 			
-			//Vector<SaltedAndPepperedKey> keys = new Vector<SaltedAndPepperedKey>();
-			//keys.add(new SaltedAndPepperedKey (byte[] saltedKey, int keylength, String algorithm, String format, String pepper)
+			Vector<SaltedAndPepperedKey> keys = new Vector<SaltedAndPepperedKey>();
+			keys.add(createKey("seed"));
+			encryption.storeNewKeys(keys);
 			
 		}
 		

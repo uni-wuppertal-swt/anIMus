@@ -47,7 +47,7 @@ public class Encryption {
 	private Context context;
 	private boolean encryption_on = false;
 	private KeySetDB keyset = null;
-	private EncryptionEngineConfig config = null;
+	final EncryptionEngineConfig config;
 	
 	
 	/**
@@ -241,9 +241,14 @@ public class Encryption {
 		return keyset.getManyOfKeys(core);
 	}
 	
-	void storeKeys( Vector<SaltedAndPepperedKey> keys ){
-		keyset.setKey(keys);
+	void storeNewKeys( Vector<SaltedAndPepperedKey> keys ){
+		keyset.setKey(keys, false);
 	}
+
+	void storeReceivedKeys( Vector<SaltedAndPepperedKey> keys ){
+		keyset.setKey(keys, true);
+	}
+	
 	
 	public void setMemberList(Vector<String> mMemberList){
 

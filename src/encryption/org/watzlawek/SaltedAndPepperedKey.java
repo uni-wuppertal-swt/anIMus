@@ -18,6 +18,21 @@ public class SaltedAndPepperedKey implements Key {
 		this.keylength = keylength;
 	}
 
+	SaltedAndPepperedKey (Key key, byte[] moreSalt, String morePepper){
+		this.algorithm = key.getAlgorithm();
+		this.format = key.getFormat();
+		this.pepper = morePepper;
+		this.saltedKey = new byte[key.getEncoded().length + moreSalt.length];
+		this.keylength = key.getEncoded().length;
+		
+		byte[] b = key.getEncoded();
+		
+		for(int i = 0;i < this.saltedKey.length ;i++)
+			if(i < b.length)this.saltedKey[i] = b[i];
+			else this.saltedKey[i] = moreSalt[i];
+	}
+	
+	
 	/**
 	 * 
 	 * @see java.security.Key#getEncoded()
