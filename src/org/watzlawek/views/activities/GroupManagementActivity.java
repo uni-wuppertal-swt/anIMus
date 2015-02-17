@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.watzlawek.R;
 import org.watzlawek.models.Group;
-import org.watzlawek.views.adapters.GroupManagerAdapter;
+import org.watzlawek.views.adapters.GroupManagementAdapter;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,32 +14,41 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+/**
+ * Zeigt alle verfügbaren Gruppengespräche an.
+ * 
+ * @author Safran Quader
+ * @version 2015-02-17
+ */
+
 public class GroupManagementActivity extends Activity{
 	
 	private ArrayList<Group> mItemList;
-	 
-	private GroupManagerAdapter mAdapter;
+	private GroupManagementAdapter mAdapter;
 	private ListView mListView;
 	
+	
 	/**
-	 * Initialize the activity at first start or resume
-	 */
+	 * Start der Activity.
+	 */	
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_groupmanagement);
         
         getData();
-        mAdapter = new GroupManagerAdapter(this, mItemList);
+        mAdapter = new GroupManagementAdapter(this, mItemList);
         mListView = (ListView) findViewById(R.id.groupmanagement_lv_chatlist);
         
         mListView.setAdapter(mAdapter);
 	}
 	
+	/**
+	 * Restart der Activity.
+	 */
 	@Override
 	protected void onRestart() {
 	    super.onRestart();  
-	    
 	    mAdapter.notifyDataSetChanged();
 	}
 	
@@ -76,6 +85,9 @@ public class GroupManagementActivity extends Activity{
 	    }
 	}
 	
+	/**
+	 * Ermittelt Daten für mItemList.
+	 */
 	public void getData(){
 		mItemList = Group.getList();
 	}

@@ -15,13 +15,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class GroupManagerAdapter extends BaseAdapter{
+public class GroupManagementAdapter extends BaseAdapter{
 
 	private Context mContext;
 	private LayoutInflater mInflater;
 	private ArrayList<Group> mItemList;
 	
-	public GroupManagerAdapter(Context context, ArrayList<Group> itemList){
+	public GroupManagementAdapter(Context context, ArrayList<Group> itemList){
 		setContext(context);
 		setItemList(itemList);
 		

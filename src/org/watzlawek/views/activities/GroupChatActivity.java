@@ -1,28 +1,36 @@
 package org.watzlawek.views.activities;
 
-import org.watzlawek.BubbleChatListAdapter;
 import org.watzlawek.IMApp;
-import org.watzlawek.IMChat;
-import org.watzlawek.IMChatMessageEvent;
-import org.watzlawek.IMChatMessageListener;
 import org.watzlawek.MessageItem;
 import org.watzlawek.R;
 import org.watzlawek.models.Group;
 import org.watzlawek.views.adapters.GroupChatAdapter;
 
 import android.app.Activity;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
+
 import android.widget.ListView;
+
+import android.widget.Button;
+
 import android.widget.TextView;
 
+/**
+ * Zeigt den Gesprächsverlauf eines Gruppenchats an und ermölicht es Nachrichten an eine Gruppe zu versenden.
+ * 
+ * @author Karsten Klaus
+ * 
+ * @version 2015-02-16
+ *
+ */
+
 public class GroupChatActivity extends Activity {
+	
 	/**
 	 * Handler object which is called by IMChat when a new message arrives.
 	 * It is used to call the method updateMessages() which will show the new message inside the respective EditText object.
@@ -45,7 +53,9 @@ public class GroupChatActivity extends Activity {
 	private GroupChatAdapter GAdapter;
 	
 	
-	
+	/**
+	 * 
+	 */
 	public void updateMessages() {				
 //		if (messageitem_same != currentGroupChat.getMessagelog().getLastMessageItem() ) 
 //		{
@@ -72,7 +82,7 @@ public class GroupChatActivity extends Activity {
 	
 
 
-/**                                  
+	/**                                  
 	 * On resume re-set the MessageListener and gather new arrived messages.
 	 */
 	@Override
@@ -94,6 +104,7 @@ public class GroupChatActivity extends Activity {
         
 	}
 	
+	
 	/**
 	 * Initialize the activity at first start or resume
 	 */
@@ -106,26 +117,49 @@ public class GroupChatActivity extends Activity {
        
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private void init(){
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
+        
+        Button bt = (Button) findViewById(R.id.groupchat_bt_edit);
+        bt.setTag(id);
 	}
 	
+	/**
+	 * 
+	 */
 	private void setTitle(){
 		TextView tv = (TextView) findViewById(R.id.groupchat_tv_title);
         tv.setText(Group.getList().get(id).getTitle());
 	}
 	
+	/**
+	 * 
+	 * @param v
+	 */
 	public void editButtonOnClick(View v){
+		int groupID = (Integer) v.getTag();
+
 		switch(v.getId()){
 		case R.id.groupchat_bt_edit:
-			Log.d("", "editButtonOnClick()");
+			Intent intent = new Intent(this, GroupAdministrationActivity.class);
+			intent.putExtra(GroupAdministrationActivity.MODE, GroupAdministrationActivity.MODE_EDIT);
+			intent.putExtra(GroupAdministrationActivity.GROUP_ID, groupID);
+			startActivity(intent);
 			break;
 		default:
 			break;
 		}
 	}
 	
+	/**
+	 * 
+	 * @param v
+	 */
 	public void sendButtonOnClick(View v){
 		switch(v.getId()){
 		case R.id.groupchat_bt_send:
