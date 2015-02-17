@@ -58,7 +58,7 @@ public class ContactCreateActivity extends Activity {
         tvNoteCreate = (TextView) findViewById(R.id.tvNoteCreate);
         tvZaehlen = (TextView)findViewById(R.id.tvZaehlen);
          
-       // tvNoteCreate.addTextChangedListener(teWatcher);
+        etNoteCreate.addTextChangedListener(teWatcher);
         
         btCancelCreate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -88,19 +88,21 @@ public class ContactCreateActivity extends Activity {
         });
         
 	}
-	/*
+	
     private final TextWatcher teWatcher = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
            //This sets a textview to the current length
-           tvZaehlen.setText(String.valueOf(150 - s.length()));
+           tvZaehlen.setText(String.valueOf(s.length()) +"/140");
+           // if(String.valueOf(s.length()) >= 140)
+           // eingabe stoppen
         }
 
         public void afterTextChanged(Editable s) {
         }
         
 };
-*/
+
 }

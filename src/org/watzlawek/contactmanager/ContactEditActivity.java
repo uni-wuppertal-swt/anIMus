@@ -7,6 +7,8 @@ import org.watzlawek.XMPPServer;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -102,4 +104,21 @@ public class ContactEditActivity extends Activity {
             }
         });
 	}
+	/*
+	private final TextWatcher teWatcher = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+           //This sets a textview to the current length
+           tvZaehlen2.setText(String.valueOf(s.length()) +"/140");
+           // if(String.valueOf(s.length()) >= 140)
+           // eingabe stoppen
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+        
+};*/
+	
 }
