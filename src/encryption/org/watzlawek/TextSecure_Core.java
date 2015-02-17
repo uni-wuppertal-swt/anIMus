@@ -65,11 +65,13 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 
 	}
 */
-	public void setCipherMessage(Message message) {
+	public void setCipherMessage(Message message, Header header) {
 		Message plain = new Message();
 		String iv	= "Deine Mudda_3456";
 		String key	= "Deine Mudda_3456";
 		String text	= message.getBody();
+		
+		
 		AES256Cipher DecryptObject = new AES256Cipher();
 		
 		try {
@@ -107,7 +109,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 	}
 */
 	
-	public void setTextMessage(Message message) {
+	public void setTextMessage(Message message, Header header) {
 		// TODO Auto-generated method stub
 		
 		Message cipher = new Message();
@@ -144,9 +146,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			cipher.setBody(e.getMessage());
 		}
 		
-		this.setCipherMessage(cipher);
-		
-		this.message_encrypt = this.getTextMessage();
+		this.message_encrypt = cipher;
 		
 		//this.message_encrypt = message;
 

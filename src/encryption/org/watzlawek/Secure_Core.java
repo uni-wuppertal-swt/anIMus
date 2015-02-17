@@ -64,7 +64,7 @@ public interface Secure_Core {
 	 * set ciphermessage for decryption
 	 * @param message
 	 */
-	void setCipherMessage(Message message);
+	void setCipherMessage(Message message, Header header);
 
 	/**
 	 * get ciphermessage from encryption
@@ -76,7 +76,7 @@ public interface Secure_Core {
 	 * set readable textmessage
 	 * @param message
 	 */
-	void setTextMessage(Message message);
+	void setTextMessage(Message message, Header header);
 
 	/**
 	 * get readable textmassage

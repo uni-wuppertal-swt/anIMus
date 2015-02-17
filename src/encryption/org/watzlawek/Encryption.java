@@ -278,14 +278,28 @@ public class Encryption {
 		            
 		        }
 		        
-
+		        boolean help = encryption_on;
+		        encryption_on = true;
+		        
+		        String text = "Das ist ein Testtext!";
+		        String cipher = "fehlschlag";
+		        
+		        try{
+		        cipher = this.encryptMessage(text);
+		        }
+		        catch(EncryptionFaultException e){
+		        	Toast.makeText(context.getApplicationContext(), "Exception geworfen" , Toast.LENGTH_LONG).show();
+		        }
+		        
+		        Toast.makeText(context.getApplicationContext(), cipher + " " +  core1.getid() , Toast.LENGTH_LONG).show();
+		        
 	        //Toast.makeText(context.getApplicationContext(), "anzahl Nr 2:" + cores.size() , Toast.LENGTH_LONG).show();
 	        //core1 = cores.elementAt(1);
 		        //core2 = cores.elementAt(0);
 		        
 		        //Toast.makeText(context.getApplicationContext(), "Kern 1:" + core1.getid() , Toast.LENGTH_LONG).show();
 		        //Toast.makeText(context.getApplicationContext(), "Kern 2:" + core2.getid() , Toast.LENGTH_LONG).show();
- 
+		        encryption_on = help; 
 	}
 	
 	/**
@@ -338,16 +352,26 @@ public class Encryption {
 		PNs = 0;
 		ratchet_flag = false;
 	}*/
+
+	public String decryptMessage(String cipher) throws EncryptionFaultException {
+		Message mes = new Message();
+		mes.setBody(cipher);
+		return this.decryptMessage(mes).getBody();
+		
+	}
+	
 	
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
 		
 		if(encryption_on){
-			core1.setCipherMessage(cipher);
+			Header header = new Header(this.keyset, cipher);
+			core1.setCipherMessage(cipher, header);
 			return core1.getTextMessage();
 		}
 		else
 		{
-			core2.setCipherMessage(cipher);
+			Header header = new Header(this.keyset);
+			core2.setCipherMessage(cipher, header);
 			return core2.getTextMessage();
 
 		}
@@ -387,20 +411,33 @@ public class Encryption {
 		
 	}
 
+	public String encryptMessage(String plain) throws EncryptionFaultException {
+		Message mes = new Message();
+		mes.setBody(plain);
+		return this.encryptMessage(mes).getBody();
+		
+	}
+	
+	
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
 		//Toast.makeText(context.getApplicationContext(), "Toast test" , Toast.LENGTH_LONG).show();
 		
 
 		if(encryption_on){
-			core1.setTextMessage(plain);
+			
+			Header header = new Header(this.keyset);
+			
+			core1.setTextMessage(plain, header);
 			return core1.getCipherMessage();
 		}
 		else
 		{
-			core2.setTextMessage(plain);
+			Header header = new Header(this.keyset);
+			core2.setTextMessage(plain, header);
 			return core2.getCipherMessage();
 
 		}	
+		
 		
 		
 		/*
