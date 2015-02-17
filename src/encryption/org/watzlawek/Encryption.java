@@ -241,6 +241,10 @@ public class Encryption {
 		return keyset.getManyOfKeys(core);
 	}
 	
+	void storeKeys( Vector<SaltedAndPepperedKey> keys ){
+		keyset.setKey(keys);
+	}
+	
 	public void setMemberList(Vector<String> mMemberList){
 
 		
@@ -292,7 +296,7 @@ public class Encryption {
 		
 		     Iterator<Secure_Core> iter = cores.iterator();
 		       while (iter.hasNext()) {
-		        	iter.next().init(this.context, this.mMemberList);
+		        	iter.next().init(this.context, this.mMemberList, this);
 		            
 		        }			
 			
@@ -365,56 +369,7 @@ public class Encryption {
 		        encryption_on = help; 
 	}
 	
-	/**
-	 * On-/Offline Schluesseltausch
-	 */
-	private String PreKeyWisperMessage() {
-		return "";
-	}
-	
-	private String PreKey() {
-		return "";
-	}
-	
-	private String KeyExchangeMessage() {
-		return "";
-	}
-	/*
-	private void KeyAgreement(){*/
-		/**Alice*/
-		/*RK = nullptr;
-		HKs = nullptr;
-		HKr = nullptr;
-		NHKs = nullptr;
-		NHKr = nullptr;
-		CKs = nullptr;
-		//CKr;
-		DHIs = A;
-		DHIr = B;
-		DHRs = nullptr;
-		DHRr = B1;
-		Ns = 0;
-		Nr = 0;
-		PNs = 0;
-		ratchet_flag = true;
-		*/
-		/**Bob*/
-		/*RK = nullptr;
-		HKr = nullptr;
-		HKs = nullptr;
-		NHKr = nullptr;
-		NHKs = nullptr;
-		CKr = nullptr;
-		//CKs;
-		DHIs = B;
-		DHIr = A;
-		DHRs = B1;
-		DHRr = nullptr;
-		Ns = 0;
-		Nr = 0;
-		PNs = 0;
-		ratchet_flag = false;
-	}*/
+
 
 	public String decryptMessage(String cipher) throws EncryptionFaultException {
 		Message mes = new Message();
@@ -438,40 +393,6 @@ public class Encryption {
 			return core2.getTextMessage();
 
 		}
-		/*
-		Message plain = null;
-		String iv	= "";
-		String key	= "";
-		String text	= cipher.getBody();
-		AES256Cipher DecryptObject = null;
-		
-		try {
-			plain.setBody(DecryptObject.decrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidAlgorithmParameterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		*/
-		//return plain;
-		
 	}
 
 	public String encryptMessage(String plain) throws EncryptionFaultException {

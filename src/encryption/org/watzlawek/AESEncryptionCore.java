@@ -6,8 +6,7 @@ import java.util.Vector;
 
 public class AESEncryptionCore extends NullEncryption_Core implements Secure_Core  {
 
-	private Context con;
-	private Vector<JID> jid;
+
 	
 	public AESEncryptionCore() {
 		// TODO Auto-generated constructor stub
@@ -20,10 +19,23 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 	}
 
 	
-	public void init(Context con, Vector<JID> jid) {
+	private SaltedAndPepperedKey createKey(){return null;} 
+	
+	public void init(Context con, Vector<JID> jid, Encryption encryption) {
+		super.init(con,jid,encryption);
 		
-		this.con = con;
-		this.jid = jid;
+	
+		int many = encryption.getManyOfKeys(this.getid());
+		if(many < 1 ){
+			
+			
+			
+			//Vector<SaltedAndPepperedKey> keys = new Vector<SaltedAndPepperedKey>();
+			//keys.add(new SaltedAndPepperedKey (byte[] saltedKey, int keylength, String algorithm, String format, String pepper)
+			
+		}
+		
+		
 
 		
 	}

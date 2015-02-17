@@ -12,14 +12,18 @@ public class NullEncryption_Core implements Secure_Core {
 	
 	protected Message message_encrypt;
 	protected Message message_decrypt;
-	
+	protected Context con;
+	protected Vector<JID> jid;
+	protected Encryption encryption;
 	
 	public NullEncryption_Core() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void init(Context con, Vector<JID> jid) {
-		// TODO Auto-generated method stub
+	public void init(Context con, Vector<JID> jid, Encryption encryption) {
+		this.con = con;
+		this.jid = jid;
+		this.encryption = encryption;
 
 	}
 

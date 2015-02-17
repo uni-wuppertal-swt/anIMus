@@ -23,7 +23,7 @@ public interface Secure_Core {
 	 * @param jid : jids to interact with
 	 */
 	
-	void init(Context con, Vector<JID> jid);
+	void init(Context con, Vector<JID> jid, Encryption encryption);
 	
 	/**
 	 * chance seed for encryption
