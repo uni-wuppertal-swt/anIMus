@@ -42,6 +42,8 @@ public class ContactEditActivity extends Activity {
 	private TextView tvJIDUpdate2;
 	private TextView tvNoteUpdate;
 	
+	private TextView tvZaehlen2;
+	
 	
 	
 	@Override
@@ -61,12 +63,12 @@ public class ContactEditActivity extends Activity {
         tvJIDUpdate = (TextView) findViewById(R.id.tvJIDUpdate);
         tvJIDUpdate2 = (TextView) findViewById(R.id.tvJIDUpdate2);
         tvNoteUpdate = (TextView) findViewById(R.id.tvNoteUpdate);
-             
-        //if (intentPar != null)
+        tvZaehlen2 = (TextView)findViewById(R.id.tvZaehlen2);
+        
+        etNoteUpdate.addTextChangedListener(teWatcher2);
+   
         jid = intentPar.getString("jid");
         tvJIDUpdate2.setText(" " + jid);
-        //else
-        //	tvJIDUpdate2.setText("Bullshit");
          
         etNameUpdate.setText(intentPar.getString("name"));
         etNoteUpdate.setText(intentPar.getString("note"));
@@ -104,21 +106,17 @@ public class ContactEditActivity extends Activity {
             }
         });
 	}
-	/*
-	private final TextWatcher teWatcher = new TextWatcher() {
+	
+	private final TextWatcher teWatcher2 = new TextWatcher() {
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
         }
-
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-           //This sets a textview to the current length
            tvZaehlen2.setText(String.valueOf(s.length()) +"/140");
-           // if(String.valueOf(s.length()) >= 140)
-           // eingabe stoppen
         }
 
         public void afterTextChanged(Editable s) {
         }
         
-};*/
+	};
 	
 }

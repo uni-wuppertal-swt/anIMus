@@ -54,20 +54,32 @@
         android:id="@+id/view7"
         android:layout_width="wrap_content"
         android:layout_height="40dp" />
-    
+   	
+  <LinearLayout>
     <TextView
         android:id="@+id/tvNoteUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tvNoteContact"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+ 
+    <TextView
+        android:id="@+id/tvZaehlen2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
+  </LinearLayout>
+  
     <EditText
         android:id="@+id/etNoteUpdate"
         android:layout_width="wrap_content"
         android:layout_height="166dp"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:maxLength="@integer/NoteEditFilter" />
 
     <View 
         android:id="@+id/view8"

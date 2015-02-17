@@ -67,7 +67,7 @@
         android:gravity="right"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
-     
+      
      </LinearLayout>
     
     <EditText

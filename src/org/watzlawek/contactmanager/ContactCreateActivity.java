@@ -94,10 +94,7 @@ public class ContactCreateActivity extends Activity {
         }
 
         public void onTextChanged(CharSequence s, int start, int before, int count) {
-           //This sets a textview to the current length
            tvZaehlen.setText(String.valueOf(s.length()) +"/140");
-           // if(String.valueOf(s.length()) >= 140)
-           // eingabe stoppen
         }
 
         public void afterTextChanged(Editable s) {
