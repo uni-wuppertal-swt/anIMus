@@ -26,9 +26,7 @@ private static final int DATABASE_VERSION = 1;
 */
 private static final String DB_TABLE_NAME1 = "tblkeyset";
 private static final String DB_TABLE_NAME2 = "tbljidset";
-/**
-* Primary key column of the table "contacts".
-*/
+
 private static final String DB_COLUMN_HASH = "hash";
 private static final String DB_COLUMN_JIDGROUP = "id";
 private static final String DB_COLUMN_COREID = "coreid";
@@ -42,35 +40,14 @@ private static final String DB_COLUMN_ID = "_id";
 private static final String DB_COLUMN_JIDLIST = "jidlist";
 
 
-/**
-* Column of the table "contacts".
-* It includes the usernames.
-*/
-private static final String DB_COLUMN_USERNAME = "username";
-/**
-* Column of the table "contacts".
-* It includes the notes.
-*/
-private static final String DB_COLUMN_NOTE = "note";
-/**
-* Column of the table "contacts".
-* It includes the serverID.
-*/
-private static final String DB_COLUMN_SERVERID = "serverid";
-/**
-* Column of the table "contacts".
-* Stores, if the user is visible in the contactlist.
-*/
-private static final String DB_COLUMN_VISIBLE = "visible";
-
 private int id_JID;
 
 	
 	public KeySetDB(Context context, String jidIdent ) throws EncryptionFaultException, SQLiteException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		Toast.makeText(context.getApplicationContext(), jidIdent , Toast.LENGTH_LONG).show();
-		//SQLiteDatabase db = this.getWritableDatabase();
-/*
+		SQLiteDatabase db = this.getWritableDatabase();
+
 		if (db == null) throw new EncryptionFaultException();
 		
 		
@@ -98,8 +75,8 @@ private int id_JID;
 
 		}	
 			
-			*/
-			//db.close();
+			
+			db.close();
 			
 	}
 
@@ -122,21 +99,21 @@ private int id_JID;
 	* Called on creating an object.
 	*/
 	public void onCreate(SQLiteDatabase db) {
-	/*
+		
 		String createDB1 = "CREATE TABLE " +DB_TABLE_NAME1 +"(" +
-			DB_COLUMN_HASH + " CHAR(40)" +
-			DB_COLUMN_JIDGROUP + " INT" +
-			DB_COLUMN_COREID + " VARCHAR(10)" +
-			DB_COLUMN_ALLREADYSEND + " SMALLINT" +
-			DB_COLUMN_KEYDATATYPE + " VARCHAR(5)" +
-			DB_COLUMN_ALGORITHM + " VARCHAR(10)" +
-			DB_COLUMN_KEYLENGTH + " SMALLINT" +
-			DB_COLUMN_SALTEDKEY + " BLOB NULL" +
+			DB_COLUMN_HASH + " TEXT," +
+			DB_COLUMN_JIDGROUP + " INT," +
+			DB_COLUMN_COREID + " VARCHAR(10)," +
+			DB_COLUMN_ALLREADYSEND + " SMALLINT," +
+			DB_COLUMN_KEYDATATYPE + " VARCHAR(5)," +
+			DB_COLUMN_ALGORITHM + " VARCHAR(10)," +
+			DB_COLUMN_KEYLENGTH + " SMALLINT," +
+			DB_COLUMN_SALTEDKEY + " TEXT NULL," +
 			", PRIMARY KEY (" + DB_COLUMN_HASH + "));";
 	db.execSQL(createDB1);
-	*/
+
 	String createDB2 = "CREATE TABLE " +DB_TABLE_NAME2 +"(" +
-			DB_COLUMN_ID + " CHAR(40)" +
+			DB_COLUMN_ID + " VARCHAR(40)," +
 			DB_COLUMN_JIDLIST + " VARCHAR(160)" +
 			", PRIMARY KEY (" + DB_COLUMN_ID + "));";
 	db.execSQL(createDB2);
@@ -152,8 +129,8 @@ private int id_JID;
 	 */
 	public void onUpgrade(android.database.sqlite.SQLiteDatabase db, int oldVersion, int newVersion) {
 		String command;
-		//command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME1 +";";
-		//db.execSQL(command);
+		command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME1 +";";
+		db.execSQL(command);
 		command = "DROP TABLE IF EXISTS " + DB_TABLE_NAME2 +";";
 		db.execSQL(command);
 		onCreate(db);
@@ -186,9 +163,22 @@ private int id_JID;
 		
 	}
 	
+	SaltedAndPepperedKey getKey(String core){
+		byte[] key = new byte[22];
+		
+		
+		
+		for(int i = 0; i < key.length;i++)
+		{
+			key[i] = 0x34;
+		}
+		
+		return new SaltedAndPepperedKey(key, 20, "AES", "RAW", core);
+		
+	}
 	
 	
-	SaltedAndPepperedKey getKey(String hash){
+	SaltedAndPepperedKey getKey(byte[] hash){
 		
 		byte[] key = new byte[22];
 		

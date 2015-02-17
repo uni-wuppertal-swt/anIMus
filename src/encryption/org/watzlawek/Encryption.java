@@ -47,6 +47,7 @@ public class Encryption {
 	private Context context;
 	private boolean encryption_on = false;
 	private KeySetDB keyset = null;
+	private EncryptionEngineConfig config = null;
 	
 	
 	/**
@@ -61,13 +62,28 @@ public class Encryption {
 
 	}
 
+	public Encryption (Context context, Connection connection){	
+		this(context, connection, new EncryptionEngineConfig(){
+			public int getKeyLength(){return 128; }
+			public int getSaltLength(){return 16;}
+			public String getKeyExchangeCoreID(){return "";}
+			public String getForcedCoreID(){return "";}
+			public int getMinimumKeys(){return 20;}
+			public int getMaximumKeys(){return 40;}
+			public int getRecommendedKeysinOneMessage(){return 2;} 
+			});
+		
+		
+	}
+	
 	/**
 	 * Constructor 
 	 * @param context
 	 * @param connection : gets a smack Connection Interface
 	 */
 	
-	public Encryption (Context context, Connection connection){
+	public Encryption (Context context, Connection connection, EncryptionEngineConfig conf){
+		this.config = conf;
 		cores = new Vector<Secure_Core>();
 		cores.add(new NullEncryption_Core());
 		cores.add(new TextSecure_Core());
@@ -146,6 +162,7 @@ public class Encryption {
 			
 		 
 		   String sha1 = "";
+		   String sha2 = "";
 		   MessageDigest crypt = null;
 		    try
 		    {
@@ -153,6 +170,8 @@ public class Encryption {
 		        crypt.reset();
 		        crypt.update(sha);
 		        sha1 = byteToHex(crypt.digest());
+		        byte[] sha_byte = hexStringToByteArray(sha1);
+		        sha2 = byteToHex(sha_byte);
 		    }
 		    catch(NoSuchAlgorithmException e)
 		    {
@@ -160,13 +179,32 @@ public class Encryption {
 		    }
 		
 		
-		Toast.makeText(context.getApplicationContext(), strbuff.toString(), Toast.LENGTH_LONG).show();
-		Toast.makeText(context.getApplicationContext(), sha1 + " mit " + sha1.length() + " mit " + crypt.digest().length, Toast.LENGTH_LONG).show();
+		//Toast.makeText(context.getApplicationContext(), strbuff.toString(), Toast.LENGTH_LONG).show();
+		//Toast.makeText(context.getApplicationContext(), sha1 + " und " + sha2 + " mit " + sha1.length() + " mit " + crypt.digest().length, Toast.LENGTH_LONG).show();
 		//Toast.makeText(context.getApplicationContext(), "I am your encryption and i have " + cores.size() + " ways to do it!", Toast.LENGTH_LONG).show();
 		// ref in XMPPChat:122
 	}
 	
-	private static String byteToHex(final byte[] hash)
+	public static byte[] hashByte(final byte[] hash)
+	{
+			byte[] result = null;
+		   MessageDigest crypt = null;
+		    try
+		    {
+		        crypt = MessageDigest.getInstance("SHA-1");
+		        crypt.reset();
+		        crypt.update(hash);
+		        result = crypt.digest();
+		    }
+		    catch(NoSuchAlgorithmException e)
+		    {
+		        e.printStackTrace();
+		    }
+
+	    return result;
+	}
+	
+	public static String byteToHex(final byte[] hash)
 	{
 	    Formatter formatter = new Formatter();
 	    for (byte b : hash)
@@ -178,6 +216,15 @@ public class Encryption {
 	    return result;
 	}
 	
+	public static byte[] hexStringToByteArray(String s) {
+	    int len = s.length();
+	    byte[] data = new byte[len / 2];
+	    for (int i = 0; i < len; i += 2) {
+	        data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+	                             + Character.digit(s.charAt(i+1), 16));
+	    }
+	    return data;
+	}
 	
 	public void setEncryption(boolean on){
 		encryption_on = on;
@@ -224,12 +271,12 @@ public class Encryption {
 
 			try{
 				keyset = new KeySetDB(this.context, stbu.toString() );
-				//SQLiteDatabase db = test1.getWritableDatabase();
+				SQLiteDatabase db = keyset.getWritableDatabase();
 
-				//db.close();
-				}
-				catch(EncryptionFaultException e){}
-				catch(SQLiteException e){}
+				db.close();
+			}
+			catch(EncryptionFaultException e){}
+			catch(SQLiteException e){}
 	        
 
 	        
@@ -290,8 +337,15 @@ public class Encryption {
 		        catch(EncryptionFaultException e){
 		        	Toast.makeText(context.getApplicationContext(), "Exception geworfen" , Toast.LENGTH_LONG).show();
 		        }
+
+		        try{
+		        text = this.decryptMessage(cipher);
+		        }
+		        catch(EncryptionFaultException e){
+		        	Toast.makeText(context.getApplicationContext(), "Exception geworfen" , Toast.LENGTH_LONG).show();
+		        }
 		        
-		        Toast.makeText(context.getApplicationContext(), cipher + " " +  core1.getid() , Toast.LENGTH_LONG).show();
+		        Toast.makeText(context.getApplicationContext(), cipher + " " + cipher.substring(0,40) + " " +  core1.getid() + " wird zu " + text , Toast.LENGTH_LONG).show();
 		        
 	        //Toast.makeText(context.getApplicationContext(), "anzahl Nr 2:" + cores.size() , Toast.LENGTH_LONG).show();
 	        //core1 = cores.elementAt(1);
@@ -370,7 +424,7 @@ public class Encryption {
 		}
 		else
 		{
-			Header header = new Header(this.keyset);
+			Header header = new Header();
 			core2.setCipherMessage(cipher, header);
 			return core2.getTextMessage();
 
@@ -425,14 +479,14 @@ public class Encryption {
 
 		if(encryption_on){
 			
-			Header header = new Header(this.keyset);
+			Header header = new Header(this.keyset, core1.getid());
 			
 			core1.setTextMessage(plain, header);
 			return core1.getCipherMessage();
 		}
 		else
 		{
-			Header header = new Header(this.keyset);
+			Header header = new Header();
 			core2.setTextMessage(plain, header);
 			return core2.getCipherMessage();
 

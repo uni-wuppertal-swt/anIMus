@@ -69,13 +69,14 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		Message plain = new Message();
 		String iv	= "Deine Mudda_3456";
 		String key	= "Deine Mudda_3456";
-		String text	= message.getBody();
+		String cipher	= message.getBody();
+		
+		plain.setBody(header.stripHash(cipher));
 		
 		
-		AES256Cipher DecryptObject = new AES256Cipher();
-		
+		/*
 		try {
-			plain.setBody(DecryptObject.decrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
+			plain.setBody(AES256Cipher.decrypt(iv.getBytes(),key.getBytes(),cipher.getBytes()).toString());
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
 			plain.setBody(e.getMessage());
@@ -98,7 +99,9 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			// TODO Auto-generated catch block
 			plain.setBody(e.getMessage());
 		}
-
+*/
+		plain.setBody( header.stripHeader( cipher) );
+		
 		this.message_decrypt = plain;
 	}
 
@@ -116,13 +119,15 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 		String iv	= "Deine Mudda_3456";
 		String key	= "Deine Mudda_3456";
 		String text	= message.getBody();
-		AES256Cipher EncryptObject = new AES256Cipher();
+
 		
 		//cipher.setBody(message.getBody());
 		
-
+		text = header.addHeader(text);
+		cipher.setBody(header.getHash()  + text);
+		/*
 		try {
-			cipher.setBody(EncryptObject.encrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
+			cipher.setBody(header.getHash()  +  AES256Cipher.encrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
 		} catch (InvalidKeyException e) {
 			// TODO Auto-generated catch block
 			cipher.setBody(e.getMessage());
@@ -145,7 +150,7 @@ public class TextSecure_Core extends NullEncryption_Core implements Secure_Core 
 			// TODO Auto-generated catch block
 			cipher.setBody(e.getMessage());
 		}
-		
+		*/
 		this.message_encrypt = cipher;
 		
 		//this.message_encrypt = message;
