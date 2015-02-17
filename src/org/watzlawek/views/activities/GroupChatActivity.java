@@ -80,23 +80,7 @@ public class GroupChatActivity extends Activity {
 	{
 		super.onResume();
 		IMApp app = (IMApp)getApplicationContext();
-		if (app.getServerManager().getConnectedServer() != null && app.haveNetworkConnection()) 
-		{
-	//	currentGroupChat.setMessageListener(new IMChatMessageListener() {
-	//		public void newMessage(IMChatMessageEvent message) {
-	//			updateMessageHandler.post(new Runnable() {
-	//				public void run() {
-	//					updateMessages();
-	//				}
-	//			});
-	//		}
-	//	});
-		updateMessages();
-		/* Removes notification from notification list. */
-//		NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-//		notificationManager.cancel(3133788);
-		}
-		this.onCreate(null);
+	
 	}
 	
 	protected void prepareAdaptersAndMessage()  
@@ -119,21 +103,7 @@ public class GroupChatActivity extends Activity {
         prepareAdaptersAndMessage();
         setContentView(R.layout.activity_groupchat);
         init();
-        setTitle();
-        setContentView(R.layout.chatnewdark);
-        messageitem_same= new MessageItem( "in_message",  "in_timestamp",  "in_username");
-        updateMessageHandler = new Handler();
-        GAdapter.add(messageitem_same);
-        // hier entsteht eine NullPointerException
-    //    currentGroupChat.setMessageListener(new IMChatMessageListener() {
-	//		public void newMessage(IMChatMessageEvent message) {
-	//			updateMessageHandler.post(new Runnable() {
-	//				public void run() {
-	//					updateMessages();
-	//				}
-	//			});
-	//		}
-	//	});
+       
 	}
 	
 	private void init(){
