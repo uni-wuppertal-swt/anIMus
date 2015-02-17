@@ -16,8 +16,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class GroupChatActivity extends Activity {
@@ -26,6 +28,8 @@ public class GroupChatActivity extends Activity {
 	 * It is used to call the method updateMessages() which will show the new message inside the respective EditText object.
 	 */
 	private Handler updateMessageHandler;
+	
+	private ListView listViewChat;
 
 	private int id;
 	/**
@@ -95,16 +99,31 @@ public class GroupChatActivity extends Activity {
 		this.onCreate(null);
 	}
 	
+	protected void prepareAdaptersAndMessage()  
+	{
+		GAdapter = new GroupChatAdapter(getApplicationContext(), R.layout.chatlistitemdark);
+        	this.listViewChat = (ListView) findViewById(R.id.ChatNewlistChatLog);
+        	this.listViewChat.setAdapter(GAdapter);
+        	this.listViewChat.setStackFromBottom(true);
+        	this.listViewChat.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);   
+        	registerForContextMenu(listViewChat);
+        
+	}
+	
 	/**
 	 * Initialize the activity at first start or resume
 	 */
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        prepareAdaptersAndMessage();
         setContentView(R.layout.activity_groupchat);
         init();
         setTitle();
+        setContentView(R.layout.chatnewdark);
+        messageitem_same= new MessageItem( "in_message",  "in_timestamp",  "in_username");
         updateMessageHandler = new Handler();
+        GAdapter.add(messageitem_same);
         // hier entsteht eine NullPointerException
     //    currentGroupChat.setMessageListener(new IMChatMessageListener() {
 	//		public void newMessage(IMChatMessageEvent message) {
