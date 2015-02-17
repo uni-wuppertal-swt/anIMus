@@ -237,6 +237,10 @@ public class Encryption {
 	}
 	
 	
+	int getManyOfKeys(String core){
+		return keyset.getManyOfKeys(core);
+	}
+	
 	public void setMemberList(Vector<String> mMemberList){
 
 		
@@ -286,8 +290,13 @@ public class Encryption {
 		        
 	        //Toast.makeText(context.getApplicationContext(), "anzahl Nr 1:" + cores.size() , Toast.LENGTH_LONG).show();  
 		
-	        
-	      Iterator<Secure_Core> iter = cores.iterator();
+		     Iterator<Secure_Core> iter = cores.iterator();
+		       while (iter.hasNext()) {
+		        	iter.next().init(this.context, this.mMemberList);
+		            
+		        }			
+			
+		    iter = cores.iterator();
 	        while (iter.hasNext()) {
 	        	core1 = iter.next();
 	        		if(this.mMemberList.size() < 2)

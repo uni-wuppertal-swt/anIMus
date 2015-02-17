@@ -88,7 +88,7 @@ private int id_JID;
 				" ORDER BY " + DB_COLUMN_ID + " DESC ;";
 
 		android.database.Cursor queryCursor = db.rawQuery(sqlCommand, null);
-		if(queryCursor.moveToFirst())res = Integer.parseInt(queryCursor.getString(0)); 
+		if(queryCursor.moveToFirst())res = queryCursor.getInt(0); 
 		queryCursor.close();
 		return res + 1;
 	}
@@ -192,8 +192,17 @@ private int id_JID;
 		return new SaltedAndPepperedKey(key, 20, "AES", "RAW", "TextSecureCore");
 	}
 	
-	public int getManyOfKeys(){
-		return 5;
+	public int getManyOfKeys(String core){
+		int res = -1;
+		SQLiteDatabase db = this.getWritableDatabase();
+		String sql = "SELECT count(*) AS total FROM " + DB_TABLE_NAME1 + 
+				" WHERE " + DB_COLUMN_COREID + "=" + core + ";";
+		
+		android.database.Cursor queryCursor = db.rawQuery(sql, null);
+		if(queryCursor.moveToFirst())res = queryCursor.getInt(0); 
+		queryCursor.close();
+		db.close();
+		return res;
 	}
 	
 }
