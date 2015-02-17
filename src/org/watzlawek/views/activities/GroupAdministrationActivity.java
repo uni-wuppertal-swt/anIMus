@@ -14,27 +14,30 @@ import android.view.View;
 import android.widget.EditText;
 
 /**
- * GUI der Gruppenadministration.
+ * Ermöglicht es neue Gruppen zu erstellen und bestehende Gruppen zu bearbeiten.
  * 
  * @author Karsten Klaus
  * @author Safran Quader
  * 
- * @version 2015-02-16
+ * @version 2015-02-17
  */ 
 
 public class GroupAdministrationActivity extends ListActivity {
-	GroupAdministrationAdapter mAdapter; 	
-	ArrayList<User> mUserList;
-	
-	public final static String MODE = "mode";
-	public final static String GROUP_ID = "ID";
 	
 	public final static int MODE_CREATE = 0;
 	public final static int MODE_EDIT = 1;
+	public final static String GROUP_ID = "ID";
+	public final static String MODE = "mode";
 	
-	private int modus;
-	private int groupID;
+	private ArrayList<User> mUserList;
+	private GroupAdministrationAdapter mAdapter; 	
+	private int mModus;
+	private int mGroupID;
 	
+	
+	/**
+	 * Startet die Activity.
+	 */
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -47,12 +50,16 @@ public class GroupAdministrationActivity extends ListActivity {
         setListAdapter(mAdapter);
 	}
 	
+	
+	/**
+	 * Initialisiert die Activity, indem die Memberattribute und der Modus ermittelt werden.
+	 */
 	private void initGroupAdministrationActivity(){
 		Intent intent = getIntent();
-		modus = intent.getIntExtra(GroupAdministrationActivity.MODE, 0);
-		groupID = intent.getIntExtra(GroupAdministrationActivity.GROUP_ID, -1);
+		mModus = intent.getIntExtra(GroupAdministrationActivity.MODE, 0);
+		mGroupID = intent.getIntExtra(GroupAdministrationActivity.GROUP_ID, -1);
 		
-		switch(modus){
+		switch(mModus){
         	case MODE_CREATE:
         		setContentView(R.layout.activity_groupadministration);
         		break;
@@ -60,14 +67,17 @@ public class GroupAdministrationActivity extends ListActivity {
         		setContentView(R.layout.activity_groupadministration_edit);
         		EditText et = (EditText) findViewById(R.id.groupadministration_et_title); 
         		
-        		et.setText(Group.getList().get(groupID).getTitle());
+        		et.setText(Group.getList().get(mGroupID).getTitle());
         		
         		break;
         }
 	}
 
-	//TODO Hier Schnittstelle zu Kontaktverwaltung implementieren! noch �brig: aktuelle serverid ermitteln
+	/**
+	 * Ermittelt die Kontakte des aktuellen Anwenders.
+	 */	
 	private void getContact() {
+		//TODO Hier Schnittstelle zu Kontaktverwaltung implementieren! noch �brig: aktuelle serverid ermitteln
 		
 		if(mUserList == null){
 		User user;
@@ -91,7 +101,7 @@ public class GroupAdministrationActivity extends ListActivity {
 		user = new User("stefan.wegehoff@dev.animus-im.org", "Stefan Wegehoff");
 		mUserList.add(user);
 		} else{
-			mUserList = Group.getList().get(groupID).getMember();
+			mUserList = Group.getList().get(mGroupID).getMember();
 		}
 		
 //		ContactDatabaseHandler cdbh = new ContactDatabaseHandler(context);
@@ -107,38 +117,46 @@ public class GroupAdministrationActivity extends ListActivity {
 		
   	}
 	
+	/**
+	 * OnClick auf den Button R.id.groupadministration_bt_add.
+	 * @param v Button R.id:groupadministration_bt_add
+	 */
 	public void safeButtonOnClick(View v) {
 		switch(v.getId()){
-		case R.id.groupadministration_bt_add:
-			View root = v.getRootView();
-			EditText tv = (EditText) root.findViewById(R.id.txtName);
-			String groupTitle = tv.getText().toString();
-		
-			Group group = new Group(groupTitle, mAdapter.getUserList());
-			
-			finish();
+			case R.id.groupadministration_bt_add:
+				View root = v.getRootView();
+				EditText tv = (EditText) root.findViewById(R.id.txtName);
+				String groupTitle = tv.getText().toString();
+				Group group = new Group(groupTitle, mAdapter.getUserList());
+				finish();
 		}
 	}
 	
+	
+	/**
+	 * OnClick auf den Button R.id.groupadministration_bt_delete.
+	 * @param v Button R.id.groupadministration_bt_delete
+	 */
 	public void deleteButtonOnClick(View v){
 		switch(v.getId()){
-		case R.id.groupadministration_bt_delete:
-			Group.getList().remove(groupID);
-			
-			Intent intent = new Intent(this, GroupManagementActivity.class);
-			startActivity(intent);
+			case R.id.groupadministration_bt_delete:
+				Group.getList().remove(mGroupID);
+				Intent intent = new Intent(this, GroupManagementActivity.class);
+				startActivity(intent);
 		}
 	}
 	
+	
+	/**
+	 * OnClick auf den Button R.id.groupadministration_bt_change.
+	 * @param v Button R.id.groupadministration_bt_change
+	 */
 	public void changeButtonOnClick(View v){
 		switch(v.getId()){
 		case R.id.groupadministration_bt_change:
-			//Titel
 			String title = ((EditText) findViewById(R.id.groupadministration_et_title)).getText().toString();
-			Group.getList().get(groupID).setTitle(title);
-			
-			//TODO Gruppenmitglieder
-			
+			Group.getList().get(mGroupID).setTitle(title);
+			//TODO Gruppenmitglieder aktuallisieren
 			finish();
 		}
 	}

@@ -14,16 +14,23 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+/**
+ * Zeigt alle verfügbaren Gruppengespräche an.
+ * 
+ * @author Safran Quader
+ * @version 2015-02-17
+ */
+
 public class GroupManagementActivity extends Activity{
 	
 	private ArrayList<Group> mItemList;
-	 
 	private GroupManagementAdapter mAdapter;
 	private ListView mListView;
 	
+	
 	/**
-	 * Initialize the activity at first start or resume
-	 */
+	 * Start der Activity.
+	 */	
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -36,10 +43,12 @@ public class GroupManagementActivity extends Activity{
         mListView.setAdapter(mAdapter);
 	}
 	
+	/**
+	 * Restart der Activity.
+	 */
 	@Override
 	protected void onRestart() {
 	    super.onRestart();  
-	    
 	    mAdapter.notifyDataSetChanged();
 	}
 	
@@ -76,6 +85,9 @@ public class GroupManagementActivity extends Activity{
 	    }
 	}
 	
+	/**
+	 * Ermittelt Daten für mItemList.
+	 */
 	public void getData(){
 		mItemList = Group.getList();
 	}

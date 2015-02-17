@@ -15,6 +15,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Zeigt den Gesprächsverlauf eines Gruppenchats an und ermölicht es Nachrichten an eine Gruppe zu versenden.
+ * 
+ * @author Karsten Klaus
+ * 
+ * @version 2015-02-16
+ *
+ */
+
 public class GroupChatActivity extends Activity {
 	
 	/**
@@ -37,7 +46,9 @@ public class GroupChatActivity extends Activity {
 	private GroupChatAdapter GAdapter;
 	
 	
-	
+	/**
+	 * 
+	 */
 	public void updateMessages() {				
 //		if (messageitem_same != currentGroupChat.getMessagelog().getLastMessageItem() ) 
 //		{
@@ -64,7 +75,7 @@ public class GroupChatActivity extends Activity {
 	
 
 
-/**                                  
+	/**                                  
 	 * On resume re-set the MessageListener and gather new arrived messages.
 	 */
 	@Override
@@ -91,6 +102,7 @@ public class GroupChatActivity extends Activity {
 		this.onCreate(null);
 	}
 	
+	
 	/**
 	 * Initialize the activity at first start or resume
 	 */
@@ -113,6 +125,10 @@ public class GroupChatActivity extends Activity {
 	//	});
 	}
 	
+	
+	/**
+	 * 
+	 */
 	private void init(){
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
@@ -121,11 +137,18 @@ public class GroupChatActivity extends Activity {
         bt.setTag(id);
 	}
 	
+	/**
+	 * 
+	 */
 	private void setTitle(){
 		TextView tv = (TextView) findViewById(R.id.groupchat_tv_title);
         tv.setText(Group.getList().get(id).getTitle());
 	}
 	
+	/**
+	 * 
+	 * @param v
+	 */
 	public void editButtonOnClick(View v){
 		int groupID = (Integer) v.getTag();
 
@@ -141,6 +164,10 @@ public class GroupChatActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param v
+	 */
 	public void sendButtonOnClick(View v){
 		switch(v.getId()){
 		case R.id.groupchat_bt_send:
