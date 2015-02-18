@@ -351,7 +351,7 @@ public class Encryption {
 		     
 		            
 		        }
-		        
+		        /*
 		        boolean help = encryption_on;
 		        encryption_on = true;
 		        
@@ -380,7 +380,8 @@ public class Encryption {
 		        
 		        //Toast.makeText(context.getApplicationContext(), "Kern 1:" + core1.getid() , Toast.LENGTH_LONG).show();
 		        //Toast.makeText(context.getApplicationContext(), "Kern 2:" + core2.getid() , Toast.LENGTH_LONG).show();
-		        encryption_on = help; 
+		        encryption_on = help;
+		        */ 
 	}
 	
 
