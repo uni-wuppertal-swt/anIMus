@@ -46,7 +46,7 @@ public class NullEncryption_Core implements Secure_Core {
 
 	public boolean isReady() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	public void refresh_connection() {

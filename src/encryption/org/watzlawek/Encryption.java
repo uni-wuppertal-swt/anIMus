@@ -14,6 +14,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.Vector;
+import java.util.HashMap;
+import java.util.Set;
 import java.util.Formatter;
 
 import javax.crypto.BadPaddingException;
@@ -42,6 +44,7 @@ import encryption.org.watzlawek.AES256Cipher;
 public class Encryption {
 	private Vector<JID> mMemberList;
 	private Vector<Secure_Core> cores;
+	private HashMap<String, Secure_Core> coresByName;
 	private Secure_Core core1,core2 ;
 	private Connection connection;
 	private Context context;
@@ -84,9 +87,11 @@ public class Encryption {
 	
 	public Encryption (Context context, Connection connection, EncryptionEngineConfig conf){
 		this.config = conf;
+		this.coresByName = new HashMap<String,Secure_Core>();
 		cores = new Vector<Secure_Core>();
 		cores.add(new NullEncryption_Core());
 		cores.add(new TextSecure_Core());
+		cores.add(new AESEncryptionCore());
 		this.connection = connection;
 		this.context = context;
 		
@@ -291,7 +296,7 @@ public class Encryption {
 			catch(EncryptionFaultException e){}
 			catch(SQLiteException e){}
 	        
-
+			//keyset.truncateKeySet();
 	        
 	        
 		       // Toast.makeText(context.getApplicationContext(), stbu.toString() , Toast.LENGTH_LONG).show();
@@ -300,8 +305,12 @@ public class Encryption {
 	        //Toast.makeText(context.getApplicationContext(), "anzahl Nr 1:" + cores.size() , Toast.LENGTH_LONG).show();  
 		
 		     Iterator<Secure_Core> iter = cores.iterator();
+		     Secure_Core obj = null;
 		       while (iter.hasNext()) {
-		        	iter.next().init(this.context, this.mMemberList, this);
+		        	obj = iter.next();
+		        	this.coresByName.put(obj.getid(),obj);
+		        	obj.init(this.context, this.mMemberList, this);
+		        	
 		            
 		        }			
 			

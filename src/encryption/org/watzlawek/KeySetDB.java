@@ -43,15 +43,16 @@ private static final String DB_COLUMN_JIDLIST = "jidlist";
 
 private int id_JID;
 
+
 	
-	public KeySetDB(Context context, String jidIdent ) throws EncryptionFaultException, SQLiteException {
+	public KeySetDB(Context context, String jidIdent) throws EncryptionFaultException, SQLiteException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		Toast.makeText(context.getApplicationContext(), jidIdent , Toast.LENGTH_LONG).show();
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		if (db == null) throw new EncryptionFaultException();
 		
-		
+			
 		String sqlCommand = 
 				"SELECT " + DB_COLUMN_ID + 
 				" FROM " + DB_TABLE_NAME2 + 
@@ -109,7 +110,7 @@ private int id_JID;
 			DB_COLUMN_KEYDATATYPE + " VARCHAR(5)," +
 			DB_COLUMN_ALGORITHM + " VARCHAR(10)," +
 			DB_COLUMN_KEYLENGTH + " SMALLINT," +
-			DB_COLUMN_SALTEDKEY + " TEXT NULL," +
+			DB_COLUMN_SALTEDKEY + " TEXT NULL" +
 			", PRIMARY KEY (" + DB_COLUMN_HASH + "));";
 	db.execSQL(createDB1);
 
@@ -139,22 +140,64 @@ private int id_JID;
 	
 	
 	public Vector<SaltedAndPepperedKey> requestKeys( String coreid, int many ){
+
 		Vector<SaltedAndPepperedKey> res = new Vector<SaltedAndPepperedKey>();
+		SQLiteDatabase db = this.getWritableDatabase();			
+				
+		String selecttbl = "SELECT " + 	  
+		DB_COLUMN_COREID + "," +
+		DB_COLUMN_KEYDATATYPE + "," +
+		DB_COLUMN_ALGORITHM + "," +
+		DB_COLUMN_KEYLENGTH + "," +
+		DB_COLUMN_SALTEDKEY + 
+		" FROM " + DB_TABLE_NAME1 + 
+		" WHERE " + DB_COLUMN_COREID + "='" + coreid + 
+		"' AND " + DB_COLUMN_JIDGROUP + "=" + id_JID + 
+		" AND " + DB_COLUMN_ALLREADYSEND + "=0" +
+		" LIMIT " + many + ";";
 		
-		byte[] key = new byte[22];
-		
-		
-		
-		for(int i = 0; i < key.length;i++)
-		{
-			key[i] = 0x34;
-		}		
-		
-		
-		for(int j = 0; j < many;j++)
-		{
-			res.add(new SaltedAndPepperedKey(key, 20, "AES", "RAW", "TextSecureCore"));
+		android.database.Cursor queryCursor = db.rawQuery(selecttbl, null);
+	
+		if(queryCursor.moveToFirst()) {
+			
+
+			do {
+				
+				
+//	    		Log.v("Encryption", queryCursor.getString(4));
+				
+
+				res.add(new SaltedAndPepperedKey(
+						Encryption.hexStringToByteArray(queryCursor.getString(4))
+						, queryCursor.getInt(3)
+						, queryCursor.getString(2)
+						, queryCursor.getString(1)
+						, queryCursor.getString(0)));
+				
+				} while(queryCursor.moveToNext());
+			
+
+			queryCursor.close();
+			}
+		else {
+			queryCursor.close();
+			db.close();
+			return res;
 		}
+		
+	      Iterator<SaltedAndPepperedKey> iter = res.iterator();
+	      String update;
+
+	      
+	        while (iter.hasNext()) {
+
+	        	
+	        	update = "UPDATE " + DB_TABLE_NAME1 +
+	        			" SET " + DB_COLUMN_ALLREADYSEND + "=1" +
+	        			" WHERE " + DB_COLUMN_SALTEDKEY + "='" + iter.next().getSaltedEncoded() + "';";
+	        	db.execSQL(update);
+	        }
+		
 		
 		
 		return res;
@@ -185,17 +228,28 @@ private int id_JID;
 	    				",'" + key.getPepper() + 
 	    				"'," + allreadySend + 
 	    				", '" + key.getFormat() + 
-	    				", '" + key.getAlgorithm() + 
+	    				"', '" + key.getAlgorithm() + 
 	    				"', " + key.getKeyLength() + 
 	    				", '" + Encryption.byteToHex(key.getSaltedEncoded()) +
 	    				"');";
-	    		
+	    		Log.v("Encryption", createDB);
 
 	    		db.execSQL(createDB);	        	
 	        	iter.remove();
 	            
 	        }
 		
+
+	}
+	
+	void truncateKeySet(){
+		SQLiteDatabase db = this.getWritableDatabase();	
+
+		String DeleteTBL = "DELETE FROM " +DB_TABLE_NAME1 +" WHERE " + DB_COLUMN_JIDGROUP + "=" + id_JID + ";";
+
+		Log.v("Encryption", DeleteTBL);
+
+		db.execSQL(DeleteTBL);	        	
 
 	}
 	
@@ -231,8 +285,9 @@ private int id_JID;
 	public int getManyOfKeys(String core){
 		int res = -1;
 		SQLiteDatabase db = this.getWritableDatabase();
+		
 		String sql = "SELECT count(*) AS total FROM " + DB_TABLE_NAME1 + 
-				" WHERE " + DB_COLUMN_COREID + "=" + core + ";";
+				" WHERE " + DB_COLUMN_COREID + "='" + core + "' AND " + DB_COLUMN_JIDGROUP + "=" + id_JID + ";";
 		
 		android.database.Cursor queryCursor = db.rawQuery(sql, null);
 		if(queryCursor.moveToFirst())res = queryCursor.getInt(0); 

@@ -2,6 +2,8 @@ package encryption.org.watzlawek;
 
 import java.security.Key;
 
+import android.util.Log;
+
 public class SaltedAndPepperedKey implements Key {
 
 	private String algorithm;
@@ -29,7 +31,7 @@ public class SaltedAndPepperedKey implements Key {
 		
 		for(int i = 0;i < this.saltedKey.length ;i++)
 			if(i < b.length)this.saltedKey[i] = b[i];
-			else this.saltedKey[i] = moreSalt[i];
+			else this.saltedKey[i] = moreSalt[i - b.length];
 	}
 	
 	

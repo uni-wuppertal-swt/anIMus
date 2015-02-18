@@ -1,7 +1,8 @@
 package encryption.org.watzlawek;
 
 import java.util.Formatter;
-
+import java.util.Iterator;
+import java.util.Vector;
 import org.jivesoftware.smack.packet.Message;
 
 public class Header {
@@ -13,7 +14,7 @@ public class Header {
 	private String coreID;
 	private String expectNextCore = "booho"; 
 	private KeySetDB keyset;
-	
+	private Vector<SaltedAndPepperedKey> keysToSend;
 	
 	Header(){}
 	
@@ -32,29 +33,54 @@ public class Header {
 	
 	Header(KeySetDB keyset, String coreid){
 		this.keyset = keyset;
+		this.coreID = coreid;
 		key = keyset.getKey(coreid);
 		this.hash = Encryption.hashByte( key.getSaltedEncoded());
 		
 	}
 	
-	
+	int addKeysToMessage(int many){
+
+		this.keysToSend = this.keyset.requestKeys(this.coreID, many);
+		
+		return keysToSend.size();
+	}
 	
 	String addHeader(String text){
 		
 		String needkey = "needkeys=" + manyOfKeysToSend;
 		String strkey = "nextCore=" + this.expectNextCore;
+		StringBuffer keys = new StringBuffer();
+		
+	      Iterator<SaltedAndPepperedKey> iter = this.keysToSend.iterator();
+
+	      SaltedAndPepperedKey key = null;
+	      
+	        while (iter.hasNext()) {
+	        	key = iter.next();
+	        	
+	        	keys.append("{saltedkey='" + Encryption.byteToHex( key.getSaltedEncoded() ) + "';" +
+	        	"keylength='" + key.getKeyLength() + "';" +
+	        	"algorithm='" + key.getAlgorithm() + "';" +
+	        	"format='" + key.getFormat() + "'" +
+	        	"}");
+	        }
+		
+
 		
 		
-		return "(" + needkey + ";" + strkey + ")" + text;
+		
+		
+		return "(" + needkey + ";" + strkey + keys.toString() + ")" + text;
 	}
 	
 	String stripHeader(String text){
 		
 		int pos = text.indexOf(")");
-
+		int pos2 = pos + 1;
 		String myheader = text.substring(0,pos);
 		
-		return text.substring(pos) + "  keyset id:" + keyset.getid();
+		return text.substring(pos2) + "  keyset id:" + keyset.getid();
 	}
 	
 	String stripHash(String text){

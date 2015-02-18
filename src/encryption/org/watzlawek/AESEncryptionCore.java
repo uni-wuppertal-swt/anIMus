@@ -4,6 +4,9 @@ import org.jivesoftware.smack.packet.Message;
 import android.content.Context;
 import android.os.Build.VERSION;
 import android.util.Log;
+import java.io.UnsupportedEncodingException;
+
+
 
 import java.security.SecureRandom;
 import java.util.Vector;
@@ -71,14 +74,73 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 			
 			Vector<SaltedAndPepperedKey> keys = new Vector<SaltedAndPepperedKey>();
 			keys.add(createKey("seed"));
-			encryption.storeNewKeys(keys);
+			encryption.storeReceivedKeys(keys);
 			
 		}
+		int max = encryption.config.getMaximumKeys();
+		if(max > many ){
 		
-		
+		Vector<SaltedAndPepperedKey> keys = new Vector<SaltedAndPepperedKey>();
 
+		for(int i = many;i < max;i++)
+		{
+		try{
+		keys.add(createKey(new String(SecureRandom.getSeed(8),"UTF-8")));
+		}
+		catch(UnsupportedEncodingException e){
+			Log.v("Encryption", e.getMessage());
+		}
+		}
+		
+		encryption.storeNewKeys(keys);
+		}
 		
 	}
+	@Override
+	public void setCipherMessage(Message message, Header header) {
+		Message plain = new Message();
+		String cipher	= message.getBody();
+		
+		
+		plain.setBody(header.stripHash(cipher));
+		
+
+		plain.setBody( header.stripHeader( cipher) );
+		
+		this.message_decrypt = plain;
+	}
+
+	
+	public void setTextMessage(Message message, Header header) {
+		// TODO Auto-generated method stub
+		
+		Message cipher = new Message();
+		String text	= message.getBody();
+
+		
+		//cipher.setBody(message.getBody());
+		Log.v("Encryption","Es koennen " + header.addKeysToMessage(encryption.config.getRecommendedKeysinOneMessage()) + " versendet werden");
+		
+		text = header.addHeader(text);
+		cipher.setBody(header.getHash()  + text);
+
+		this.message_encrypt = cipher;
+		
+		//this.message_encrypt = message;
+
+	}
+
+	
+	public boolean supports(EncryptionModeENUM mode) {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	public short security_level() {
+		// TODO Auto-generated method stub
+		return 100;
+	}
+	
 	/*
 	public String getid() {
 		// TODO Auto-generated method stub
@@ -105,97 +167,6 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 
 	}
 */
-	public void setCipherMessage(Message message, Header header) {
-		Message plain = new Message();
-		String iv	= "Deine Mudda_3456";
-		String key	= "Deine Mudda_3456";
-		String cipher	= message.getBody();
-		
-		plain.setBody(header.stripHash(cipher));
-		
-		
-		/*
-		try {
-			plain.setBody(AES256Cipher.decrypt(iv.getBytes(),key.getBytes(),cipher.getBytes()).toString());
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			plain.setBody(e.getMessage());
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			plain.setBody(e.getMessage());
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			plain.setBody(e.getMessage());
-		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
-			plain.setBody(e.getMessage());
-		} catch (InvalidAlgorithmParameterException e) {
-			// TODO Auto-generated catch block
-			plain.setBody(e.getMessage());
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			plain.setBody(e.getMessage());
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			plain.setBody(e.getMessage());
-		}
-*/
-		plain.setBody( header.stripHeader( cipher) );
-		
-		this.message_decrypt = plain;
-	}
-
-	/*
-	public Message getCipherMessage() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-*/
-	
-	public void setTextMessage(Message message, Header header) {
-		// TODO Auto-generated method stub
-		
-		Message cipher = new Message();
-		String iv	= "Deine Mudda_3456";
-		String key	= "Deine Mudda_3456";
-		String text	= message.getBody();
-
-		
-		//cipher.setBody(message.getBody());
-		
-		text = header.addHeader(text);
-		cipher.setBody(header.getHash()  + text);
-		/*
-		try {
-			cipher.setBody(header.getHash()  +  AES256Cipher.encrypt(iv.getBytes(),key.getBytes(),text.getBytes()).toString());
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			cipher.setBody(e.getMessage());
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			cipher.setBody(e.getMessage());
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			cipher.setBody(e.getMessage());
-		} catch (NoSuchPaddingException e) {
-			// TODO Auto-generated catch block
-			cipher.setBody(e.getMessage());
-		} catch (InvalidAlgorithmParameterException e) {
-			// TODO Auto-generated catch block
-			cipher.setBody(e.getMessage());
-		} catch (IllegalBlockSizeException e) {
-			// TODO Auto-generated catch block
-			cipher.setBody(e.getMessage());
-		} catch (BadPaddingException e) {
-			// TODO Auto-generated catch block
-			cipher.setBody(e.getMessage());
-		}
-		*/
-		this.message_encrypt = cipher;
-		
-		//this.message_encrypt = message;
-
-	}
 	/*
 	public Message getTextMessage() {
 		// TODO Auto-generated method stub
