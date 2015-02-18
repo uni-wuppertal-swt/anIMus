@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.watzlawek.MessageItem;
 import org.watzlawek.R;
+import org.watzlawek.models.Group;
+import org.watzlawek.views.adapters.GroupManagementAdapter.ViewHolder;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,14 +19,17 @@ import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.View.OnCreateContextMenuListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-//public class GroupChatAdapter extends BaseAdapter{
-public class GroupChatAdapter extends ArrayAdapter<MessageItem> implements OnCreateContextMenuListener{
+public class GroupChatAdapter extends BaseAdapter{
+//public class GroupChatAdapter extends ArrayAdapter<MessageItem> implements OnCreateContextMenuListener{
 	/**
 	 * Holds the reference to the message of the bubble.
 	 */
@@ -53,11 +58,15 @@ public class GroupChatAdapter extends ArrayAdapter<MessageItem> implements OnCre
 	 * The applications context.
 	 */
 	protected Context context;
+	private int id;
+	private LayoutInflater mInflater;
 	
 	
-	public GroupChatAdapter(Context in_context, int textViewResourceId) {
-		super(in_context, textViewResourceId);
+	public GroupChatAdapter(Context in_context, int textViewResourceId, int groupid) {
+	//	super(in_context, textViewResourceId);
 		context = in_context;
+		id=groupid;
+		mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 	}
 	/**
@@ -87,8 +96,30 @@ public class GroupChatAdapter extends ArrayAdapter<MessageItem> implements OnCre
 	}
 
 	
-	// einzele items noch anzupassen
+
 	public View getView(int position, View convertView, ViewGroup parent) {
+		final ViewHolder viewHolder;
+		final int pos = position;
+		
+		if(convertView==null){
+			convertView = mInflater.inflate(R.layout.chatlistitemdark, parent, false);
+			
+			viewHolder = new ViewHolder();
+			viewHolder.tvItemName = (TextView) convertView.findViewById(R.id.ChatListItemDarkMessage);
+			
+			convertView.setTag(viewHolder);
+		} else{
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
+		
+		
+		viewHolder.tvItemName.setText(Group.getList().get(id).getMessagelog().getVectorMessage().get(position).getMessage());
+	//	Toast toast = Toast.makeText(context,Group.getList().get(id).getMessagelog().getVectorMessage().get(position).getMessage(), 10);
+    //    toast.show();
+
+		
+		return convertView;
+		/**
 		View row = convertView;
 		if (row == null) {
 			LayoutInflater inflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -144,13 +175,15 @@ public class GroupChatAdapter extends ArrayAdapter<MessageItem> implements OnCre
 		this.bubblecompleteLinearLayout.setBackgroundResource(pic_ressource);		
 		this.wrapperLinearLayout.setGravity(gravity_ressource);
 		
-		return row;		
+		return row;	
+		
+			*/
 		
 	}
 	
 	public void add(MessageItem in_messageitem) {		
 		this.bubblesList.add(in_messageitem);
-		super.add(in_messageitem);
+		//super.add(in_messageitem);
 	}
 	/**
 	 * Sets Header for Chatlog context menu.
@@ -159,4 +192,12 @@ public class GroupChatAdapter extends ArrayAdapter<MessageItem> implements OnCre
 		menu.setHeaderTitle(R.string.chatContextMenuChatLog);       	
 	}	
 
+	public class ViewHolder{
+		TextView tvItemName;
+	}
+
+	public Object getItem(int position) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -14,7 +14,9 @@ import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import android.widget.Button;
 
@@ -39,6 +41,7 @@ public class GroupChatActivity extends Activity {
 	private Handler updateMessageHandler;
 	
 	private ListView listViewChat;
+	private EditText editText;
 
 	private int id;
 	/**
@@ -57,17 +60,7 @@ public class GroupChatActivity extends Activity {
 	/**
 	 * 
 	 */
-	public void updateMessages() {				
-//		if (messageitem_same != currentGroupChat.getMessagelog().getLastMessageItem() ) 
-//		{
-	//			if (currentGroupChat.getMessagelog().getLastMessageItem() != null)
-		//		{					
-			//		this.GAdapter.add(currentGroupChat.getMessagelog().getLastMessageItem());					
-				//}
-		//	messageitem_same = currentGroupChat.getMessagelog().getLastMessageItem();	
-	//	}
-			
-	}
+	
 	
 	
 	/** 					// ChatActivity
@@ -90,20 +83,10 @@ public class GroupChatActivity extends Activity {
 	protected void onResume() 
 	{
 		super.onResume();
-		IMApp app = (IMApp)getApplicationContext();
 	
 	}
 	
-	protected void prepareAdaptersAndMessage()  
-	{
-		GAdapter = new GroupChatAdapter(getApplicationContext(), R.layout.chatlistitemdark);
-        	this.listViewChat = (ListView) findViewById(R.id.ChatNewlistChatLog);
-        	this.listViewChat.setAdapter(GAdapter);
-        	this.listViewChat.setStackFromBottom(true);
-        	this.listViewChat.setTranscriptMode(ListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);   
-        	registerForContextMenu(listViewChat);
-        
-	}
+	
 	
 	
 	/**
@@ -112,10 +95,13 @@ public class GroupChatActivity extends Activity {
 	@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        prepareAdaptersAndMessage();
         setContentView(R.layout.activity_groupchat);
         init();
-       
+        listViewChat = (ListView) findViewById(R.id.groupchat_lv_conversation);
+        //GAdapter=new GroupChatAdapter(getbaseContext(),);
+        listViewChat.setAdapter(GAdapter);
+        editText = (EditText) findViewById(R.id.groupchat_et_message);
+        
 	}
 	
 	
@@ -125,7 +111,9 @@ public class GroupChatActivity extends Activity {
 	private void init(){
         Intent intent = getIntent();
         id = intent.getIntExtra("id", 0);
-        
+     //   Toast toast = Toast.makeText(getBaseContext(), String.valueOf(id), 10);
+     //   toast.show();
+        currentGroupChat=Group.getList().get(id) ;
         Button bt = (Button) findViewById(R.id.groupchat_bt_edit);
         bt.setTag(id);
 	}
@@ -164,7 +152,10 @@ public class GroupChatActivity extends Activity {
 	public void sendButtonOnClick(View v){
 		switch(v.getId()){
 		case R.id.groupchat_bt_send:
-			Log.d("", "sendButtonOnClick()");
+			Log.d("", "sendButtonOnClick()");  
+			Group.getList().get(id).getMessagelog().addMessage(editText.getText().toString(), "time", "name",0);
+			    Toast toast = Toast.makeText(getBaseContext(), currentGroupChat.getMessagelog().getLastMessageItem().getMessage(), 10);
+		        toast.show();
 			break;
 		default:
 			break;
