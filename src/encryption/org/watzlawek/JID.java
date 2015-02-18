@@ -1,5 +1,12 @@
 package encryption.org.watzlawek;
-
+/**
+* representative of any JID in this group
+* 
+* @author Frederick Bettray
+* @author Stefan Wegerhoff
+*
+*@version 2015-02-18
+*/
 import org.jivesoftware.smack.Chat;
 import org.jivesoftware.smack.ChatManager;
 import org.jivesoftware.smack.Connection;

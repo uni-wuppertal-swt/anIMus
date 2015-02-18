@@ -1,5 +1,14 @@
 package encryption.org.watzlawek;
 
+/**
+* This class manages different encryption algorithm, capsulated in classes with interface "Secure_Core".
+* It contains the class for database and a list of all JIDs as well. 
+*
+* @author Frederick Bettray
+* @author Stefan Wegerhoff
+*
+*@version 2015-02-18
+*/
 
 import net.sqlcipher.database.SQLiteException;
 import android.database.sqlite.SQLiteDatabase;
@@ -83,6 +92,7 @@ public class Encryption {
 	 * Constructor 
 	 * @param context
 	 * @param connection : gets a smack Connection Interface
+	 * @param conf : contains a config object for modify
 	 */
 	
 	public Encryption (Context context, Connection connection, EncryptionEngineConfig conf){
@@ -190,6 +200,12 @@ public class Encryption {
 		// ref in XMPPChat:122
 	}
 	
+	
+	/**
+	 * converter byte to sha-1 hash
+	 * @param hash
+	 * @return
+	 */
 	public static byte[] hashByte(final byte[] hash)
 	{
 			byte[] result = null;
@@ -209,6 +225,11 @@ public class Encryption {
 	    return result;
 	}
 	
+	/**
+	 * converter byte[] to string 
+	 * @param hash
+	 * @return
+	 */
 	public static String byteToHex(final byte[] hash)
 	{
 	    Formatter formatter = new Formatter();
@@ -221,6 +242,11 @@ public class Encryption {
 	    return result;
 	}
 	
+	/**
+	 * converter string to byte[]
+	 * @param s
+	 * @return
+	 */
 	public static byte[] hexStringToByteArray(String s) {
 	    int len = s.length();
 	    byte[] data = new byte[len / 2];
@@ -231,6 +257,10 @@ public class Encryption {
 	    return data;
 	}
 	
+	/**
+	 * way to switch encryption on and of
+	 * @param on
+	 */
 	public void setEncryption(boolean on){
 		encryption_on = on;
 	}
@@ -241,20 +271,36 @@ public class Encryption {
 		
 	}
 	
+	/**
+	 * shows many of all available keys
+	 * @param core
+	 * @return
+	 */
 	
 	int getManyOfKeys(String core){
 		return keyset.getManyOfKeys(core);
 	}
-	
+	/**
+	 * stores keys as not shared
+	 * @param keys
+	 */
 	void storeNewKeys( Vector<SaltedAndPepperedKey> keys ){
 		keyset.setKey(keys, false);
 	}
 
+	/**
+	 * stores keys as shared keys
+	 * @param keys
+	 */
 	void storeReceivedKeys( Vector<SaltedAndPepperedKey> keys ){
 		keyset.setKey(keys, true);
 	}
 	
-	
+	/**
+	 * gets all JID members and stores in a list of JID objects
+	 * all cores will be initiated as well 
+	 * @param mMemberList
+	 */
 	public void setMemberList(Vector<String> mMemberList){
 
 		
@@ -393,21 +439,28 @@ public class Encryption {
 		
 	}
 	
-	
+/**
+ * decrypt messages by using the header	
+ * @param cipher
+ * @return
+ * @throws EncryptionFaultException
+ */
 	public Message decryptMessage( Message cipher) throws EncryptionFaultException {
-		
+		Message mes;
 		if(encryption_on){
 			Header header = new Header(this.keyset, cipher);
 			core1.setCipherMessage(cipher, header);
-			return core1.getTextMessage();
+			mes = core1.getTextMessage();
 		}
 		else
 		{
 			Header header = new Header();
 			core2.setCipherMessage(cipher, header);
-			return core2.getTextMessage();
+			mes = core2.getTextMessage();
 
 		}
+
+		return mes;
 	}
 
 	public String encryptMessage(String plain) throws EncryptionFaultException {
@@ -417,27 +470,32 @@ public class Encryption {
 		
 	}
 	
-	
+	/**
+	 * encrypt messages
+	 * @param plain
+	 * @return
+	 * @throws EncryptionFaultException
+	 */
 	public Message encryptMessage(Message plain) throws EncryptionFaultException {
 		//Toast.makeText(context.getApplicationContext(), "Toast test" , Toast.LENGTH_LONG).show();
-		
+		Message mes;
 
 		if(encryption_on){
 			
 			Header header = new Header(this.keyset, core1.getid());
 			
 			core1.setTextMessage(plain, header);
-			return core1.getCipherMessage();
+			mes = core1.getCipherMessage();
 		}
 		else
 		{
 			Header header = new Header();
 			core2.setTextMessage(plain, header);
-			return core2.getCipherMessage();
+			mes = core2.getCipherMessage();
 
 		}	
-		
-		
+		Toast.makeText(context.getApplicationContext(), mes.getBody(), Toast.LENGTH_LONG).show();
+		return  mes;
 		
 		/*
 		

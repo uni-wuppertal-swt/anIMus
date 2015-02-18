@@ -408,7 +408,7 @@ public class XMPPChat extends IMChat {
     		
     		try {			
     			//encryption_manager.setEncryption(otrEnabled);
-    			encryption_manager.setEncryption(otrEnabled);
+    			encryption_manager.setEncryption(true);
     			
     			//if (otrEnabled) {
 					//String newOTRmesg = engine.transformSending(sessionID, message);					

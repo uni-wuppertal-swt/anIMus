@@ -5,7 +5,7 @@ import android.content.Context;
 import android.os.Build.VERSION;
 import android.util.Log;
 import java.io.UnsupportedEncodingException;
-
+import android.widget.Toast;
 
 
 import java.security.SecureRandom;
@@ -96,6 +96,10 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 		}
 		
 	}
+	
+	/**
+	 * @param
+	 */
 	@Override
 	public void setCipherMessage(Message message, Header header) {
 		Message plain = new Message();
@@ -107,9 +111,16 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 
 		plain.setBody( header.stripHeader( cipher) );
 		
+	
 		this.message_decrypt = plain;
 	}
 
+	/**
+	 * @param message
+	 * @param header : Benoetigt einen Header, um Metainformationen auszulesen
+	 * 
+	 * Verschluesselt eine Nachricht und legt sie zum abholen in eine interne Variable
+	 */
 	
 	public void setTextMessage(Message message, Header header) {
 		// TODO Auto-generated method stub
@@ -123,7 +134,7 @@ public class AESEncryptionCore extends NullEncryption_Core implements Secure_Cor
 		
 		text = header.addHeader(text);
 		cipher.setBody(header.getHash()  + text);
-
+		
 		this.message_encrypt = cipher;
 		
 		//this.message_encrypt = message;

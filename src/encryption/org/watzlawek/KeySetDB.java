@@ -1,5 +1,15 @@
 package encryption.org.watzlawek;
 
+/**
+* This database classe stores JID Groups and keys for several Secure_Cores
+* It only interacts with Encryption and Header.  
+*
+* @author Frederick Bettray
+* @author Stefan Wegerhoff
+*
+*@version 2015-02-18
+*/
+
 import java.util.*;
 
 import net.sqlcipher.database.SQLiteException;
@@ -26,24 +36,64 @@ private static final int DATABASE_VERSION = 1;
 * Name of the table which holds the keysets.
 */
 private static final String DB_TABLE_NAME1 = "tblkeyset";
+/**
+ * Name of the table for jid groups
+ */
 private static final String DB_TABLE_NAME2 = "tbljidset";
-
+/**
+ * every encrypted message has a 40 signs long Hexcount at the top
+ * it specificates on key and its content in this table 
+ */
 private static final String DB_COLUMN_HASH = "hash";
+/**
+ * id to jid groups
+ */
 private static final String DB_COLUMN_JIDGROUP = "id";
+/**
+ * specificate the algorithm to encrypt
+ */
 private static final String DB_COLUMN_COREID = "coreid";
+/**
+ * the db stores a list of several keys in db and send it on every outgoing message
+ * this bool stores if it is shared.
+ */
 private static final String DB_COLUMN_ALLREADYSEND = "allreadysend";
+/**
+ * information of class Key
+ */
 private static final String DB_COLUMN_KEYDATATYPE = "keydatatype";
+/**
+ * information of class Key
+ */
 private static final String DB_COLUMN_ALGORITHM = "algorithm";
+/**
+ * holds the real key length
+ */
 private static final String DB_COLUMN_KEYLENGTH = "keylength";
+/**
+ * stores complete key with salt
+ */
 private static final String DB_COLUMN_SALTEDKEY = "saltedkey";
 
+/**
+ * id and jidlist for JID table
+ */
 private static final String DB_COLUMN_ID = "_id";
 private static final String DB_COLUMN_JIDLIST = "jidlist";
 
-
+/**
+ * holds current id in JID list
+ */
 private int id_JID;
 
-
+/**
+ * creates an entry for every jid group
+ * 
+ * @param context
+ * @param jidIdent
+ * @throws EncryptionFaultException
+ * @throws SQLiteException
+ */
 	
 	public KeySetDB(Context context, String jidIdent) throws EncryptionFaultException, SQLiteException {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -82,6 +132,11 @@ private int id_JID;
 			
 	}
 
+	/**
+	 * look for higgest id and return the next higger integer 
+	 * @param db
+	 * @return
+	 */
 	private int findNextID(SQLiteDatabase db){
 		int res = 0;
 		String sqlCommand = 
@@ -95,6 +150,10 @@ private int id_JID;
 		return res + 1;
 	}
 	
+	/**
+	 * current JID group
+	 * @return
+	 */
 	public int getid(){return id_JID;}
 	
 	/**
@@ -139,6 +198,12 @@ private int id_JID;
 	}
 	
 	
+	/**
+	 * returns non sended keys and mark it in db
+	 * @param coreid
+	 * @param many
+	 * @return
+	 */
 	public Vector<SaltedAndPepperedKey> requestKeys( String coreid, int many ){
 
 		Vector<SaltedAndPepperedKey> res = new Vector<SaltedAndPepperedKey>();
@@ -203,6 +268,12 @@ private int id_JID;
 		return res;
 	}
 	
+	
+	/**
+	 * gets a couple of keys, to store it with state shared or not shared
+	 * @param keys
+	 * @param received
+	 */
 	void setKey(Vector<SaltedAndPepperedKey> keys, boolean received){
 		SQLiteDatabase db = this.getWritableDatabase();		
 		String createDB = "";
@@ -242,6 +313,9 @@ private int id_JID;
 
 	}
 	
+	/**
+	 * delete all keys of this JID group
+	 */
 	void truncateKeySet(){
 		SQLiteDatabase db = this.getWritableDatabase();	
 
@@ -253,6 +327,12 @@ private int id_JID;
 
 	}
 	
+	/**
+	 * request a key to encrypt a message
+	 * Not finished yet
+	 * @param core
+	 * @return
+	 */
 	SaltedAndPepperedKey getKey(String core){
 		byte[] key = new byte[22];
 		
@@ -267,7 +347,11 @@ private int id_JID;
 		
 	}
 	
-	
+	/**
+	 * request a specific key to decrypt a message
+	 * @param hash
+	 * @return
+	 */
 	SaltedAndPepperedKey getKey(byte[] hash){
 		
 		byte[] key = new byte[22];
@@ -282,6 +366,12 @@ private int id_JID;
 		return new SaltedAndPepperedKey(key, 20, "AES", "RAW", "TextSecureCore");
 	}
 	
+	
+	/**
+	 * return many of available keys
+	 * @param core
+	 * @return
+	 */
 	public int getManyOfKeys(String core){
 		int res = -1;
 		SQLiteDatabase db = this.getWritableDatabase();

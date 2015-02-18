@@ -1,5 +1,15 @@
 package encryption.org.watzlawek;
 
+/**
+* The header manages sending and receiving of metacontent like keys, wished key and saltlength
+* next encryption to use 
+*
+* @author Frederick Bettray
+* @author Stefan Wegerhoff
+*
+*@version 2015-02-18
+*/
+
 import java.util.Formatter;
 import java.util.Iterator;
 import java.util.Vector;

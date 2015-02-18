@@ -1,5 +1,12 @@
 package encryption.org.watzlawek;
-
+/**
+* Encryption core to inherit and to use it as a non Encryption  
+*
+* @author Frederick Bettray
+* @author Stefan Wegerhoff
+*
+*@version 2015-02-18
+*/
 import java.util.Vector;
 
 import org.jivesoftware.smack.packet.Message;
