@@ -7,6 +7,8 @@ import org.watzlawek.XMPPServer;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,6 +42,8 @@ public class ContactEditActivity extends Activity {
 	private TextView tvJIDUpdate2;
 	private TextView tvNoteUpdate;
 	
+	private TextView tvZaehlen2;
+	
 	
 	
 	@Override
@@ -59,12 +63,12 @@ public class ContactEditActivity extends Activity {
         tvJIDUpdate = (TextView) findViewById(R.id.tvJIDUpdate);
         tvJIDUpdate2 = (TextView) findViewById(R.id.tvJIDUpdate2);
         tvNoteUpdate = (TextView) findViewById(R.id.tvNoteUpdate);
-             
-        //if (intentPar != null)
+        tvZaehlen2 = (TextView)findViewById(R.id.tvZaehlen2);
+        
+        etNoteUpdate.addTextChangedListener(teWatcher2);
+   
         jid = intentPar.getString("jid");
         tvJIDUpdate2.setText(" " + jid);
-        //else
-        //	tvJIDUpdate2.setText("Bullshit");
          
         etNameUpdate.setText(intentPar.getString("name"));
         etNoteUpdate.setText(intentPar.getString("note"));
@@ -102,4 +106,17 @@ public class ContactEditActivity extends Activity {
             }
         });
 	}
+	
+	private final TextWatcher teWatcher2 = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+           tvZaehlen2.setText(String.valueOf(s.length()) +"/140");
+        }
+
+        public void afterTextChanged(Editable s) {
+        }
+        
+	};
+	
 }

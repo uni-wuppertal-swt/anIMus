@@ -62,20 +62,21 @@
     
     <TextView
         android:id="@+id/tvZaehlen"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="right"
         android:text=""
         android:textAppearance="?android:attr/textAppearanceMedium" />
-     
+      
      </LinearLayout>
     
-
     <EditText
         android:id="@+id/etNoteCreate"
         android:layout_width="wrap_content"
         android:layout_height="166dp"
         android:ems="10"
-        android:inputType="textMultiLine" />
+        android:inputType="textMultiLine"
+        android:maxLength="@integer/NoteCreateFilter" />
 
     <View 
         android:id="@+id/view4"
