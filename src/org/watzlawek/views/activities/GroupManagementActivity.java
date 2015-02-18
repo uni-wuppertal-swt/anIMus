@@ -17,6 +17,7 @@ import android.widget.ListView;
 /**
  * Zeigt alle verfügbaren Gruppengespräche an.
  * 
+ * @author Karsten Klaus
  * @author Safran Quader
  * @version 2015-02-17
  */

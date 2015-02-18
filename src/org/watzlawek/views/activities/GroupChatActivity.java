@@ -24,6 +24,7 @@ import android.widget.TextView;
  * Zeigt den Gesprächsverlauf eines Gruppenchats an und ermölicht es Nachrichten an eine Gruppe zu versenden.
  * 
  * @author Karsten Klaus
+ * @author Safran Quader
  * 
  * @version 2015-02-16
  *

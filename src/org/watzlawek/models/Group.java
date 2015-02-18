@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import org.watzlawek.IMChatMessageListener;
 import org.watzlawek.MessageLog;
 
+/**
+ * Verwaltet den Gruppenchat, sowie die Liste der Gruppenchats.
+ * 
+ * @author Karsten Klaus
+ * @author Safran Quader
+ * @version 2015-02-17
+ */
+
 public class Group {
 	private static ArrayList<Group> sList;
 	/**

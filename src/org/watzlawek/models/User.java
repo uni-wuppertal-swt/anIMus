@@ -1,5 +1,13 @@
 package org.watzlawek.models;
 
+/**
+ * Ermöglicht beim Speichern die einfach Zuordnung von JID und Nickname. 
+ * 
+ * @author Karsten Klaus
+ * @author Safran Quader
+ * @version 2015-02-05
+ */
+
 public class User {
 	private String mJid;
 	private String mNickname;
